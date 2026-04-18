@@ -1,2828 +1,326 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lagos Market Intelligence — Corporate Bulk Mortgage Programme</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg-primary: #080b12;
-    --bg-secondary: #0e1220;
-    --bg-card: #111827;
-    --bg-card-hover: #161f30;
-    --gold: #c9a96e;
-    --gold-light: #e8c98a;
-    --gold-dim: rgba(201,169,110,0.15);
-    --gold-border: rgba(201,169,110,0.25);
-    --white: #f0ede8;
-    --white-dim: rgba(240,237,232,0.55);
-    --white-dimmer: rgba(240,237,232,0.25);
-    --red: #e05252;
-    --amber: #e09040;
-    --green: #4aad7a;
-    --blue-accent: #4a90e2;
-    --border: rgba(255,255,255,0.07);
-    --border-gold: rgba(201,169,110,0.2);
-    --mono: 'IBM Plex Mono', monospace;
-    --display: 'Playfair Display', serif;
-    --sans: 'Syne', sans-serif;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg-primary);
-    color: var(--white);
-    font-family: var(--sans);
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-
-  /* BACKGROUND TEXTURE */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background: 
-      radial-gradient(ellipse 80% 50% at 20% 20%, rgba(201,169,110,0.04) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 40% at 80% 80%, rgba(74,144,226,0.04) 0%, transparent 60%);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* TOP NAV */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    background: rgba(8,11,18,0.92);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-    padding: 0 32px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .nav-brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .nav-logo {
-    width: 28px; height: 28px;
-    background: var(--gold);
-    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-    flex-shrink: 0;
-  }
-
-  .nav-title {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    color: var(--gold);
-    text-transform: uppercase;
-    line-height: 1.3;
-  }
-
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    list-style: none;
-  }
-
-  .nav-links a {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--white-dim);
-    text-decoration: none;
-    padding: 6px 14px;
-    border-radius: 4px;
-    transition: all 0.2s;
-    white-space: nowrap;
-  }
-
-  .nav-links a:hover {
-    color: var(--gold);
-    background: var(--gold-dim);
-  }
-
-  .nav-badge {
-    font-family: var(--mono);
-    font-size: 10px;
-    background: var(--gold-dim);
-    border: 1px solid var(--gold-border);
-    color: var(--gold);
-    padding: 3px 10px;
-    border-radius: 20px;
-    letter-spacing: 0.08em;
-  }
-
-  /* MAIN CONTENT */
-  main {
-    margin-top: 60px;
-    position: relative;
-    z-index: 1;
-  }
-
-  /* HERO */
-  .hero {
-    padding: 80px 60px 60px;
-    max-width: 1400px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-    min-height: calc(100vh - 60px);
-  }
-
-  .hero-eyebrow {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 24px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .hero-eyebrow::before {
-    content: '';
-    width: 40px;
-    height: 1px;
-    background: var(--gold);
-    display: block;
-  }
-
-  .hero h1 {
-    font-family: var(--display);
-    font-size: clamp(36px, 4vw, 60px);
-    font-weight: 700;
-    line-height: 1.1;
-    color: var(--white);
-    margin-bottom: 8px;
-  }
-
-  .hero h1 span {
-    color: var(--gold);
-    font-style: italic;
-  }
-
-  .hero-sub {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--white-dim);
-    letter-spacing: 0.08em;
-    margin-top: 16px;
-    margin-bottom: 40px;
-    line-height: 1.8;
-  }
-
-  .hero-ctas {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-
-  .btn-primary {
-    background: var(--gold);
-    color: var(--bg-primary);
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 14px 28px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    font-weight: 500;
-    transition: all 0.2s;
-  }
-
-  .btn-primary:hover {
-    background: var(--gold-light);
-    transform: translateY(-1px);
-  }
-
-  .btn-ghost {
-    background: transparent;
-    color: var(--white-dim);
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 13px 28px;
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    transition: all 0.2s;
-  }
-
-  .btn-ghost:hover {
-    border-color: var(--gold-border);
-    color: var(--gold);
-  }
-
-  /* STAT GRID */
-  .hero-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-
-  .stat-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 28px 24px;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s;
-  }
-
-  .stat-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: var(--gold);
-    opacity: 0.4;
-  }
-
-  .stat-card:hover {
-    border-color: var(--gold-border);
-    background: var(--bg-card-hover);
-    transform: translateY(-2px);
-  }
-
-  .stat-card.accent::before {
-    opacity: 1;
-  }
-
-  .stat-label {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--white-dimmer);
-    margin-bottom: 12px;
-  }
-
-  .stat-value {
-    font-family: var(--display);
-    font-size: 36px;
-    font-weight: 700;
-    color: var(--gold);
-    line-height: 1;
-    margin-bottom: 6px;
-  }
-
-  .stat-desc {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--white-dim);
-    line-height: 1.5;
-  }
-
-  /* SECTION */
-  .section {
-    padding: 80px 60px;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-
-  .section-divider {
-    border: none;
-    border-top: 1px solid var(--border);
-    margin: 0 60px;
-  }
-
-  .section-header {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    margin-bottom: 48px;
-    gap: 20px;
-  }
-
-  .section-eyebrow {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .section-eyebrow .num {
-    background: var(--gold-dim);
-    border: 1px solid var(--gold-border);
-    width: 22px; height: 22px;
-    border-radius: 50%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 9px;
-    font-weight: 500;
-  }
-
-  .section-title {
-    font-family: var(--display);
-    font-size: clamp(26px, 3vw, 40px);
-    font-weight: 700;
-    color: var(--white);
-    line-height: 1.15;
-  }
-
-  .section-desc {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--white-dim);
-    max-width: 420px;
-    line-height: 1.8;
-    text-align: right;
-  }
-
-  /* PARAMS TABLE */
-  .params-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    overflow: hidden;
-    margin-bottom: 32px;
-  }
-
-  .param-cell {
-    background: var(--bg-card);
-    padding: 24px 20px;
-    transition: background 0.2s;
-  }
-
-  .param-cell:hover {
-    background: var(--bg-card-hover);
-  }
-
-  .param-cell.full-width {
-    grid-column: 1/-1;
-  }
-
-  .param-key {
-    font-family: var(--mono);
-    font-size: 9px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 8px;
-  }
-
-  .param-value {
-    font-family: var(--sans);
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--white);
-    line-height: 1.4;
-  }
-
-  .param-note {
-    font-family: var(--mono);
-    font-size: 10px;
-    color: var(--white-dimmer);
-    margin-top: 4px;
-    line-height: 1.5;
-  }
-
-  /* PIPELINE FILTERS */
-  .filter-bar {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-bottom: 32px;
-  }
-
-  .filter-label {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    color: var(--white-dimmer);
-    margin-right: 4px;
-  }
-
-  .filter-btn {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 7px 16px;
-    border-radius: 20px;
-    border: 1px solid var(--border);
-    background: transparent;
-    color: var(--white-dim);
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .filter-btn:hover, .filter-btn.active {
-    border-color: var(--gold-border);
-    background: var(--gold-dim);
-    color: var(--gold);
-  }
-
-  .filter-btn.all.active { border-color: rgba(240,237,232,0.3); background: rgba(240,237,232,0.08); color: var(--white); }
-  .filter-btn.p1.active { border-color: rgba(74,173,122,0.4); background: rgba(74,173,122,0.1); color: var(--green); }
-  .filter-btn.p2.active { border-color: rgba(201,169,110,0.4); background: rgba(201,169,110,0.1); color: var(--gold); }
-  .filter-btn.p3.active { border-color: rgba(224,144,64,0.4); background: rgba(224,144,64,0.1); color: var(--amber); }
-
-  /* COMPANY CARDS GRID */
-  .companies-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 16px;
-  }
-
-  .company-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 24px;
-    cursor: pointer;
-    transition: all 0.25s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .company-card::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-
-  .company-card:hover {
-    border-color: var(--gold-border);
-    background: var(--bg-card-hover);
-    transform: translateY(-3px);
-    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
-  }
-
-  .company-card:hover::after {
-    opacity: 1;
-  }
-
-  .company-card.hidden {
-    display: none;
-  }
-
-  .card-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 16px;
-  }
-
-  .card-num {
-    font-family: var(--mono);
-    font-size: 10px;
-    color: var(--white-dimmer);
-    letter-spacing: 0.1em;
-  }
-
-  .priority-badge {
-    font-family: var(--mono);
-    font-size: 9px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-weight: 500;
-  }
-
-  .priority-badge.p1 {
-    background: rgba(74,173,122,0.15);
-    border: 1px solid rgba(74,173,122,0.3);
-    color: var(--green);
-  }
-
-  .priority-badge.p2 {
-    background: rgba(201,169,110,0.12);
-    border: 1px solid rgba(201,169,110,0.25);
-    color: var(--gold);
-  }
-
-  .priority-badge.p3 {
-    background: rgba(224,144,64,0.12);
-    border: 1px solid rgba(224,144,64,0.25);
-    color: var(--amber);
-  }
-
-  .card-company {
-    font-family: var(--sans);
-    font-size: 17px;
-    font-weight: 600;
-    color: var(--white);
-    margin-bottom: 4px;
-    line-height: 1.3;
-  }
-
-  .card-sector {
-    font-family: var(--mono);
-    font-size: 10px;
-    color: var(--white-dimmer);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-  }
-
-  .card-metrics {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    margin-bottom: 16px;
-    padding: 16px;
-    background: rgba(0,0,0,0.2);
-    border-radius: 6px;
-  }
-
-  .metric-label {
-    font-family: var(--mono);
-    font-size: 9px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--white-dimmer);
-    margin-bottom: 4px;
-  }
-
-  .metric-value {
-    font-family: var(--mono);
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--gold);
-  }
-
-  .card-lever {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--white-dim);
-    line-height: 1.6;
-    padding-top: 14px;
-    border-top: 1px solid var(--border);
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  .card-lever strong {
-    color: var(--gold);
-    font-weight: 500;
-  }
-
-  .card-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 14px;
-  }
-
-  .card-hq {
-    font-family: var(--mono);
-    font-size: 10px;
-    color: var(--white-dimmer);
-  }
-
-  .card-expand {
-    font-family: var(--mono);
-    font-size: 10px;
-    color: var(--gold);
-    letter-spacing: 0.1em;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .card-expand::after {
-    content: '→';
-    transition: transform 0.2s;
-  }
-
-  .company-card:hover .card-expand::after {
-    transform: translateX(4px);
-  }
-
-  /* MODAL */
-  .modal-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(8,11,18,0.92);
-    z-index: 200;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 20px;
-    overflow-y: auto;
-    backdrop-filter: blur(10px);
-  }
-
-  .modal-overlay.open {
-    display: flex;
-  }
-
-  .modal {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-gold);
-    border-radius: 12px;
-    width: 100%;
-    max-width: 800px;
-    margin: auto;
-    position: relative;
-    animation: modalIn 0.3s ease;
-  }
-
-  @keyframes modalIn {
-    from { opacity: 0; transform: translateY(20px) scale(0.98); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
-  }
-
-  .modal-header {
-    padding: 32px 36px 24px;
-    border-bottom: 1px solid var(--border);
-    position: relative;
-  }
-
-  .modal-close {
-    position: absolute;
-    top: 24px; right: 24px;
-    background: var(--border);
-    border: none;
-    color: var(--white-dim);
-    width: 36px; height: 36px;
-    border-radius: 50%;
-    font-size: 18px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s;
-    line-height: 1;
-  }
-
-  .modal-close:hover {
-    background: var(--gold-dim);
-    color: var(--gold);
-  }
-
-  .modal-num {
-    font-family: var(--mono);
-    font-size: 10px;
-    color: var(--white-dimmer);
-    letter-spacing: 0.15em;
-    margin-bottom: 6px;
-  }
-
-  .modal-title {
-    font-family: var(--display);
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 8px;
-  }
-
-  .modal-meta {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-
-  .modal-meta-item {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--white-dimmer);
-  }
-
-  .modal-body {
-    padding: 28px 36px 36px;
-  }
-
-  .modal-section {
-    margin-bottom: 32px;
-  }
-
-  .modal-section-title {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .modal-section-title::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border-gold);
-  }
-
-  /* SALARY TABLE */
-  .salary-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-family: var(--mono);
-    font-size: 12px;
-  }
-
-  .salary-table th {
-    text-align: left;
-    padding: 10px 12px;
-    font-size: 9px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--white-dimmer);
-    border-bottom: 1px solid var(--border);
-    background: rgba(0,0,0,0.2);
-  }
-
-  .salary-table td {
-    padding: 10px 12px;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
-    color: var(--white-dim);
-    line-height: 1.5;
-  }
-
-  .salary-table tr:hover td {
-    background: rgba(201,169,110,0.04);
-    color: var(--white);
-  }
-
-  .eligible-yes {
-    color: var(--green);
-    font-weight: 500;
-  }
-
-  .eligible-partial {
-    color: var(--gold);
-    font-weight: 500;
-  }
-
-  .eligible-no {
-    color: var(--red);
-    opacity: 0.7;
-  }
-
-  /* INTEL GRID */
-  .intel-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-bottom: 12px;
-  }
-
-  .intel-cell {
-    background: rgba(0,0,0,0.2);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 16px;
-  }
-
-  .intel-cell.full {
-    grid-column: 1/-1;
-  }
-
-  .intel-key {
-    font-family: var(--mono);
-    font-size: 9px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 8px;
-  }
-
-  .intel-val {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--white-dim);
-    line-height: 1.7;
-  }
-
-  .intel-val strong {
-    color: var(--white);
-    font-weight: 500;
-  }
-
-  /* OBJECTION BOX */
-  .objection-box {
-    background: rgba(224,82,82,0.06);
-    border: 1px solid rgba(224,82,82,0.2);
-    border-radius: 8px;
-    padding: 20px;
-    margin-top: 12px;
-  }
-
-  .obj-q {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--red);
-    margin-bottom: 12px;
-    font-style: italic;
-    opacity: 0.9;
-  }
-
-  .obj-q::before { content: '"'; }
-  .obj-q::after { content: '"'; }
-
-  .obj-a {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--white-dim);
-    line-height: 1.7;
-  }
-
-  .obj-a::before {
-    content: '→ ';
-    color: var(--green);
-    font-weight: 500;
-  }
-
-  .pool-highlight {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    background: var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-    margin-top: 16px;
-  }
-
-  .pool-cell {
-    background: var(--bg-card);
-    padding: 16px;
-    text-align: center;
-  }
-
-  .pool-cell-label {
-    font-family: var(--mono);
-    font-size: 9px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--white-dimmer);
-    margin-bottom: 6px;
-  }
-
-  .pool-cell-value {
-    font-family: var(--display);
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--gold);
-  }
-
-  /* INDUSTRY FRAMEWORKS */
-  .sector-tabs {
-    display: flex;
-    gap: 2px;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 4px;
-    margin-bottom: 28px;
-    overflow-x: auto;
-  }
-
-  .sector-tab {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 10px 18px;
-    border-radius: 6px;
-    border: none;
-    background: transparent;
-    color: var(--white-dim);
-    cursor: pointer;
-    transition: all 0.2s;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-
-  .sector-tab:hover {
-    color: var(--white);
-  }
-
-  .sector-tab.active {
-    background: var(--gold-dim);
-    color: var(--gold);
-    border: 1px solid var(--gold-border);
-  }
-
-  .sector-content {
-    display: none;
-  }
-
-  .sector-content.active {
-    display: block;
-    animation: fadeIn 0.2s ease;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .framework-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    overflow: hidden;
-  }
-
-  .framework-header {
-    padding: 24px 28px;
-    background: rgba(201,169,110,0.05);
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-  }
-
-  .framework-title {
-    font-family: var(--display);
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--white);
-  }
-
-  .framework-count {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--gold);
-    background: var(--gold-dim);
-    border: 1px solid var(--gold-border);
-    padding: 4px 14px;
-    border-radius: 20px;
-  }
-
-  .framework-body {
-    padding: 28px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
-
-  .framework-item {
-    padding: 20px;
-    background: rgba(0,0,0,0.2);
-    border-radius: 8px;
-    border-left: 3px solid var(--gold);
-  }
-
-  .framework-item.full {
-    grid-column: 1/-1;
-    border-left-color: var(--green);
-  }
-
-  .framework-item.warn {
-    border-left-color: var(--amber);
-  }
-
-  .fi-label {
-    font-family: var(--mono);
-    font-size: 9px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 10px;
-  }
-
-  .framework-item.full .fi-label {
-    color: var(--green);
-  }
-
-  .framework-item.warn .fi-label {
-    color: var(--amber);
-  }
-
-  .fi-text {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--white-dim);
-    line-height: 1.8;
-  }
-
-  .sequence-list {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 8px;
-  }
-
-  .sequence-list li {
-    font-family: var(--mono);
-    font-size: 11px;
-    background: rgba(201,169,110,0.1);
-    border: 1px solid var(--gold-border);
-    color: var(--gold);
-    padding: 4px 12px;
-    border-radius: 20px;
-  }
-
-  .sequence-list li::before {
-    content: attr(data-n) '. ';
-    opacity: 0.6;
-    font-size: 9px;
-  }
-
-  /* PLAYBOOK */
-  .steps-track {
-    display: flex;
-    gap: 0;
-    margin-bottom: 40px;
-    overflow-x: auto;
-    padding-bottom: 4px;
-  }
-
-  .step-item {
-    flex: 1;
-    min-width: 140px;
-    position: relative;
-    cursor: pointer;
-  }
-
-  .step-item::after {
-    content: '';
-    position: absolute;
-    top: 24px;
-    right: -1px;
-    width: 2px;
-    height: 24px;
-    background: var(--border);
-    z-index: 1;
-  }
-
-  .step-item:last-child::after { display: none; }
-
-  .step-num {
-    font-family: var(--mono);
-    font-size: 28px;
-    font-weight: 300;
-    color: var(--border);
-    line-height: 1;
-    padding: 0 20px 12px;
-    border-bottom: 2px solid var(--border);
-    transition: all 0.2s;
-  }
-
-  .step-item.active .step-num,
-  .step-item:hover .step-num {
-    color: var(--gold);
-    border-bottom-color: var(--gold);
-  }
-
-  .step-label {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--white-dimmer);
-    padding: 10px 20px 0;
-    transition: color 0.2s;
-  }
-
-  .step-item.active .step-label,
-  .step-item:hover .step-label {
-    color: var(--white-dim);
-  }
-
-  .step-content {
-    display: none;
-  }
-
-  .step-content.active {
-    display: block;
-    animation: fadeIn 0.25s ease;
-  }
-
-  .step-detail-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 32px;
-  }
-
-  .step-detail-title {
-    font-family: var(--display);
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 16px;
-  }
-
-  .step-detail-body {
-    font-family: var(--mono);
-    font-size: 13px;
-    color: var(--white-dim);
-    line-height: 1.9;
-    margin-bottom: 20px;
-  }
-
-  .step-detail-body strong {
-    color: var(--gold);
-    font-weight: 500;
-  }
-
-  .tip-box {
-    background: rgba(74,173,122,0.08);
-    border: 1px solid rgba(74,173,122,0.2);
-    border-radius: 8px;
-    padding: 16px 20px;
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--white-dim);
-    line-height: 1.7;
-  }
-
-  .tip-box::before {
-    content: 'TIP → ';
-    color: var(--green);
-    font-weight: 500;
-  }
-
-  /* SCRIPTS */
-  .scripts-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-    margin-top: 32px;
-  }
-
-  .script-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    overflow: hidden;
-    transition: all 0.25s;
-  }
-
-  .script-card:hover {
-    border-color: var(--gold-border);
-    transform: translateY(-2px);
-  }
-
-  .script-header {
-    padding: 18px 22px;
-    background: var(--gold-dim);
-    border-bottom: 1px solid var(--gold-border);
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--gold);
-  }
-
-  .script-body {
-    padding: 22px;
-  }
-
-  .script-quote {
-    font-family: var(--display);
-    font-size: 15px;
-    font-style: italic;
-    color: var(--white);
-    line-height: 1.7;
-    margin-bottom: 16px;
-    border-left: 3px solid var(--gold);
-    padding-left: 16px;
-  }
-
-  .script-tip {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--white-dimmer);
-    line-height: 1.7;
-  }
-
-  .script-tip::before {
-    content: '→ ';
-    color: var(--green);
-  }
-
-  /* UNIVERSAL OBJECTIONS */
-  .objections-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2px;
-    background: var(--border);
-    border-radius: 10px;
-    overflow: hidden;
-  }
-
-  .obj-row {
-    display: grid;
-    grid-template-columns: 2fr 3fr;
-    background: var(--bg-card);
-    transition: background 0.2s;
-  }
-
-  .obj-row:hover {
-    background: var(--bg-card-hover);
-  }
-
-  .obj-cell {
-    padding: 20px 22px;
-    font-family: var(--mono);
-    font-size: 12px;
-    line-height: 1.7;
-  }
-
-  .obj-cell.q {
-    color: var(--red);
-    font-style: italic;
-    border-right: 1px solid var(--border);
-    opacity: 0.85;
-  }
-
-  .obj-cell.q::before { content: '" '; }
-  .obj-cell.q::after { content: ' "'; }
-
-  .obj-cell.a {
-    color: var(--white-dim);
-  }
-
-  .obj-cell.a::before {
-    content: '→ ';
-    color: var(--green);
-    font-style: normal;
-  }
-
-  /* 90-DAY CALENDAR */
-  .calendar-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-  }
-
-  .month-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    overflow: hidden;
-  }
-
-  .month-header {
-    padding: 20px 22px 16px;
-    border-bottom: 1px solid var(--border);
-    background: rgba(201,169,110,0.04);
-  }
-
-  .month-label {
-    font-family: var(--mono);
-    font-size: 9px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 4px;
-  }
-
-  .month-title {
-    font-family: var(--display);
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--white);
-  }
-
-  .month-body {
-    padding: 20px 22px;
-  }
-
-  .week-block {
-    margin-bottom: 20px;
-  }
-
-  .week-block:last-child {
-    margin-bottom: 0;
-  }
-
-  .week-label {
-    font-family: var(--mono);
-    font-size: 9px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--white-dimmer);
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .week-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
-
-  .week-actions {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--white-dim);
-    line-height: 1.8;
-  }
-
-  .week-target {
-    margin-top: 8px;
-    font-family: var(--mono);
-    font-size: 10px;
-    color: var(--green);
-    background: rgba(74,173,122,0.08);
-    border: 1px solid rgba(74,173,122,0.2);
-    border-radius: 4px;
-    padding: 6px 10px;
-  }
-
-  .week-target::before {
-    content: 'TARGET: ';
-    opacity: 0.7;
-    font-size: 9px;
-    letter-spacing: 0.1em;
-  }
-
-  .kpi-banner {
-    background: linear-gradient(135deg, rgba(201,169,110,0.1), rgba(74,173,122,0.08));
-    border: 1px solid var(--gold-border);
-    border-radius: 10px;
-    padding: 28px 32px;
-    margin-top: 24px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    align-items: center;
-  }
-
-  .kpi-item {
-    text-align: center;
-  }
-
-  .kpi-value {
-    font-family: var(--display);
-    font-size: 32px;
-    font-weight: 700;
-    color: var(--gold);
-    margin-bottom: 6px;
-  }
-
-  .kpi-label {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--white-dimmer);
-  }
-
-  /* FOOTER */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 32px 60px;
-    max-width: 1400px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-  }
-
-  .footer-brand {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--white-dimmer);
-    line-height: 1.7;
-  }
-
-  .footer-badge {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--red);
-    background: rgba(224,82,82,0.1);
-    border: 1px solid rgba(224,82,82,0.25);
-    padding: 6px 16px;
-    border-radius: 4px;
-  }
-
-  /* SEARCH BAR */
-  .search-wrap {
-    position: relative;
-    margin-left: auto;
-  }
-
-  .search-input {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 9px 16px 9px 36px;
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--white);
-    width: 220px;
-    transition: all 0.2s;
-    outline: none;
-  }
-
-  .search-input:focus {
-    border-color: var(--gold-border);
-    background: var(--bg-card-hover);
-    width: 280px;
-  }
-
-  .search-input::placeholder {
-    color: var(--white-dimmer);
-  }
-
-  .search-icon {
-    position: absolute;
-    left: 12px; top: 50%;
-    transform: translateY(-50%);
-    color: var(--white-dimmer);
-    font-size: 12px;
-    pointer-events: none;
-  }
-
-  /* RESPONSIVE ADJUSTMENTS */
-  @media (max-width: 1024px) {
-    .hero { grid-template-columns: 1fr; gap: 40px; padding: 60px 32px; }
-    .section { padding: 60px 32px; }
-    .section-divider { margin: 0 32px; }
-    .params-grid { grid-template-columns: 1fr 1fr; }
-    .scripts-grid { grid-template-columns: 1fr; }
-    .calendar-grid { grid-template-columns: 1fr; }
-    footer { padding: 28px 32px; flex-direction: column; text-align: center; }
-  }
-
-  @media (max-width: 768px) {
-    nav { padding: 0 20px; }
-    .nav-links { display: none; }
-    .hero { padding: 40px 20px; }
-    .hero-stats { grid-template-columns: 1fr 1fr; }
-    .section { padding: 48px 20px; }
-    .section-divider { margin: 0 20px; }
-    .section-header { flex-direction: column; align-items: flex-start; }
-    .section-desc { text-align: left; }
-    .params-grid { grid-template-columns: 1fr; }
-    .framework-body { grid-template-columns: 1fr; }
-    .intel-grid { grid-template-columns: 1fr; }
-    .modal-body { padding: 20px 20px 28px; }
-    .modal-header { padding: 24px 20px 18px; }
-    .pool-highlight { grid-template-columns: 1fr; }
-    .obj-row { grid-template-columns: 1fr; }
-    .obj-cell.q { border-right: none; border-bottom: 1px solid var(--border); }
-    .kpi-banner { grid-template-columns: 1fr; text-align: center; }
-    footer { padding: 24px 20px; }
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lagos Market Intelligence — Sales Directory</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* STRICT RED, GREY, AND WHITE PALETTE */
+      --bg-white: #ffffff;
+      --bg-off-white: #fcfcfc;
+      --bg-grey-light: #f3f4f6;
+      --border-grey: #e5e7eb;
+      
+      --text-dark: #111827;
+      --text-grey: #4b5563;
+      --text-light: #9ca3af;
+      
+      --brand-red: #d92d20; /* Corporate Red */
+      --brand-red-hover: #b42318;
+      --brand-red-light: #fef3f2;
+      
+      --brand-grey: #6b7280; /* Corporate Grey */
+      
+      --font-sans: 'Inter', sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: var(--bg-white);
+      color: var(--text-dark);
+      font-family: var(--font-sans);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 80px;
+    }
+
+    /* TOP NAVIGATION (MINIMAL) */
+    nav {
+      border-bottom: 1px solid var(--border-grey);
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg-white);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-logo-placeholder {
+      width: 32px;
+      height: 32px;
+      background-color: var(--brand-red);
+      border-radius: 4px;
+    }
+
+    .nav-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-subtitle {
+      font-size: 12px;
+      color: var(--brand-grey);
+    }
+
+    /* MAIN HERO / GUIDING LINKS */
+    main {
+      max-width: 1200px;
+      margin: 60px auto 0;
+      padding: 0 40px;
+    }
+
+    .hero-text {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .hero-text h1 {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+    }
+
+    .hero-text p {
+      font-size: 16px;
+      color: var(--text-grey);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* GUIDING LINKS GRID (ROUTING TO OTHER PAGES) */
+    .guiding-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+      margin-bottom: 80px;
+    }
+
+    .guide-card {
+      display: block;
+      background: var(--bg-white);
+      border: 1px solid var(--border-grey);
+      border-radius: 8px;
+      padding: 32px 24px;
+      text-decoration: none;
+      text-align: center;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    .guide-card:hover {
+      border-color: var(--brand-red);
+      background: var(--brand-red-light);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+    }
+
+    .guide-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--bg-grey-light);
+      border-radius: 50%;
+      margin: 0 auto 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--brand-grey);
+      font-size: 20px;
+      transition: all 0.2s ease;
+    }
+
+    .guide-card:hover .guide-icon {
+      background: var(--brand-red);
+      color: var(--bg-white);
+    }
+
+    .guide-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .guide-desc {
+      font-size: 13px;
+      color: var(--text-grey);
+    }
+
+    /* DIVIDER */
+    hr {
+      border: none;
+      border-top: 1px solid var(--border-grey);
+      margin: 0 0 60px 0;
+    }
+
+    /* 30 COMPANIES TARGET SECTION */
+    .target-section-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .target-section-header h2 {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .target-section-header p {
+      font-size: 14px;
+      color: var(--brand-grey);
+    }
+
+    .company-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 20px;
+    }
+
+    .company-cell {
+      background: var(--bg-off-white);
+      border: 1px solid var(--border-grey);
+      border-radius: 8px;
+      padding: 20px 12px;
+      text-align: center;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .company-cell:hover {
+      border-color: var(--brand-grey);
+      background: var(--bg-white);
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    }
+
+    .logo-space {
+      width: 60px;
+      height: 60px;
+      background-color: var(--bg-white);
+      border: 1px dashed var(--border-grey);
+      border-radius: 50%;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-light);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .company-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-dark);
+      line-height: 1.3;
+    }
+
+  </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-brand">
-    <div class="nav-logo"></div>
-    <div class="nav-title">Ibudo Wura / Beechwood Park II<br>Sales Intelligence</div>
-  </div>
-  <ul class="nav-links">
-    <li><a href="#programme">Programme</a></li>
-    <li><a href="#pipeline">Pipeline</a></li>
-    <li><a href="#frameworks">Frameworks</a></li>
-    <li><a href="#playbook">Playbook</a></li>
-    <li><a href="#calendar">90-Day Plan</a></li>
-  </ul>
-  <div class="nav-badge">CONFIDENTIAL</div>
-</nav>
-
-<main>
-
-<!-- HERO -->
-<section class="hero" id="top">
-  <div>
-    <div class="hero-eyebrow">Lagos Market Intelligence</div>
-    <h1>Corporate Bulk<br>Mortgage <span>Playbook</span></h1>
-    <p class="hero-sub">
-      Lakowe, Lagos · Ibudo Wura & Beechwood Park II<br>
-      3-Month Pilot · 30 Target Companies · 14,000+ Eligible Staff
-    </p>
-    <div class="hero-ctas">
-      <a href="#pipeline" class="btn-primary">View Pipeline</a>
-      <a href="#playbook" class="btn-ghost">Sales Scripts</a>
-    </div>
-  </div>
-  <div class="hero-stats">
-    <div class="stat-card accent">
-      <div class="stat-label">Entry Price</div>
-      <div class="stat-value">₦54.5M</div>
-      <div class="stat-desc">From — avg. 1-bed unit</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-label">Min. Qualifying Salary</div>
-      <div class="stat-value">₦1.95M</div>
-      <div class="stat-desc">Net monthly · DSR 33.33%</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-label">Net Addressable Pool</div>
-      <div class="stat-value">14K+</div>
-      <div class="stat-desc">Eligible staff · 30 companies</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-label">Bulk Activation Trigger</div>
-      <div class="stat-value">10</div>
-      <div class="stat-desc">Staff EOIs to unlock full offer</div>
-    </div>
-  </div>
-</section>
-
-<hr class="section-divider">
-
-<!-- PROGRAMME PARAMETERS -->
-<section class="section" id="programme">
-  <div class="section-header">
-    <div>
-      <div class="section-eyebrow"><span class="num">01</span> Strategic Framework</div>
-      <h2 class="section-title">Programme Parameters</h2>
-    </div>
-    <p class="section-desc">The core offer — memorise every line before any meeting.</p>
-  </div>
-
-  <div class="params-grid">
-    <div class="param-cell">
-      <div class="param-key">Developments</div>
-      <div class="param-value">Ibudo Wura & Beechwood Park II</div>
-      <div class="param-note">Lakowe, Lagos</div>
-    </div>
-    <div class="param-cell">
-      <div class="param-key">Entry Price</div>
-      <div class="param-value">From ₦54.5 million</div>
-      <div class="param-note">Average per one-bedroom unit</div>
-    </div>
-    <div class="param-cell">
-      <div class="param-key">Equity Contribution</div>
-      <div class="param-value">10% of purchase price</div>
-      <div class="param-note">₦5M on a ₦50M unit</div>
-    </div>
-    <div class="param-cell">
-      <div class="param-key">Equity Flexibility</div>
-      <div class="param-value">6, 9, or 12 months</div>
-      <div class="param-note">Monthly instalments — spreads the barrier</div>
-    </div>
-    <div class="param-cell">
-      <div class="param-key">Mortgage DSR</div>
-      <div class="param-value">33.33%</div>
-      <div class="param-note">Repayment ≤ one-third of gross income</div>
-    </div>
-    <div class="param-cell">
-      <div class="param-key">Min. Qualifying Salary</div>
-      <div class="param-value">₦1.945M net/month</div>
-      <div class="param-note">Floor — any above is addressable</div>
-    </div>
-    <div class="param-cell">
-      <div class="param-key">Cash Refund</div>
-      <div class="param-value">3 mortgage payment equivalents</div>
-      <div class="param-note">Cash — not voucher — deposited within 2 months of construction completion</div>
-    </div>
-    <div class="param-cell">
-      <div class="param-key">Appliance Grant</div>
-      <div class="param-value">₦500,000 package</div>
-      <div class="param-note">AC · Gas cooker · Washing machine · Heat extractor — fully fitted at move-in</div>
-    </div>
-    <div class="param-cell">
-      <div class="param-key">Institutional Offer</div>
-      <div class="param-value">3–5% retreat discount</div>
-      <div class="param-note">Lakowe Lakes Golf & Country Estate · 2-night min · 5× per year · SECONDARY lever only</div>
-    </div>
-    <div class="param-cell full-width">
-      <div class="param-key">Bulk Activation Trigger</div>
-      <div class="param-value">10 Expressions of Interest → full bulk offer unlocked for all committed participants</div>
-      <div class="param-note">This is your close metric. Every pitch ends with: "Do you see 10 people here who qualify?"</div>
-    </div>
-  </div>
-</section>
-
-<hr class="section-divider">
-
-<!-- PIPELINE -->
-<section class="section" id="pipeline">
-  <div class="section-header">
-    <div>
-      <div class="section-eyebrow"><span class="num">02</span> 30-Company Pipeline</div>
-      <h2 class="section-title">Target Intelligence<br>Profiles</h2>
-    </div>
-    <div>
-      <p class="section-desc">Click any company for full salary analysis, entry strategy, and objection handling.</p>
-    </div>
-  </div>
-
-  <div class="filter-bar">
-    <span class="filter-label">Filter:</span>
-    <button class="filter-btn all active" onclick="filterCards('all', this)">All 30</button>
-    <button class="filter-btn p1" onclick="filterCards('P1', this)">Priority 1 — Anchor</button>
-    <button class="filter-btn p2" onclick="filterCards('P2', this)">Priority 2 — Strong</button>
-    <button class="filter-btn p3" onclick="filterCards('P3', this)">Priority 3 — Supplementary</button>
-    <button class="filter-btn" onclick="filterCards('Banking', this)">Banking</button>
-    <button class="filter-btn" onclick="filterCards('Telecoms', this)">Telecoms & Tech</button>
-    <button class="filter-btn" onclick="filterCards('Oil', this)">Oil & Gas</button>
-    <button class="filter-btn" onclick="filterCards('FMCG', this)">FMCG</button>
-    <button class="filter-btn" onclick="filterCards('Professional', this)">Professional Svcs</button>
-    <div class="search-wrap">
-      <span class="search-icon">⌕</span>
-      <input class="search-input" type="text" placeholder="Search company..." oninput="searchCards(this.value)">
-    </div>
-  </div>
-
-  <div class="companies-grid" id="companiesGrid">
-    <!-- Cards injected by JS -->
-  </div>
-</section>
-
-<hr class="section-divider">
-
-<!-- INDUSTRY FRAMEWORKS -->
-<section class="section" id="frameworks">
-  <div class="section-header">
-    <div>
-      <div class="section-eyebrow"><span class="num">03</span> Industry Targeting</div>
-      <h2 class="section-title">Sector Frameworks</h2>
-    </div>
-    <p class="section-desc">Each sector demands a different entry logic, lever, and language.</p>
-  </div>
-
-  <div class="sector-tabs">
-    <button class="sector-tab active" onclick="showSector('banking', this)">Banking (10)</button>
-    <button class="sector-tab" onclick="showSector('telecoms', this)">Telecoms & Tech (6)</button>
-    <button class="sector-tab" onclick="showSector('oil', this)">Oil & Gas (5)</button>
-    <button class="sector-tab" onclick="showSector('fmcg', this)">FMCG (4)</button>
-    <button class="sector-tab" onclick="showSector('professional', this)">Professional Svcs (5)</button>
-  </div>
-
-  <div id="sector-banking" class="sector-content active">
-    <div class="framework-card">
-      <div class="framework-header">
-        <div><div class="framework-title">Financial Services — Banking</div></div>
-        <div class="framework-count">10 companies</div>
-      </div>
-      <div class="framework-body">
-        <div class="framework-item">
-          <div class="fi-label">Entry Logic</div>
-          <div class="fi-text">Go to <strong>HR, never to Procurement or the CEO</strong>. Bank HR Directors own staff welfare budgets and have authority to endorse external employee benefit programmes. Procurement will kill the conversation by treating it as a vendor relationship.</div>
-        </div>
-        <div class="framework-item">
-          <div class="fi-label">Sector Lever</div>
-          <div class="fi-text">"Your Band 6–9 Officers and Managers earn ₦1.8M–₦7M but are renting in Lekki, Ajah, and Ikoyi. The cash-back programme and equity instalment plan convert that income into an asset — at zero cost to the bank." Banking staff are financially literate. <strong>Show the DSR calculation. Present the numbers.</strong></div>
-        </div>
-        <div class="framework-item full">
-          <div class="fi-label">Engagement Sequence — Do Not Pitch All 10 Simultaneously</div>
-          <div class="fi-text">Each closed deal becomes the reference case for the next. <em>"We just activated this for 15 Access Bank staff — let me show you what their HR team did."</em> Social proof within the sector is the compounding mechanism.</div>
-          <ul class="sequence-list" style="margin-top:12px;">
-            <li data-n="1">Access Bank</li>
-            <li data-n="2">Zenith Bank</li>
-            <li data-n="3">GTBank</li>
-            <li data-n="4">UBA</li>
-            <li data-n="5">First Bank</li>
-            <li data-n="6">Stanbic IBTC</li>
-            <li data-n="7">Standard Chartered</li>
-            <li data-n="8">Fidelity Bank</li>
-            <li data-n="9">FCMB</li>
-            <li data-n="10">Sterling Bank</li>
-          </ul>
-        </div>
+  <nav>
+    <div class="nav-brand">
+      <div class="nav-logo-placeholder"></div>
+      <div>
+        <div class="nav-title">Corporate Bulk Mortgage</div>
+        <div class="nav-subtitle">Lagos Market Intelligence Hub</div>
       </div>
     </div>
-  </div>
+  </nav>
 
-  <div id="sector-telecoms" class="sector-content">
-    <div class="framework-card">
-      <div class="framework-header">
-        <div><div class="framework-title">Telecoms & Technology</div></div>
-        <div class="framework-count">6 companies</div>
-      </div>
-      <div class="framework-body">
-        <div class="framework-item">
-          <div class="fi-label">Entry Logic</div>
-          <div class="fi-text"><strong>LinkedIn DM is the correct channel</strong> for fintech/tech (Flutterwave, Paystack, SystemSpecs). Formal letters are unnecessary and signal misaligned culture. For MTN and Airtel, use LinkedIn + phone — larger HR teams but still digitally accessible.</div>
-        </div>
-        <div class="framework-item">
-          <div class="fi-label">Sector Lever</div>
-          <div class="fi-text">Tech staff are data-driven. Lead with investment-grade language: ROI, capital appreciation, NPV. <strong>"Your salary can buy a ₦50M asset today that will be worth ₦100M–₦115M in 5 years at current appreciation rates. The cash-back reduces your effective entry cost."</strong> Show the compound growth chart.</div>
-        </div>
-        <div class="framework-item warn full">
-          <div class="fi-label">Key Sensitivity — Career Mobility</div>
-          <div class="fi-text">Tech workers are career-mobile. <strong>Pre-empt this proactively:</strong> "Even if you relocate, you own a Lagos asset yielding 8–10% per annum in rental income. It is your hedge." Turn mobility from an objection into a buying argument before it is raised.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="sector-oil" class="sector-content">
-    <div class="framework-card">
-      <div class="framework-header">
-        <div><div class="framework-title">Oil, Gas & Energy</div></div>
-        <div class="framework-count">5 companies</div>
-      </div>
-      <div class="framework-body">
-        <div class="framework-item">
-          <div class="fi-label">Entry Logic</div>
-          <div class="fi-text">International companies (Shell, TotalEnergies) require <strong>formal documentation and due diligence packs</strong>. Begin with a formal letter and C of O evidence. Expect legal review requests — welcome them, prepare for them in advance.</div>
-        </div>
-        <div class="framework-item">
-          <div class="fi-label">Primary Credential</div>
-          <div class="fi-text">The <strong>Certificate of Occupancy on both Ibudo Wura and Beechwood Park II</strong> is the single most powerful credential with this audience. Lead with it. Follow with the financial model. Close with the instalment plan.</div>
-        </div>
-        <div class="framework-item full">
-          <div class="fi-label">The Three Risk Elimination Frame</div>
-          <div class="fi-text">"Three risks keep O&G professionals from buying Lagos property: <strong>(1) lump-sum equity → eliminated by instalment plan</strong> · <strong>(2) title insecurity → eliminated by C of O</strong> · <strong>(3) post-move fitout cost → eliminated by ₦500K appliance grant.</strong> This programme removes all three simultaneously." Frame every pitch around risk elimination.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="sector-fmcg" class="sector-content">
-    <div class="framework-card">
-      <div class="framework-header">
-        <div><div class="framework-title">FMCG, Consumer Goods & Manufacturing</div></div>
-        <div class="framework-count">4 companies</div>
-      </div>
-      <div class="framework-body">
-        <div class="framework-item">
-          <div class="fi-label">Entry Logic</div>
-          <div class="fi-text">Use <strong>formal letters for Nestlé, Unilever, and Flour Mills</strong> — all structured HR environments. Nigerian Breweries responds to formal channels with Heineken parent context. All four require documented approval chains — never shortcut this.</div>
-        </div>
-        <div class="framework-item">
-          <div class="fi-label">Sector Lever</div>
-          <div class="fi-text">FMCG HR Directors are measured on retention and welfare metrics. Frame as a <strong>measurable staff benefit</strong>: "Financial wellness: homeownership participation rate." Give them language for their HR dashboard. "In 3 months, X% of your managers moved from renting to owning — a welfare outcome reportable to the global parent."</div>
-        </div>
-        <div class="framework-item full">
-          <div class="fi-label">Strength Angle — Tenure as Creditworthiness</div>
-          <div class="fi-text">FMCG managers have 7–15 year average tenure — making them <strong>ideal mortgage borrowers with consistent income and low default risk</strong>. This is a selling point with the HR Director: "Your long-tenure managers are the most creditworthy professionals in Lagos. This programme was built for them."</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="sector-professional" class="sector-content">
-    <div class="framework-card">
-      <div class="framework-header">
-        <div><div class="framework-title">Professional Services & Financial Advisory</div></div>
-        <div class="framework-count">5 companies</div>
-      </div>
-      <div class="framework-body">
-        <div class="framework-item">
-          <div class="fi-label">Entry Logic</div>
-          <div class="fi-text">Big Four firms are governed by partnership structures. <strong>Reach the People & Culture lead on LinkedIn</strong>, send a structured document matching their deck standards, and request a 30-minute slot at the next Talent team meeting. Coronation: direct CEO/CHRO via phone.</div>
-        </div>
-        <div class="framework-item">
-          <div class="fi-label">Sector Lever — Let Them Interrogate</div>
-          <div class="fi-text">Consultants analyse deals for a living. <strong>Do not over-pitch.</strong> Present the structured financial case and let them interrogate it. "Here is the investment thesis. Here is the DSR. Here is the C of O. Here is the cash-back schedule. What questions do you have?" Confidence in the structure is the sale.</div>
-        </div>
-        <div class="framework-item full">
-          <div class="fi-label">Multiplier Effect — Cross-Sell Opportunity</div>
-          <div class="fi-text">Big Four professionals <strong>advise corporate clients on HR strategy</strong>. An early, satisfied cohort of Big Four staff becomes an advocacy channel into their corporate clients. Every satisfied Big Four homeowner is a potential referral into a future target company. This is a pipeline multiplier — protect it.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="section-divider">
-
-<!-- SALES PLAYBOOK -->
-<section class="section" id="playbook">
-  <div class="section-header">
-    <div>
-      <div class="section-eyebrow"><span class="num">04</span> Execution Playbook</div>
-      <h2 class="section-title">The 6-Step Process</h2>
-    </div>
-    <p class="section-desc">Non-negotiable. Every engagement follows this sequence.</p>
-  </div>
-
-  <div class="steps-track">
-    <div class="step-item active" onclick="showStep(1, this)">
-      <div class="step-num">01</div>
-      <div class="step-label">Door Opener</div>
-    </div>
-    <div class="step-item" onclick="showStep(2, this)">
-      <div class="step-num">02</div>
-      <div class="step-label">First Contact</div>
-    </div>
-    <div class="step-item" onclick="showStep(3, this)">
-      <div class="step-num">03</div>
-      <div class="step-label">Pre-Meeting Teaser</div>
-    </div>
-    <div class="step-item" onclick="showStep(4, this)">
-      <div class="step-num">04</div>
-      <div class="step-label">30-Min Pitch</div>
-    </div>
-    <div class="step-item" onclick="showStep(5, this)">
-      <div class="step-num">05</div>
-      <div class="step-label">EOI Form</div>
-    </div>
-    <div class="step-item" onclick="showStep(6, this)">
-      <div class="step-num">06</div>
-      <div class="step-label">48-Hour Follow-Up</div>
-    </div>
-  </div>
-
-  <div id="step-1" class="step-content active">
-    <div class="step-detail-card">
-      <div class="step-detail-title">Identify Your Door Opener</div>
-      <div class="step-detail-body">Always target <strong>HR: Head of HR, HR Director, Chief People Officer, or Head of Employee Benefits/Total Rewards.</strong><br><br>Do not go to the CEO first. Do not go to Procurement. Go to HR. The entry point for every company in this document is specified in Section 02 (Pipeline). The entry contact for each company has been pre-identified — use it.</div>
-      <div class="tip-box">Procurement will classify this as a vendor relationship and route it to procurement committee. HR owns the outcome. One call to the wrong person costs you 3 weeks.</div>
-    </div>
-  </div>
-
-  <div id="step-2" class="step-content">
-    <div class="step-detail-card">
-      <div class="step-detail-title">Make First Contact</div>
-      <div class="step-detail-body">Each company has a specified contact method in the Pipeline section. <strong>Match the culture</strong>: Shell needs a formal letter; Flutterwave needs a LinkedIn DM. Mismatching culture signals incompetence and erodes trust before you have it.<br><br>Goal of first contact: <strong>one meeting</strong>. Nothing else. Do not pitch on first contact. Do not send a 40-page PDF. Request the room.</div>
-      <div class="tip-box">Subject line benchmark: "Staff Housing Programme — Zero Cost to [Company Name]" — this one line removes the procurement reflex before they've even opened it.</div>
-    </div>
-  </div>
-
-  <div id="step-3" class="step-content">
-    <div class="step-detail-card">
-      <div class="step-detail-title">Send a Teaser Before the Meeting</div>
-      <div class="step-detail-body">The day you confirm the meeting: <strong>WhatsApp or email a one-page summary. Maximum 5 bullet points. No long PDFs.</strong><br><br>A concise teaser signals preparation and gives them something to share internally before you arrive. The goal is to have the HR Director say "I showed this to my colleague and they want to be in the room."</div>
-      <div class="tip-box">The teaser circulates internally before you arrive. It is your silent advocate in the organisation. Treat it like a product.</div>
-    </div>
-  </div>
-
-  <div id="step-4" class="step-content">
-    <div class="step-detail-card">
-      <div class="step-detail-title">The Dual Pitch — 30 Minutes</div>
-      <div class="step-detail-body"><strong>Lead with the Staff Offer</strong> (equity instalments + cash refund + appliances). This creates the excitement. Then pivot to the Institutional Offer (Lakowe Lakes retreat discount) <em>only if necessary</em> to maintain momentum.<br><br>End every presentation with the activation question: <strong>"Do you see 10 people in this company who would benefit from this?"</strong></div>
-      <div class="tip-box">Never lead with the retreat discount. It is a secondary lever deployed to maintain momentum — not your headline. If you open with it, you become a hospitality vendor, not a housing programme.</div>
-    </div>
-  </div>
-
-  <div id="step-5" class="step-content">
-    <div class="step-detail-card">
-      <div class="step-detail-title">Leave a Commitment Form (EOI)</div>
-      <div class="step-detail-body"><strong>Do not leave without placing a physical or digital Expression of Interest form.</strong> Ask them to circulate it internally.<br><br>The form collects: name, phone, monthly income bracket, and interest level. It is not a legal commitment — it gets 10 names. 10 names activate the full offer. Make this framing explicit with the HR Director.</div>
-      <div class="tip-box">Phrase it as: "This form is just a show of hands — no liability, no commitment. It's how we know who to invite to the lunch briefing." Remove every reason to hesitate.</div>
-    </div>
-  </div>
-
-  <div id="step-6" class="step-content">
-    <div class="step-detail-card">
-      <div class="step-detail-title">Follow Up Within 48 Hours</div>
-      <div class="step-detail-body">Offer to run an <strong>in-office Staff Lunch Briefing — a 45-minute session where you present directly to eligible staff.</strong> This is the close meeting. The lunch briefing is where 10 commitments happen.<br><br>Offer to cover the lunch cost. It is a sales cost, not a goodwill gesture.</div>
-      <div class="tip-box">If they ask for time: leave the EOI form and <strong>set a specific follow-up date before you leave the room</strong> — not "I'll be in touch." A date is a commitment. "I'll be in touch" is a disappearance.</div>
-    </div>
-  </div>
-
-  <!-- PITCH SCRIPTS -->
-  <div style="margin-top: 60px;">
-    <div class="section-eyebrow" style="margin-bottom: 24px;"><span class="num">→</span> Core Pitch Scripts — Memorise These</div>
-    <div class="scripts-grid">
-      <div class="script-card">
-        <div class="script-header">Opening — First 2 Minutes</div>
-        <div class="script-body">
-          <div class="script-quote">"I'm here because we've built a housing benefit your company can offer to staff completely free of charge. No liability, no cost to you, nothing to sign today. I just want to show you what your eligible managers could access in the next 90 days."</div>
-          <div class="script-tip">If sceptical: "I know that sounds too good to be true — let me show you the numbers first. May I have 3 minutes on screen?"</div>
-        </div>
-      </div>
-      <div class="script-card">
-        <div class="script-header">Equity Instalment Plan</div>
-        <div class="script-body">
-          <div class="script-quote">"A manager earning ₦2M a month can own a ₦50M Ibudo Wura home. The 10% equity — ₦5 million — is spread over 9 months: ₦556,000 per month. Less than most managers' current rent in Lekki."</div>
-          <div class="script-tip">Adjust instalment illustration to the specific income band of each company's target cohort.</div>
-        </div>
-      </div>
-      <div class="script-card">
-        <div class="script-header">The Cash Refund — Stress "Cash"</div>
-        <div class="script-body">
-          <div class="script-quote">"Once your staff member completes their equity payment and the mortgage is in place, we pay them 3 full months of mortgage payments in cash. Not a voucher. Not a credit. Cash. Deposited into their account."</div>
-          <div class="script-tip">Stress "cash" repeatedly. It is the most powerful word in this pitch. Every time.</div>
-        </div>
-      </div>
-      <div class="script-card">
-        <div class="script-header">Appliance Grant</div>
-        <div class="script-body">
-          <div class="script-quote">"On top of that: ₦500,000 in home appliances — air conditioning, gas cooker, washing machine, and heat extractor — fully fitted at move-in. They do not unpack into an empty house. They unpack into a home."</div>
-          <div class="script-tip">"They move in. Everything is there." End this beat with this line every time.</div>
-        </div>
-      </div>
-      <div class="script-card">
-        <div class="script-header">Institutional Offer — Secondary Lever Only</div>
-        <div class="script-body">
-          <div class="script-quote">"As a secondary benefit: whenever your company needs to host a corporate retreat, your HR team gets 3–5% off the full cost at Lakowe Lakes Golf and Country Estate. Minimum 2 nights, up to 5 times a year."</div>
-          <div class="script-tip">Only deploy this if momentum has stalled. Do not lead with it — the staff offer is the primary product.</div>
-        </div>
-      </div>
-      <div class="script-card">
-        <div class="script-header">The Close — One Question</div>
-        <div class="script-body">
-          <div class="script-quote">"I am not asking you to sign anything today. One question: do you see 10 people in this company who earn ₦1.8M or above, are currently renting in Lagos, and would want to own a home in the next 6 months?"</div>
-          <div class="script-tip">If yes: schedule the lunch briefing before you leave the room. If they ask for time: leave the EOI form and set a specific date for follow-up.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- UNIVERSAL OBJECTIONS -->
-  <div style="margin-top: 60px;">
-    <div class="section-eyebrow" style="margin-bottom: 24px;"><span class="num">→</span> Universal Objection Handling</div>
-    <div class="objections-grid">
-      <div class="obj-row">
-        <div class="obj-cell q">We already have a mortgage scheme.</div>
-        <div class="obj-cell a">This is not a competing product — it is a housing benefit layer. The cash refund and appliance grant sit on top of any existing scheme. Think of it as a staff subsidy, not a competing loan.</div>
-      </div>
-      <div class="obj-row">
-        <div class="obj-cell q">We need HQ or Management approval.</div>
-        <div class="obj-cell a">Understood. We prepare a one-page brief for your MD or CHRO framing this as an endorsed staff housing programme. There is no financial commitment for the company — staff participate individually. You are the facilitator.</div>
-      </div>
-      <div class="obj-row">
-        <div class="obj-cell q">How do we know the properties are legitimate?</div>
-        <div class="obj-cell a">Full documentation: Certificate of Occupancy, development approvals, offtake agreements, and references from institutional partners. Site visits available — staff see the homes before committing.</div>
-      </div>
-      <div class="obj-row">
-        <div class="obj-cell q">Our staff already own homes.</div>
-        <div class="obj-cell a">We target staff who are renting — we identify them specifically. Even in senior populations, 65–80% of Lagos professionals at ₦1.8M–₦5M are still renting. The EOI form self-selects.</div>
-      </div>
-      <div class="obj-row">
-        <div class="obj-cell q">This sounds too good to be true.</div>
-        <div class="obj-cell a">Let me show you the numbers. The cash refund is funded from the bulk offtake discount our developer extends for bringing 10+ buyers at once. The appliance grant comes from the same pool. The economics work because volume justifies the incentive.</div>
-      </div>
-      <div class="obj-row">
-        <div class="obj-cell q">We need to review this legally.</div>
-        <div class="obj-cell a">We welcome it. We have a full legal due diligence pack: C of O, development permits, title search, and reference letters from existing institutional partners. Shall we prepare a pack specifically for your legal team?</div>
-      </div>
-      <div class="obj-row">
-        <div class="obj-cell q">Staff might not want to live in Lakowe.</div>
-        <div class="obj-cell a">Lakowe is 25–35 minutes from Victoria Island via the Lekki–Epe Expressway — closer to Lagos' economic centres than Ajah, Sangotedo, or Ibeju, where many qualifying staff currently rent. We include a commute analysis in every briefing.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="section-divider">
-
-<!-- 90-DAY CALENDAR -->
-<section class="section" id="calendar">
-  <div class="section-header">
-    <div>
-      <div class="section-eyebrow"><span class="num">05</span> 90-Day Pilot</div>
-      <h2 class="section-title">Execution Calendar</h2>
-    </div>
-    <p class="section-desc">Performance in Q1 determines programme extension. Every week has a deliverable.</p>
-  </div>
-
-  <div class="kpi-banner" style="margin-bottom: 32px;">
-    <div class="kpi-item">
-      <div class="kpi-value">30+</div>
-      <div class="kpi-label">Signed EOIs to extend</div>
-    </div>
-    <div class="kpi-item">
-      <div class="kpi-value">5+</div>
-      <div class="kpi-label">Companies activated</div>
-    </div>
-    <div class="kpi-item">
-      <div class="kpi-value">10</div>
-      <div class="kpi-label">Mortgage commitments initiated</div>
-    </div>
-  </div>
-
-  <div class="calendar-grid">
-    <div class="month-card">
-      <div class="month-header">
-        <div class="month-label">Phase 01</div>
-        <div class="month-title">Month One</div>
-      </div>
-      <div class="month-body">
-        <div class="week-block">
-          <div class="week-label">Week 1–2</div>
-          <div class="week-actions">Prepare all outreach materials: one-pager, EOI form, due diligence pack.<br><br>Initiate Priority 1 contacts: Access Bank (direct call) · MTN (LinkedIn) · Shell Nigeria (formal letter) · KPMG (formal email + LinkedIn).</div>
-          <div class="week-target">4 first meetings confirmed</div>
-        </div>
-        <div class="week-block">
-          <div class="week-label">Week 3–4</div>
-          <div class="week-actions">Run first Priority 1 meetings (Access Bank and MTN). Present dual pitch. Leave EOI forms. Confirm Staff Lunch Briefing dates.<br><br>Initiate Priority 2 contacts: Zenith · Interswitch · TotalEnergies · Deloitte.</div>
-          <div class="week-target">2 Lunch Briefings scheduled</div>
-        </div>
-      </div>
+  <main>
+    
+    <div class="hero-text">
+      <h1>Sales Execution Workspace</h1>
+      <p>Select a module below to access program details, frameworks, and pipeline analytics.</p>
     </div>
 
-    <div class="month-card">
-      <div class="month-header">
-        <div class="month-label">Phase 02</div>
-        <div class="month-title">Month Two</div>
-      </div>
-      <div class="month-body">
-        <div class="week-block">
-          <div class="week-label">Week 5–6</div>
-          <div class="week-actions">Run Month 1 Lunch Briefings (Access Bank, MTN). First EOI collections.<br><br>Begin Priority 2 meetings. <strong>Mid-pilot review at Day 45</strong>: assess EOI count vs. target. Activate Priority 3 companies if P1/P2 pipeline is ahead of schedule.</div>
-          <div class="week-target">Day 45 checkpoint — EOI count vs. target</div>
-        </div>
-        <div class="week-block">
-          <div class="week-label">Week 7–8</div>
-          <div class="week-actions">Run Priority 2 Lunch Briefings (Zenith, Shell, Deloitte). Use confirmed Access Bank EOIs as social proof in all meetings.<br><br>Begin mortgage pre-qualification process for earliest EOI submitters.</div>
-          <div class="week-target">15 EOIs collected by end of Week 8</div>
-        </div>
-      </div>
+    <div class="guiding-grid">
+      <a href="programme.html" class="guide-card">
+        <div class="guide-icon">1</div>
+        <div class="guide-title">Programme</div>
+        <div class="guide-desc">Core metrics, eligibility filters, and qualifying salary data.</div>
+      </a>
+      <a href="pipeline.html" class="guide-card">
+        <div class="guide-icon">2</div>
+        <div class="guide-title">Pipeline</div>
+        <div class="guide-desc">Company deep-dives, staff sizing, and priority targets.</div>
+      </a>
+      <a href="frameworks.html" class="guide-card">
+        <div class="guide-icon">3</div>
+        <div class="guide-title">Frameworks</div>
+        <div class="guide-desc">Industry-specific strategy and segmentation models.</div>
+      </a>
+      <a href="playbook.html" class="guide-card">
+        <div class="guide-icon">4</div>
+        <div class="guide-title">Sales Playbook</div>
+        <div class="guide-desc">Scripts, objection handling, and 90-day rollout calendar.</div>
+      </a>
     </div>
 
-    <div class="month-card">
-      <div class="month-header">
-        <div class="month-label">Phase 03</div>
-        <div class="month-title">Month Three</div>
-      </div>
-      <div class="month-body">
-        <div class="week-block">
-          <div class="week-label">Week 9–10</div>
-          <div class="week-actions">Complete Priority 2 pipeline. Activate Priority 3 companies.<br><br>First formal mortgage commitments initiated with partner banks. Case studies from Month 1 & 2 active — use them in all remaining pitches.</div>
-          <div class="week-target">25 EOIs · 5 mortgage commitments</div>
-        </div>
-        <div class="week-block">
-          <div class="week-label">Week 11–12</div>
-          <div class="week-actions">Close all outstanding Priority 3 pitches. Final EOI and commitment drive.<br><br>Compile pilot performance report: companies engaged, EOIs, mortgages initiated, sectors closed. Present to decision-makers.</div>
-          <div class="week-target">30+ EOIs · 10 mortgage commitments · DECISION</div>
-        </div>
-      </div>
+    <hr>
+
+    <div class="target-section-header">
+      <h2>Institutional Target Segmentation</h2>
+      <p>The 30 net addressable Lagos-based institutions across 5 key sectors.</p>
     </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-brand">
-    Ibudo Wura / Beechwood Park II · Lakowe, Lagos<br>
-    Prepared for: Lakowe Lakes Golf and Country Estate / Ibudo Wura Development Team
-  </div>
-  <div class="footer-badge">Confidential — Internal Use Only</div>
-</footer>
-
-</main>
-
-<!-- MODAL -->
-<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
-  <div class="modal" id="modalContent">
-    <div class="modal-header">
-      <div class="modal-num" id="mNum"></div>
-      <div class="modal-title" id="mTitle"></div>
-      <div class="modal-meta">
-        <span class="modal-meta-item" id="mHQ"></span>
-        <span class="modal-meta-item" id="mSector"></span>
-        <span id="mBadge"></span>
+    
+    <div class="company-grid" id="companyGrid">
       </div>
-      <button class="modal-close" onclick="document.getElementById('modalOverlay').classList.remove('open')">✕</button>
-    </div>
-    <div class="modal-body" id="mBody"></div>
-  </div>
-</div>
 
-<script>
-const COMPANIES = [
-  {
-    num: 1, name: "Access Bank Plc", sector: "Banking", priority: "P1",
-    hq: "Victoria Island, Lagos", lagosHC: "~6,000", eligiblePool: "2,000–2,500",
-    entry: "Head of Employee Value Proposition / Chief Human Resources Officer",
-    contact: "Direct phone call — leverage existing relationship",
-    lever: "First-mover credential: 'Access Bank is our reference institution — your staff benefit before any other bank in Lagos.'",
-    pitch: "Access Bank Band 6–7 Officers earn ₦1.2M–₦2.8M. Those above ₦1.8M can spread 10% equity (₦5M on a ₦50M unit) over 6, 9, or 12 months. Upon completion, they receive 3 months of payments in cash — typically ₦1.8M–₦2.4M. Zero cost to Access Bank.",
-    objQ: "We have our own mortgage product.",
-    objA: "This is a housing benefit layer — a cash-back and appliance subsidy that sits entirely outside your balance sheet. It enhances your existing scheme. Your own product gets more competitive, not less.",
-    salary: [
-      {band:"Entry Level / Junior Officer (Grade 1–5)", gross:"₦350K–₦1.2M", count:"~2,800", eligible:"NO"},
-      {band:"Officer / Senior Officer (Grade 6–7)", gross:"₦1.2M–₦2.8M", count:"~1,400", eligible:"PARTIAL — cut at ₦1.8M"},
-      {band:"Asst. Manager / Manager (Grade 8–9)", gross:"₦2.8M–₦6.5M", count:"~1,100", eligible:"YES — Core Target"},
-      {band:"Senior Manager / AGM (Grade 10–11)", gross:"₦6.5M–₦15M", count:"~500", eligible:"YES — High Value"},
-      {band:"GM / Executive Director (Grade 12+)", gross:"₦15M–₦40M+", count:"~200", eligible:"YES — Premium"},
-    ],
-    qualifying:"~2,800", homeAdj:"~20%"
-  },
-  {
-    num: 2, name: "Zenith Bank Plc", sector: "Banking", priority: "P1",
-    hq: "Victoria Island, Lagos", lagosHC: "~2,625", eligiblePool: "800–1,000",
-    entry: "Chief People Officer or Head of Human Resources",
-    contact: "LinkedIn InMail + phone — reference Access Bank engagement",
-    lever: "Sector social proof: 'Access Bank staff are already enrolled. Zenith is the natural second. Your managers are watching their peers at Access Bank get cash back on their mortgages.'",
-    pitch: "Zenith Officers and Managers are career-ambitious. Frame this as: your staff aren't just getting a mortgage — they are getting a property subsidy programme that returns real money. ₦500K in appliances fitted. 3 months of payments refunded. No forms for Zenith to file.",
-    objQ: "Staff prefer our internal mortgage scheme.",
-    objA: "The cash refund and appliance bundle is additive — staff using Zenith's own mortgage product still qualify for the 3-month cash refund. We are not replacing your product. We are making every mortgage in Lagos more attractive.",
-    salary: [
-      {band:"Officer Cadre (Grade 1–4)", gross:"₦400K–₦1.4M", count:"~1,000", eligible:"NO"},
-      {band:"Senior Officer / Exec. Officer (Grade 5–7)", gross:"₦1.4M–₦3.0M", count:"~800", eligible:"PARTIAL — cut at ₦1.8M"},
-      {band:"Manager / Senior Manager (Grade 8–10)", gross:"₦3.0M–₦7M", count:"~600", eligible:"YES — Core"},
-      {band:"AGM / DGM / GM (Grade 11–13)", gross:"₦7M–₦20M", count:"~180", eligible:"YES — High Value"},
-      {band:"Executive Director / MD (Grade 14+)", gross:"₦20M+", count:"~45", eligible:"YES — Premium"},
-    ],
-    qualifying:"~1,200", homeAdj:"~22%"
-  },
-  {
-    num: 3, name: "Guaranty Trust Holding Co.", sector: "Banking", priority: "P1",
-    hq: "Victoria Island, Lagos", lagosHC: "~2,660", eligiblePool: "750–1,000",
-    entry: "Head of Human Resources or Deputy Managing Director",
-    contact: "Warm intro via Access Bank contact — Lagos banking HR is a tight-knit community",
-    lever: "GTBank culture responds to exclusivity: '10 GTBank people are getting homes this quarter — are your people on the list?' Create FOMO. GTBank staff pride themselves on being first.",
-    pitch: "GTBank staff are aspirational and brand-aware. Frame Ibudo Wura as a prestige address — 'Lakowe is Lagos's next premium corridor. GTBank managers who move now lock in 2024 prices with 2030 appreciation.'",
-    objQ: "We have a housing loan scheme in-house.",
-    objA: "The cash-back and ₦500K appliance allocation is the differentiator. Your scheme provides the loan — ours returns cash on top. Nothing in the market does both.",
-    salary: [
-      {band:"Graduate Trainee / Officer", gross:"₦500K–₦1.5M", count:"~1,100", eligible:"NO"},
-      {band:"Senior Officer / Executive (Grade 5–7)", gross:"₦1.5M–₦3.2M", count:"~850", eligible:"PARTIAL — ₦1.8M cut"},
-      {band:"Manager / Senior Manager", gross:"₦3.2M–₦7.5M", count:"~560", eligible:"YES — Core"},
-      {band:"AGM / DGM / GM", gross:"₦7.5M–₦20M", count:"~120", eligible:"YES — High Value"},
-      {band:"Executive Director / Group MD", gross:"₦20M+", count:"~30", eligible:"YES — Premium"},
-    ],
-    qualifying:"~1,200", homeAdj:"~23%"
-  },
-  {
-    num: 4, name: "First Bank of Nigeria Plc", sector: "Banking", priority: "P1",
-    hq: "Marina, Lagos Island", lagosHC: "~4,200", eligiblePool: "800–1,200",
-    entry: "Group Head, Human Resources",
-    contact: "Formal physical letter to First Bank HQ (Marina) — this institution respects protocol",
-    lever: "130 years of institutional legacy means frequent executive events. Lead with the conference centre discount as the door-opener with the CHRO, then transition to the staff offer once you are in the room.",
-    pitch: "First Bank's large Lagos management cadre has many experienced professionals who have been renting for 5–10 years. The equity installment option (6/9/12 months) removes the biggest barrier — lump-sum down payment. Frame as 'structured access to ownership.'",
-    objQ: "Staff are spread across Lagos — complex logistics.",
-    objA: "We run satellite briefings at branch locations. We come to your staff. All you provide is the room and the calendar invite.",
-    salary: [
-      {band:"Officer I / II (Grade 1–4)", gross:"₦350K–₦1.2M", count:"~2,100", eligible:"NO"},
-      {band:"Senior Officer / Exec. Officer", gross:"₦1.2M–₦2.5M", count:"~1,000", eligible:"PARTIAL — ₦1.8M cut"},
-      {band:"Manager / Senior Manager", gross:"₦2.5M–₦6M", count:"~750", eligible:"YES — Core"},
-      {band:"AGM / DGM / GM", gross:"₦6M–₦18M", count:"~300", eligible:"YES — High Value"},
-      {band:"Executive Director / Group CEO", gross:"₦18M+", count:"~50", eligible:"YES — Premium"},
-    ],
-    qualifying:"~1,600", homeAdj:"~28%"
-  },
-  {
-    num: 5, name: "United Bank for Africa (UBA)", sector: "Banking", priority: "P1",
-    hq: "Victoria Island, Lagos", lagosHC: "~3,600", eligiblePool: "850–1,100",
-    entry: "Head of Employee Experience / HR Business Partner (Lagos)",
-    contact: "LinkedIn InMail to HR leadership, referencing Access Bank traction",
-    lever: "UBA's global brand positions staff as globally mobile and career-aware. 'Your Lagos managers are watching their Zenith and Access Bank peers get homes. This programme is about to go to 30 Lagos companies — UBA should be on the list before it becomes public.'",
-    pitch: "UBA staff at Manager level (₦2.8M–₦7M) can access a ₦50M Ibudo Wura home. 10% equity = ₦5M, spread over 9 months = ₦556K/month — entirely manageable. Cash refund of ~₦2.1M upon completion.",
-    objQ: "Some staff won't qualify.",
-    objA: "We only need 10 to activate the bulk offer. We are targeting your Band-B population — Officers, Asst. Managers, and Managers at ₦1.8M+. That's a defined cohort with a clear earning profile.",
-    salary: [
-      {band:"Junior Officer (Grade 1–5)", gross:"₦350K–₦1.3M", count:"~1,800", eligible:"NO"},
-      {band:"Senior Officer / Exec. Officer", gross:"₦1.3M–₦2.8M", count:"~1,000", eligible:"PARTIAL — ₦1.8M cut"},
-      {band:"Manager / Senior Manager", gross:"₦2.8M–₦7M", count:"~600", eligible:"YES — Core"},
-      {band:"Deputy Manager / GM / Country CEO", gross:"₦7M–₦22M", count:"~170", eligible:"YES — High Value"},
-      {band:"Executive Director / MD / GMD", gross:"₦22M+", count:"~30", eligible:"YES — Premium"},
-    ],
-    qualifying:"~1,350", homeAdj:"~20%"
-  },
-  {
-    num: 6, name: "Stanbic IBTC Bank / Holdings", sector: "Banking", priority: "P1",
-    hq: "Victoria Island, Lagos", lagosHC: "~3,150", eligiblePool: "850–1,150",
-    entry: "Head of Human Resources, Stanbic IBTC Bank",
-    contact: "LinkedIn + phone — reference other banking sector engagements",
-    lever: "Stanbic IBTC staff are internationally minded and financially sophisticated. Lead with the investment angle: 'Ibudo Wura at ₦50M today is an inflation hedge — Lagos residential property has appreciated 18–22% annually over the last 5 years.'",
-    pitch: "International banking norms make Stanbic staff acutely aware of the wealth gap between homeowners and renters. The ₦500K appliance grant and 3-month mortgage refund frame this as Nigeria's most structured first-home programme.",
-    objQ: "Our staff have access to Standard Bank group housing loans.",
-    objA: "Group schemes serve different geographies. For Lagos-specific residential acquisition, our programme adds a cash-back layer and an appliance grant that no group scheme matches. These are direct ₦ benefits into your staff's pocket in Lagos.",
-    salary: [
-      {band:"Analyst / Associate (Band 1–3)", gross:"₦800K–₦2.0M", count:"~900", eligible:"PARTIAL — cut at ₦1.8M"},
-      {band:"Senior Associate / Specialist (Band 4–5)", gross:"₦2.0M–₦4.5M", count:"~900", eligible:"YES — Core"},
-      {band:"Manager / Senior Manager (Band 6–7)", gross:"₦4.5M–₦10M", count:"~900", eligible:"YES — High Value"},
-      {band:"Head / VP / Country Director (Band 8–9)", gross:"₦10M–₦30M", count:"~360", eligible:"YES — Premium"},
-      {band:"C-Suite / Board", gross:"₦30M+", count:"~90", eligible:"YES — Premium"},
-    ],
-    qualifying:"~1,800", homeAdj:"~30%"
-  },
-  {
-    num: 7, name: "Standard Chartered Bank Nigeria", sector: "Banking", priority: "P2",
-    hq: "Victoria Island, Lagos", lagosHC: "~1,650", eligiblePool: "500–700",
-    entry: "Head of Human Resources, Nigeria",
-    contact: "LinkedIn InMail with formal follow-up email — international bank culture expects documentation",
-    lever: "StanChart staff are globally mobile and see Lagos as a posting. Many have been in Lagos 3–7 years without buying. 'This may be your most decisive financial move while posted to Lagos — Ibudo Wura on a structured mortgage with a government-backed land title (C of O).'",
-    pitch: "For expatriate or returning-diaspora staff, the 10% equity instalment structure removes the lump-sum barrier entirely. ₦5M over 12 months is ₦417K/month. The C of O title security is the credibility anchor for this audience.",
-    objQ: "Our staff rotate globally — will they be here long enough?",
-    objA: "Many Standard Chartered Nigeria executives have been in Lagos 5+ years. For those who stay, this is wealth creation. For those who rotate, they retain a Lagos asset with strong capital appreciation. Either way, they win.",
-    salary: [
-      {band:"Officer / Senior Officer (Grade C–D)", gross:"₦900K–₦2.5M", count:"~450", eligible:"PARTIAL — cut at ₦1.8M"},
-      {band:"Executive / Senior Executive (Grade E–F)", gross:"₦2.5M–₦6M", count:"~500", eligible:"YES — Core"},
-      {band:"Manager / Senior Manager (Grade G–H)", gross:"₦6M–₦14M", count:"~450", eligible:"YES — High Value"},
-      {band:"Head / Director / Country Head", gross:"₦14M–₦35M", count:"~200", eligible:"YES — Premium"},
-      {band:"CEO / C-Suite", gross:"₦35M+", count:"~50", eligible:"YES — Premium"},
-    ],
-    qualifying:"~1,100", homeAdj:"~35%"
-  },
-  {
-    num: 8, name: "Fidelity Bank Plc", sector: "Banking", priority: "P2",
-    hq: "Victoria Island, Lagos", lagosHC: "~1,760", eligiblePool: "400–580",
-    entry: "Head of Human Resources / Chief Human Capital Officer",
-    contact: "LinkedIn + phone — warm intro preferred via banking network",
-    lever: "Fidelity Bank is actively positioning as a growth bank. Staff are ambitious and tenure-focused. 'Fidelity is building its next generation of leaders — this is a leadership retention tool disguised as a housing benefit.'",
-    pitch: "Grade 6–9 Fidelity staff (₦1.8M–₦5.5M) represent the growth engine of the bank. Giving this cohort a pathway to homeownership increases retention and engagement. Zero cost. Zero liability. Just 10 expressions of interest.",
-    objQ: "Our staff numbers are lower in Lagos.",
-    objA: "We only need 10 commitments to activate the bulk benefit. Fidelity Bank Lagos managers are our exact target — quality of the 10, not quantity of the pipeline, is what activates the offer.",
-    salary: [
-      {band:"Grade 1–5 (Entry / Junior Officer)", gross:"₦300K–₦1.1M", count:"~800", eligible:"NO"},
-      {band:"Grade 6–7 (Officer / Senior Officer)", gross:"₦1.1M–₦2.5M", count:"~480", eligible:"PARTIAL — ₦1.8M cut"},
-      {band:"Grade 8–9 (Manager)", gross:"₦2.5M–₦5.5M", count:"~320", eligible:"YES — Core"},
-      {band:"Grade 10–11 (Senior Manager / AGM)", gross:"₦5.5M–₦14M", count:"~130", eligible:"YES — High Value"},
-      {band:"Grade 12+ (GM / ED)", gross:"₦14M+", count:"~30", eligible:"YES — Premium"},
-    ],
-    qualifying:"~700", homeAdj:"~20%"
-  },
-  {
-    num: 9, name: "First City Monument Bank (FCMB)", sector: "Banking", priority: "P2",
-    hq: "Victoria Island, Lagos", lagosHC: "~1,440", eligiblePool: "340–480",
-    entry: "Group Chief Human Resources Officer",
-    contact: "LinkedIn + formal email — FCMB responds well to structured, documented approaches",
-    lever: "FCMB positions itself as a 'right size bank' — efficient, agile, staff-focused. 'FCMB becomes the first mid-tier bank to offer a structured housing cash-back benefit. That's a recruitment story.'",
-    pitch: "FCMB Managers and Senior Officers in Lagos are the precise target. 10% equity over 6–12 months is accessible at the ₦2.6M–₦6M band. The Lakowe address (adjacent to Lekki–Epe corridor) is an aspirational property location for this cohort.",
-    objQ: "Budget for staff welfare is tight.",
-    objA: "This programme costs FCMB nothing. Not a kobo. Your staff self-select, individually qualify for the mortgage, and receive the benefit directly. HR's only role is to share the flyer.",
-    salary: [
-      {band:"Officer Cadre (Grade 1–5)", gross:"₦300K–₦1.2M", count:"~650", eligible:"NO"},
-      {band:"Senior Officer (Grade 6–7)", gross:"₦1.2M–₦2.6M", count:"~400", eligible:"PARTIAL"},
-      {band:"Manager / Senior Manager (Grade 8–10)", gross:"₦2.6M–₦6M", count:"~280", eligible:"YES — Core"},
-      {band:"AGM / GM (Grade 11–12)", gross:"₦6M–₦15M", count:"~90", eligible:"YES — High Value"},
-      {band:"Executive Director / GMD", gross:"₦15M+", count:"~20", eligible:"YES — Premium"},
-    ],
-    qualifying:"~600", homeAdj:"~20%"
-  },
-  {
-    num: 10, name: "Sterling Bank Plc", sector: "Banking", priority: "P3",
-    hq: "Marina, Lagos Island", lagosHC: "~1,120", eligiblePool: "230–360",
-    entry: "Chief Human Resources Officer",
-    contact: "Phone + LinkedIn — Sterling is lean and accessible; direct outreach works well",
-    lever: "'Sterling's HR team delivers a housing benefit that Zenith and GTBank staff are accessing. It costs Sterling nothing and the staff retention story writes itself.'",
-    pitch: "Sterling Bank managers at ₦1.8M–₦4.5M are our ideal first cohort. Small, tight-knit HR team means faster decision-making. Target a 10-commitment activation within a single staff briefing session.",
-    objQ: "Our staff base is smaller.",
-    objA: "That's exactly why Sterling moves faster. 10 commitments in a bank of this size is achievable in one room. We can close this in a single lunch briefing.",
-    salary: [
-      {band:"Officer / Senior Officer (Grade 1–6)", gross:"₦300K–₦1.8M", count:"~560", eligible:"PARTIAL — ₦1.8M cut at top"},
-      {band:"Executive Officer / Manager (Grade 7–9)", gross:"₦1.8M–₦4.5M", count:"~340", eligible:"YES — Core"},
-      {band:"Senior Manager / AGM (Grade 10–11)", gross:"₦4.5M–₦11M", count:"~170", eligible:"YES — High Value"},
-      {band:"GM / ED", gross:"₦11M+", count:"~50", eligible:"YES — Premium"},
-    ],
-    qualifying:"~440", homeAdj:"~20%"
-  },
-  {
-    num: 11, name: "MTN Nigeria Communications", sector: "Telecoms", priority: "P1",
-    hq: "Ikoyi, Lagos", lagosHC: "~1,950", eligiblePool: "600–850",
-    entry: "Head of People & Culture (HR)",
-    contact: "LinkedIn InMail to HR Head — MTN HR leadership is digitally active on LinkedIn",
-    lever: "'MTN built Nigeria's network. Now we're offering your people the infrastructure of ownership.' The Lakowe corridor (proximity to Ikoyi/VI via Lekki Expressway) is a practical pitch point.",
-    pitch: "MTN Specialists and Managers (₦1.8M–₦11M) are renting across Lekki, VGC, and Ajah — all within 25–40 minutes of Lakowe. The equity instalment plan eliminates the down-payment barrier that has delayed their homeownership.",
-    objQ: "Our people prefer to live closer to Ikoyi HQ.",
-    objA: "Lakowe is on the Lekki–Epe expressway — 25 minutes from Ikoyi in moderate traffic. It is closer than Ajah, where many of your staff already rent. Show them the map.",
-    salary: [
-      {band:"Entry / Associate (Band 1–3)", gross:"₦500K–₦1.8M", count:"~600", eligible:"PARTIAL"},
-      {band:"Specialist / Senior Specialist (Band 4–5)", gross:"₦1.8M–₦4.5M", count:"~650", eligible:"YES — Core Target"},
-      {band:"Manager / Senior Manager (Band 6–7)", gross:"₦4.5M–₦11M", count:"~450", eligible:"YES — High Value"},
-      {band:"General Manager / VP (Band 8–9)", gross:"₦11M–₦28M", count:"~200", eligible:"YES — Premium"},
-      {band:"Executive Committee / CEO", gross:"₦28M+", count:"~50", eligible:"YES — Premium"},
-    ],
-    qualifying:"~1,100", homeAdj:"~25%"
-  },
-  {
-    num: 12, name: "Airtel Nigeria Limited", sector: "Telecoms", priority: "P2",
-    hq: "Victoria Island, Lagos", lagosHC: "~1,100", eligiblePool: "300–490",
-    entry: "Head of Human Resources, Airtel Nigeria",
-    contact: "LinkedIn + phone — reference MTN engagement as telecom sector social proof",
-    lever: "'MTN staff are already looking at this. Airtel is the natural next move in the telecom sector.' Peer competition between MTN and Airtel staff is a strong motivator.",
-    pitch: "Airtel Specialists earning ₦1.9M–₦4.5M are the core cohort. The ₦5M equity on a ₦50M home spread over 12 months = ₦417K/month. The appliance bundle at move-in is a tangible lifestyle upgrade.",
-    objQ: "Staff may prefer buying outside Lakowe.",
-    objA: "This is a structured offer tied to specific, title-clear developments. Ibudo Wura and Beechwood Park II both have Certificates of Occupancy. No other Lagos developer at this price point offers C of O title security combined with a cash-back programme.",
-    salary: [
-      {band:"Officer / Specialist (Level 1–3)", gross:"₦500K–₦1.9M", count:"~350", eligible:"PARTIAL"},
-      {band:"Senior Specialist / Analyst (Level 4–5)", gross:"₦1.9M–₦4.5M", count:"~350", eligible:"YES — Core"},
-      {band:"Manager / Senior Manager (Level 6–7)", gross:"₦4.5M–₦10M", count:"~280", eligible:"YES — High Value"},
-      {band:"Director / VP (Level 8+)", gross:"₦10M+", count:"~120", eligible:"YES — Premium"},
-    ],
-    qualifying:"~650", homeAdj:"~25%"
-  },
-  {
-    num: 13, name: "Interswitch Group", sector: "Telecoms", priority: "P1",
-    hq: "Victoria Island, Lagos", lagosHC: "~1,540", eligiblePool: "500–700",
-    entry: "Chief People Officer",
-    contact: "LinkedIn + warm intro via Lagos fintech network",
-    lever: "Interswitch staff are financially sophisticated. Lead with ROI framing: 'On a ₦50M property with 18% annual appreciation, your manager's equity grows by ₦9M in year one alone. The mortgage payment is less than their current rent.'",
-    pitch: "Interswitch Specialists and Senior Associates at ₦2M–₦5M are the sweet spot. Tech talent in Lagos understands compounding returns. The Ibudo Wura and Beechwood Park II developments are investment-grade residential.",
-    objQ: "People in tech prefer flexibility — they might relocate.",
-    objA: "Even if they relocate, they own a Lagos asset appreciating at 15–22% annually. The mortgage pays for itself through rental income if they leave Lagos. This is a financial instrument as much as a home.",
-    salary: [
-      {band:"Analyst / Associate (Level 1–3)", gross:"₦500K–₦2.0M", count:"~450", eligible:"PARTIAL"},
-      {band:"Senior Associate / Specialist (Level 4–5)", gross:"₦2.0M–₦5.0M", count:"~550", eligible:"YES — Core"},
-      {band:"Manager / Senior Manager (Level 6–7)", gross:"₦5.0M–₦12M", count:"~380", eligible:"YES — High Value"},
-      {band:"Director / VP / C-Suite", gross:"₦12M+", count:"~160", eligible:"YES — Premium"},
-    ],
-    qualifying:"~900", homeAdj:"~25%"
-  },
-  {
-    num: 14, name: "Flutterwave Inc. (Nigeria Ops)", sector: "Telecoms", priority: "P2",
-    hq: "Lekki, Lagos", lagosHC: "~595", eligiblePool: "220–360",
-    entry: "VP People or Head of People Ops",
-    contact: "LinkedIn DM — startup culture responds to direct, casual outreach. No formal letter needed.",
-    lever: "'Your Lagos engineers earn San Francisco comp but are renting in Lekki. Ibudo Wura is the bridge.' Relatability and financial logic win here.",
-    pitch: "Senior engineers at ₦4M–₦9M/month have the income but not the lump-sum equity. The instalment plan is the product-market fit. 10% over 6 months on a ₦50M home = ₦833K/month — less than their current Lekki rent for many.",
-    objQ: "Our people might move to the US or UK.",
-    objA: "Lagos real estate has outperformed most global markets at 15–20% annual appreciation. If they move abroad, they own a high-yielding Lagos rental asset. This is a hedge, not just a home.",
-    salary: [
-      {band:"Engineer / Analyst (IC1–IC3)", gross:"₦1.5M–₦4.0M", count:"~200", eligible:"PARTIAL–YES"},
-      {band:"Senior Engineer / Specialist (IC4–IC5)", gross:"₦4.0M–₦9M", count:"~200", eligible:"YES — Core"},
-      {band:"Staff Engineer / Lead (IC6+)", gross:"₦9M–₦22M", count:"~120", eligible:"YES — High Value"},
-      {band:"Director / VP / C-Suite", gross:"₦22M+", count:"~75", eligible:"YES — Premium"},
-    ],
-    qualifying:"~450", homeAdj:"~20%"
-  },
-  {
-    num: 15, name: "Paystack (Stripe Company)", sector: "Telecoms", priority: "P2",
-    hq: "Victoria Island, Lagos", lagosHC: "~383", eligiblePool: "150–260",
-    entry: "Head of People / HR Lead",
-    contact: "LinkedIn DM — Paystack culture is digital-first; no formal letters",
-    lever: "'Lakowe Lakes is the only address in Lagos where you work, play, and live at international standard.' The golf estate setting is the lifestyle pitch.",
-    pitch: "Paystack engineers are renting at ₦2M–₦5M/year in Lekki/VI. Owning a ₦50M Ibudo Wura unit costs less per month on a 20-year mortgage (₦700K–₦850K) than their current rent in many cases, plus they receive 3 months back in cash on completion.",
-    objQ: "Small team — not enough people.",
-    objA: "We only need 10. Paystack has 383 Lagos staff and effectively 100% earn ₦1.8M+. This is one of the highest conversion probability pitches on our entire list.",
-    salary: [
-      {band:"Engineer / Analyst", gross:"₦1.8M–₦5M", count:"~140", eligible:"YES — Core"},
-      {band:"Senior Engineer / Product (IC5)", gross:"₦5M–₦12M", count:"~120", eligible:"YES — High Value"},
-      {band:"Staff+ / Lead / Manager", gross:"₦12M–₦28M", count:"~90", eligible:"YES — Premium"},
-      {band:"Director / VP / C-Suite", gross:"₦28M+", count:"~33", eligible:"YES — Premium"},
-    ],
-    qualifying:"~320", homeAdj:"~20%"
-  },
-  {
-    num: 16, name: "SystemSpecs Limited (Remita)", sector: "Telecoms", priority: "P3",
-    hq: "Lekki Phase 1, Lagos", lagosHC: "~480", eligiblePool: "150–220",
-    entry: "HR Manager / Chief People Officer",
-    contact: "Phone + LinkedIn — SystemSpecs is accessible; direct call to HR works",
-    lever: "'The company that powers Nigeria's payments should power its staff to own homes.' Mission-aligned language resonates here.",
-    pitch: "Senior developers at ₦2.5M–₦6M are the target. Remita processes the NHF — staff here understand housing finance better than most. They know a good deal. Present the numbers transparently and let the product sell itself.",
-    objQ: "We are a relatively small company.",
-    objA: "That means the HR team makes decisions faster and can run a staff briefing within days of sign-off. 10 commitments from 270 eligible staff is a 3.7% conversion — easily achievable in one lunchroom session.",
-    salary: [
-      {band:"Software Developer / Analyst (Level 1–3)", gross:"₦800K–₦2.5M", count:"~180", eligible:"PARTIAL"},
-      {band:"Senior Developer / Architect (Level 4–5)", gross:"₦2.5M–₦6M", count:"~160", eligible:"YES — Core"},
-      {band:"Technical Lead / Manager (Level 6–7)", gross:"₦6M–₦14M", count:"~100", eligible:"YES — High Value"},
-      {band:"Director / C-Suite", gross:"₦14M+", count:"~40", eligible:"YES — Premium"},
-    ],
-    qualifying:"~270", homeAdj:"~20%"
-  },
-  {
-    num: 17, name: "Shell Nigeria (SPDC / SNEPCo)", sector: "Oil", priority: "P1",
-    hq: "Victoria Island, Lagos", lagosHC: "~1,750", eligiblePool: "550–800",
-    entry: "Head of HR Nigeria or Social Performance Manager",
-    contact: "Formal letter to Shell Nigeria HQ + LinkedIn follow-up — Shell requires structured approach with documentation",
-    lever: "'10% equity spread over 12 months. Certificate of Occupancy on both developments. Shell Nigeria staff deserve Shell-quality property standards.' C of O credibility is the primary key.",
-    pitch: "Shell professionals at ₦2.5M–₦8M have the income to qualify comfortably — their DSR on a ₦50M mortgage is well below 33.33%. The instalment equity plan removes the barrier. Present as a staff welfare programme Shell HR can endorse without any fiduciary commitment.",
-    objQ: "We need a full due diligence on the development.",
-    objA: "We provide complete documentation: Certificate of Occupancy, development approvals, site progress reports, offtake agreements, and reference letters from current institutional partners. We also arrange site visits — Shell staff can inspect both developments before committing.",
-    salary: [
-      {band:"Graduate Trainee / Junior Professional", gross:"₦800K–₦2.5M", count:"~400", eligible:"PARTIAL"},
-      {band:"Professional / Senior Professional", gross:"₦2.5M–₦8M", count:"~600", eligible:"YES — Core"},
-      {band:"Lead Professional / Senior Advisor", gross:"₦8M–₦18M", count:"~450", eligible:"YES — High Value"},
-      {band:"Adviser / Functional Head (Band 6–7)", gross:"₦18M–₦45M", count:"~240", eligible:"YES — Premium"},
-      {band:"General Manager / Country Chair", gross:"₦45M+", count:"~60", eligible:"YES — Premium"},
-    ],
-    qualifying:"~1,200", homeAdj:"~35%"
-  },
-  {
-    num: 18, name: "TotalEnergies EP Nigeria", sector: "Oil", priority: "P2",
-    hq: "Victoria Island, Lagos", lagosHC: "~1,000", eligiblePool: "300–480",
-    entry: "HR Manager Nigeria / Director of Human Resources",
-    contact: "Formal letter + LinkedIn — French corporate culture values protocol",
-    lever: "'A staff housing programme you can report in your annual CSR disclosure — with zero cost and zero risk to TotalEnergies.'",
-    pitch: "TotalEnergies engineers in Lagos are in the ₦2.2M–₦7M band — all well within the DSR threshold for a ₦50M property. The structured equity payment (10% over 6/9/12 months) and C of O title security match the documentation standards their legal and compliance teams expect.",
-    objQ: "We need legal review before endorsing any property programme.",
-    objA: "We have a complete legal due diligence pack: C of O, title search report, development permits. We welcome legal review. In fact, it accelerates conversion because your staff will trust a lawyer-reviewed product.",
-    salary: [
-      {band:"Technician / Junior Engineer", gross:"₦600K–₦2.2M", count:"~250", eligible:"PARTIAL"},
-      {band:"Engineer / Geoscientist (Grade C–D)", gross:"₦2.2M–₦7M", count:"~350", eligible:"YES — Core"},
-      {band:"Senior Engineer / Specialist (Grade E–F)", gross:"₦7M–₦16M", count:"~280", eligible:"YES — High Value"},
-      {band:"Head / Superintendent (Grade G+)", gross:"₦16M+", count:"~120", eligible:"YES — Premium"},
-    ],
-    qualifying:"~680", homeAdj:"~30%"
-  },
-  {
-    num: 19, name: "Seplat Energy Plc", sector: "Oil", priority: "P2",
-    hq: "Victoria Island, Lagos", lagosHC: "~600", eligiblePool: "185–310",
-    entry: "Chief Human Resources Officer",
-    contact: "Phone + LinkedIn — Seplat is relationship-driven; warm intros work best",
-    lever: "'Seplat is powering Nigeria's energy future. This programme powers your people's financial future. Both are Nigerian stories.' Indigenous pride and patriotic framing resonates strongly with Seplat leadership.",
-    pitch: "Seplat staff at the ₦2.5M–₦7M band have above-average financial literacy. Present the full financial model: equity instalment schedule, mortgage amortisation, cash refund timeline, and projected capital appreciation at Lakowe.",
-    objQ: "We are based in V.I. — Lakowe is a distance.",
-    objA: "Lakowe is 28 minutes from Victoria Island via the Lekki–Epe expressway. Most Seplat staff already live in Ajah, Sangotedo, or the Lakowe corridor. This isn't a commute change — it's an upgrade.",
-    salary: [
-      {band:"Graduate / Junior Engineer", gross:"₦700K–₦2.5M", count:"~130", eligible:"PARTIAL"},
-      {band:"Engineer / Specialist", gross:"₦2.5M–₦7M", count:"~220", eligible:"YES — Core"},
-      {band:"Senior Engineer / Manager", gross:"₦7M–₦18M", count:"~180", eligible:"YES — High Value"},
-      {band:"Director / General Manager", gross:"₦18M+", count:"~70", eligible:"YES — Premium"},
-    ],
-    qualifying:"~420", homeAdj:"~28%"
-  },
-  {
-    num: 20, name: "Oando Plc", sector: "Oil", priority: "P2",
-    hq: "Victoria Island, Lagos", lagosHC: "~1,250", eligiblePool: "350–530",
-    entry: "Head of Human Resources",
-    contact: "Phone + LinkedIn — Oando is a connected Nigerian corporate; use network introductions",
-    lever: "Arithmetic is the pitch: '10% equity over 9 months on a ₦50M home. Monthly: ₦556K. Mortgage on completion: ₦625K/month. Cash received back: ₦1.875M. You own a ₦50M home and got nearly ₦2M back.'",
-    pitch: "Oando Professional and Senior Professional staff at ₦2M–₦6M are primed for this offer. Ibudo Wura and Beechwood Park II offer better value-per-square-metre than any comparable Lekki Phase 1 or VI development at 2024 prices.",
-    objQ: "The company is currently focused on its own debt restructuring.",
-    objA: "This programme has zero corporate financial involvement. Staff mortgage individually. Oando's balance sheet is not touched. Your HR team simply enables access to the programme.",
-    salary: [
-      {band:"Officer / Junior Professional", gross:"₦500K–₦2.0M", count:"~450", eligible:"PARTIAL"},
-      {band:"Professional / Senior Professional", gross:"₦2.0M–₦6M", count:"~450", eligible:"YES — Core"},
-      {band:"Manager / Senior Manager", gross:"₦6M–₦15M", count:"~250", eligible:"YES — High Value"},
-      {band:"Director / GM / C-Suite", gross:"₦15M+", count:"~100", eligible:"YES — Premium"},
-    ],
-    qualifying:"~700", homeAdj:"~25%"
-  },
-  {
-    num: 21, name: "Sahara Group", sector: "Oil", priority: "P2",
-    hq: "Victoria Island, Lagos", lagosHC: "~1,100", eligiblePool: "330–490",
-    entry: "Group Chief People Officer",
-    contact: "Phone + formal email — Sahara is relationship-driven at executive level",
-    lever: "Lead with the retreat concession as the door-opener: 'Sahara's corporate retreats at Lakowe Lakes Golf and Country Estate — 3–5% discount.' Once in the room, transition to the staff offer.",
-    pitch: "Sahara's Lagos professionals earn above-market rates in the energy sector. The ₦50M price point is accessible. The structured instalment plan removes the lump-sum barrier for those who may be high-income first-time property purchasers.",
-    objQ: "Sahara staff travel frequently — they're not always in Lagos.",
-    objA: "Frequent travellers actually benefit most from a structured mortgage — the payment comes out automatically regardless of where they are. The property appreciates while they are away. Low-maintenance ownership is the pitch.",
-    salary: [
-      {band:"Analyst / Associate (Level 1–3)", gross:"₦700K–₦2.2M", count:"~300", eligible:"PARTIAL"},
-      {band:"Senior Associate / Specialist (Level 4–5)", gross:"₦2.2M–₦6M", count:"~380", eligible:"YES — Core"},
-      {band:"Manager / Senior Manager (Level 6–7)", gross:"₦6M–₦15M", count:"~280", eligible:"YES — High Value"},
-      {band:"Director / Group CEO", gross:"₦15M+", count:"~140", eligible:"YES — Premium"},
-    ],
-    qualifying:"~680", homeAdj:"~28%"
-  },
-  {
-    num: 22, name: "Nestlé Nigeria Plc", sector: "FMCG", priority: "P2",
-    hq: "Ilupeju, Lagos", lagosHC: "~1,350", eligiblePool: "270–380",
-    entry: "Human Resources Director Nigeria",
-    contact: "Formal letter + LinkedIn — Nestlé has structured HR processes; formal approach required",
-    lever: "Frame as a 'Financial Wellness Benefit' — language Nestlé HR responds to. 'This programme is a measurable financial wellness outcome for your managers. It reduces financial stress and improves retention at zero cost to Nestlé.'",
-    pitch: "Nestlé Managers and National Managers (₦2.5M–₦18M) are stable, career-oriented professionals. Many have been with Nestlé 5–10 years and are still renting. The equity instalment plan fits their consistent income profile.",
-    objQ: "Our staff are spread across different areas of Lagos.",
-    objA: "Lakowe is 30 minutes from Ilupeju (your HQ) via the Lagos–Ibadan Expressway to the Lekki–Epe road. It is on the same side of Lagos as most of your management population. We run a tailored location pitch for your HR team with commute time analysis.",
-    salary: [
-      {band:"Operator / Assistant Officer", gross:"₦250K–₦900K", count:"~500", eligible:"NO"},
-      {band:"Executive / Senior Executive", gross:"₦900K–₦2.5M", count:"~380", eligible:"PARTIAL — cut at ₦1.8M"},
-      {band:"Manager / Senior Manager", gross:"₦2.5M–₦7M", count:"~310", eligible:"YES — Core"},
-      {band:"National Manager / Head", gross:"₦7M–₦18M", count:"~130", eligible:"YES — High Value"},
-      {band:"Director / Country CEO", gross:"₦18M+", count:"~30", eligible:"YES — Premium"},
-    ],
-    qualifying:"~500", homeAdj:"~25%"
-  },
-  {
-    num: 23, name: "Unilever Nigeria Plc", sector: "FMCG", priority: "P2",
-    hq: "Oregun, Ikeja (Lagos)", lagosHC: "~1,100", eligiblePool: "280–470",
-    entry: "HR Director Nigeria or Head of Talent & Rewards",
-    contact: "LinkedIn + formal email — Unilever HR is well-connected on LinkedIn",
-    lever: "'This is a structured financial wellness benefit. We can co-present at your next People & Culture town hall as an employer-endorsed housing programme.' Co-branding with Unilever's HR gives the programme credibility internally.",
-    pitch: "Unilever Managers at ₦2M–₦6M band are exactly the cohort who have been saving for a property down payment for years. The instalment equity plan converts their savings buffer directly into an asset without requiring a lump sum they've never had simultaneously.",
-    objQ: "Our staff may prefer to buy through their own savings.",
-    objA: "We are not competing with savings. The 10% equity instalment plan IS a structured savings mechanism — but it ends in a titled property, not a bank account. And they get ₦500K in appliances and 3 months of mortgage cash back on top.",
-    salary: [
-      {band:"Officer / Executive (Band 1–3)", gross:"₦600K–₦2.0M", count:"~380", eligible:"PARTIAL"},
-      {band:"Manager / Senior Manager (Band 4–5)", gross:"₦2.0M–₦6M", count:"~360", eligible:"YES — Core"},
-      {band:"Senior Manager / Director (Band 6)", gross:"₦6M–₦15M", count:"~240", eligible:"YES — High Value"},
-      {band:"VP / MD / C-Suite (Band 7+)", gross:"₦15M+", count:"~120", eligible:"YES — Premium"},
-    ],
-    qualifying:"~620", homeAdj:"~25%"
-  },
-  {
-    num: 24, name: "Nigerian Breweries Plc (Heineken)", sector: "FMCG", priority: "P3",
-    hq: "Iganmu, Lagos", lagosHC: "~1,120", eligiblePool: "225–320",
-    entry: "Head of Human Resources",
-    contact: "Formal letter + LinkedIn — Nigerian Breweries has structured HR governance",
-    lever: "'Financial wellness: tracked, reported, and demonstrated.' Frame as a measurable welfare output the HR Director can present to the Dutch parent company (Heineken).",
-    pitch: "NB Managers at ₦2.5M–₦7M are the target. Many are based in Lagos Island/mainland and have long commutes. Lakowe offers a quality-of-life upgrade with a commute not significantly worse than their current one for those on the Lekki axis.",
-    objQ: "We are a manufacturing company — our senior staff in Lagos is a smaller group.",
-    objA: "Quality over quantity. We need 10 commitments. Nigerian Breweries has 400 qualifying staff in Lagos. The activation threshold is 2.5% of your eligible pool — easily achievable in one town hall.",
-    salary: [
-      {band:"Production Operator / Technician", gross:"₦250K–₦900K", count:"~550", eligible:"NO"},
-      {band:"Executive / Senior Executive", gross:"₦900K–₦2.5M", count:"~280", eligible:"PARTIAL"},
-      {band:"Manager / Senior Manager", gross:"₦2.5M–₦7M", count:"~200", eligible:"YES — Core"},
-      {band:"National Manager / Head", gross:"₦7M–₦18M", count:"~70", eligible:"YES — High Value"},
-      {band:"Director / Managing Director", gross:"₦18M+", count:"~20", eligible:"YES — Premium"},
-    ],
-    qualifying:"~400", homeAdj:"~25%"
-  },
-  {
-    num: 25, name: "Flour Mills of Nigeria Plc", sector: "FMCG", priority: "P3",
-    hq: "Apapa, Lagos", lagosHC: "~1,890", eligiblePool: "220–360",
-    entry: "Group Head, Human Resources",
-    contact: "Formal physical letter + phone — FMN is an old-school Nigerian conglomerate; formal approach required",
-    lever: "'FMN has been feeding Nigeria for 60 years. This programme helps FMN people own their own homes.' Heritage and loyalty framing works well with this company's culture.",
-    pitch: "FMN Managers and General Managers in Lagos are stable, long-tenured earners. Their biggest homeownership barrier is the lump-sum down payment — specifically in Lagos where prices start at ₦50M for decent property. The instalment plan is the exact solution.",
-    objQ: "Most of our Lagos staff are in Apapa — far from Lakowe.",
-    objA: "Lakowe is actually more accessible from Apapa via the Third Mainland Bridge to Lekki than many people assume — 35 minutes in off-peak. It is also substantially cheaper per square metre than any property in Apapa, Victoria Island, or Surulere at comparable quality.",
-    salary: [
-      {band:"Junior Staff / Operator", gross:"₦200K–₦800K", count:"~950", eligible:"NO"},
-      {band:"Officer / Senior Officer", gross:"₦800K–₦2.2M", count:"~540", eligible:"PARTIAL — cut at ₦1.8M"},
-      {band:"Manager / Senior Manager", gross:"₦2.2M–₦6M", count:"~280", eligible:"YES — Core"},
-      {band:"General Manager / Head", gross:"₦6M–₦16M", count:"~90", eligible:"YES — High Value"},
-      {band:"Director / CEO / Board", gross:"₦16M+", count:"~30", eligible:"YES — Premium"},
-    ],
-    qualifying:"~500", homeAdj:"~30%"
-  },
-  {
-    num: 26, name: "KPMG Nigeria", sector: "Professional", priority: "P1",
-    hq: "Victoria Island, Lagos", lagosHC: "~1,950", eligiblePool: "560–830",
-    entry: "Head of People & Culture (HR) or Senior Partner responsible for Talent",
-    contact: "LinkedIn + formal meeting request — KPMG HR runs like a structured corporate; formal pitch required",
-    lever: "'We are asking you to endorse the same structured benefit programme that you would recommend to your clients — a cost-zero, tax-efficient employee housing benefit with a documented financial return.' Advisor-to-advisor framing unlocks the door.",
-    pitch: "Senior Associates and Managers at KPMG (₦1.8M–₦12M) are exactly the cohort under housing pressure in Lagos — young, upwardly mobile, high-spending, and renting. The cash refund of 3 mortgage months (~₦1.8M–₦2.5M) is equivalent to a KPMG quarterly bonus.",
-    objQ: "Conflict of interest — we advise real estate clients.",
-    objA: "Staff are purchasing individually through a mortgage product — this is a personal financial transaction, not a KPMG advisory engagement. Your partners access KPMG's legal advice all the time for personal matters. This is no different.",
-    salary: [
-      {band:"Analyst / Associate (Grade 1–2)", gross:"₦700K–₦1.8M", count:"~600", eligible:"PARTIAL — cut at ₦1.8M"},
-      {band:"Senior Associate / Assistant Manager", gross:"₦1.8M–₦4.5M", count:"~600", eligible:"YES — Core"},
-      {band:"Manager / Senior Manager", gross:"₦4.5M–₦12M", count:"~500", eligible:"YES — High Value"},
-      {band:"Director / Associate Partner", gross:"₦12M–₦30M", count:"~180", eligible:"YES — Premium"},
-      {band:"Partner / Senior Partner", gross:"₦30M+", count:"~70", eligible:"YES — Premium"},
-    ],
-    qualifying:"~1,100", homeAdj:"~25%"
-  },
-  {
-    num: 27, name: "Deloitte Nigeria", sector: "Professional", priority: "P1",
-    hq: "Victoria Island, Lagos", lagosHC: "~1,716", eligiblePool: "500–750",
-    entry: "Chief People Officer or Partner responsible for Talent",
-    contact: "LinkedIn + formal email — reference KPMG engagement as Big Four social proof",
-    lever: "'KPMG staff are already enrolled. Deloitte is the natural second Big Four firm.' Big Four internal competition is fierce — a KPMG first-mover narrative will accelerate Deloitte's decision. Do not miss this lever.",
-    pitch: "Deloitte Senior Consultants and Managers in Lagos are 27–38 years old, earning ₦1.8M–₦13M, and renting across Lekki, Ikoyi, and Oniru. They understand financial modelling better than any other cohort. Present the full investment case: entry price, appreciation model, mortgage amortisation, cash-back NPV.",
-    objQ: "We have an existing bank partnership for staff mortgages.",
-    objA: "Bank partnerships provide the debt — this adds cash back and appliances on top. These are two different layers of benefit. The bank gives the loan; we give the subsidy. They work together.",
-    salary: [
-      {band:"Analyst / Consultant (Grade 1–2)", gross:"₦700K–₦1.8M", count:"~530", eligible:"PARTIAL"},
-      {band:"Senior Consultant / Assistant Manager", gross:"₦1.8M–₦5.0M", count:"~530", eligible:"YES — Core"},
-      {band:"Manager / Senior Manager", gross:"₦5.0M–₦13M", count:"~440", eligible:"YES — High Value"},
-      {band:"Director / Associate Partner", gross:"₦13M–₦32M", count:"~160", eligible:"YES — Premium"},
-      {band:"Partner / Senior Partner", gross:"₦32M+", count:"~56", eligible:"YES — Premium"},
-    ],
-    qualifying:"~1,000", homeAdj:"~25%"
-  },
-  {
-    num: 28, name: "PricewaterhouseCoopers (PwC) Nigeria", sector: "Professional", priority: "P1",
-    hq: "Victoria Island, Lagos", lagosHC: "~1,560", eligiblePool: "450–710",
-    entry: "Head of Human Capital or People Leader, PwC Nigeria",
-    contact: "LinkedIn + formal meeting request — reference other Big Four engagements",
-    lever: "Your due diligence pack (C of O, development approvals, financial model) should be presented to PwC HR exactly as PwC would present a client deliverable. Match their standard. The only way to win PwC's trust is to think like PwC.",
-    pitch: "PwC Associates earning ₦700K–₦4.5M include a significant population above ₦1.8M. Managers and Senior Managers (₦4.5M–₦12M) are the highest-probability cohort — financially sophisticated, income-stable, and acutely aware of their renting disadvantage.",
-    objQ: "Partnership structure means we need Partner approval for any staff programme.",
-    objA: "A one-page brief for Partner review is part of our standard package — we prepare it for every engagement. Partners have approved this at KPMG and Deloitte. PwC's process will be no different.",
-    salary: [
-      {band:"Associate / Senior Associate", gross:"₦700K–₦4.5M", count:"~780", eligible:"PARTIAL–YES"},
-      {band:"Manager / Senior Manager", gross:"₦4.5M–₦12M", count:"~480", eligible:"YES — High Value"},
-      {band:"Director / Partner", gross:"₦12M+", count:"~300", eligible:"YES — Premium"},
-    ],
-    qualifying:"~950", homeAdj:"~25%"
-  },
-  {
-    num: 29, name: "Ernst & Young (EY) Nigeria", sector: "Professional", priority: "P2",
-    hq: "Victoria Island, Lagos", lagosHC: "~1,404", eligiblePool: "370–580",
-    entry: "Head of Talent / People Advisory, EY Nigeria",
-    contact: "LinkedIn + formal email — EY runs talent at a service-line level; target the right function",
-    lever: "'EY builds better working environments — we build better living environments. Help your people own the homes they deserve.' Mission alignment with EY's 'Building a Better Working World' brand is the door-opener.",
-    pitch: "EY Senior Associates and Managers at ₦1.8M–₦11M are the prime cohort. Present the full NPV comparison: 5 years of renting at ₦3M–₦5M/year versus owning a ₦50M Ibudo Wura home with 18% annual appreciation and a 3-month cash refund. The numbers are not close.",
-    objQ: "Our staff need to be mobile for client work.",
-    objA: "Mobility is not an obstacle to ownership — it is an argument for it. If they travel frequently, the home appreciates while they're away and generates rental income if they choose to lease it. Mobility is actually the best argument for buying Lagos property now.",
-    salary: [
-      {band:"Analyst / Associate (Staff 1–2)", gross:"₦700K–₦1.8M", count:"~450", eligible:"PARTIAL"},
-      {band:"Senior / Senior Associate (Staff 3–4)", gross:"₦1.8M–₦4.5M", count:"~430", eligible:"YES — Core"},
-      {band:"Manager / Senior Manager", gross:"₦4.5M–₦11M", count:"~380", eligible:"YES — High Value"},
-      {band:"Director / Partner", gross:"₦11M+", count:"~144", eligible:"YES — Premium"},
-    ],
-    qualifying:"~900", homeAdj:"~25%"
-  },
-  {
-    num: 30, name: "Coronation Merchant Bank", sector: "Professional", priority: "P2",
-    hq: "Victoria Island, Lagos", lagosHC: "~595", eligiblePool: "170–280",
-    entry: "Chief Human Resources Officer or CEO's office",
-    contact: "Phone + LinkedIn — Coronation is a tight-knit, executive-driven institution; CEO/COO-level access helps",
-    lever: "'Ibudo Wura at ₦50M with a 15–20% annual appreciation rate in the Lakowe corridor — your investment committee would approve this as an asset allocation. Your staff deserve the same opportunity.' Finance professionals respond to investment-grade language.",
-    pitch: "Coronation Investment Managers at ₦2.5M–₦6M are analytical, data-driven buyers. Present the full investment model: entry price, location growth thesis (Lakowe corridor as Lagos's next premium axis), rental yield, and DCF analysis of equity appreciation over 5 years versus renting equivalent.",
-    objQ: "Our numbers are small — barely worth the effort.",
-    objA: "Coronation's small size is an advantage: decision speed. One meeting with the MD and CHRO gets this approved. One lunch briefing activates 10 commitments. We can close Coronation in two weeks — faster than any bank on this list.",
-    salary: [
-      {band:"Analyst / Associate (Band 1–3)", gross:"₦800K–₦2.5M", count:"~150", eligible:"PARTIAL"},
-      {band:"Senior Associate / Investment Manager", gross:"₦2.5M–₦6M", count:"~180", eligible:"YES — Core"},
-      {band:"VP / Senior Manager", gross:"₦6M–₦18M", count:"~160", eligible:"YES — High Value"},
-      {band:"Director / MD / C-Suite", gross:"₦18M+", count:"~105", eligible:"YES — Premium"},
-    ],
-    qualifying:"~400", homeAdj:"~30%"
-  },
-];
+  </main>
 
-const SECTOR_MAP = {
-  "Banking": "Banking",
-  "Telecoms": "Telecoms",
-  "Oil": "Oil",
-  "FMCG": "FMCG",
-  "Professional": "Professional"
-};
+  <script>
+    // Based on your attached PDF snippet (Banking, Telecoms/Tech, Oil & Gas, FMCG, Professional Services)
+    // Here are 30 placeholder institutions. Update these exact strings with the final list from your PDF.
+    const targetCompanies = [
+      "Access Bank", "Zenith Bank", "GTCO", "Stanbic IBTC", "First Bank", "UBA", 
+      "MTN Nigeria", "Airtel Nigeria", "Globacom", "9mobile", "Interswitch", "MainOne",
+      "Chevron", "Shell (SPDC)", "ExxonMobil", "TotalEnergies", "Seplat Energy", "Oando",
+      "Nestlé Nigeria", "Nigerian Breweries", "Unilever", "Cadbury", "PZ Cussons", "FMN Plc",
+      "PwC", "KPMG", "Deloitte", "EY", "McKinsey & Co.", "BCG"
+    ];
 
-function getSectorTag(c) {
-  if (c.sector === "Banking") return "Banking";
-  if (c.sector === "Telecoms") return "Telecoms & Technology";
-  if (c.sector === "Oil") return "Oil & Gas";
-  if (c.sector === "FMCG") return "FMCG";
-  if (c.sector === "Professional") return "Professional Services";
-  return c.sector;
-}
+    const grid = document.getElementById('companyGrid');
 
-function renderCards() {
-  const grid = document.getElementById('companiesGrid');
-  grid.innerHTML = COMPANIES.map(c => `
-    <div class="company-card" data-priority="${c.priority}" data-sector="${c.sector}" data-name="${c.name.toLowerCase()}" onclick="openModal(${c.num - 1})">
-      <div class="card-top">
-        <div class="card-num">#${String(c.num).padStart(2,'0')}</div>
-        <span class="priority-badge ${c.priority.toLowerCase()}">${c.priority}</span>
-      </div>
-      <div class="card-company">${c.name}</div>
-      <div class="card-sector">${getSectorTag(c)}</div>
-      <div class="card-metrics">
-        <div>
-          <div class="metric-label">Lagos HC</div>
-          <div class="metric-value">${c.lagosHC}</div>
-        </div>
-        <div>
-          <div class="metric-label">Qualifying</div>
-          <div class="metric-value">${c.qualifying}</div>
-        </div>
-        <div>
-          <div class="metric-label">Net Pool</div>
-          <div class="metric-value">${c.eligiblePool}</div>
-        </div>
-      </div>
-      <div class="card-lever"><strong>Lever:</strong> ${c.lever}</div>
-      <div class="card-footer">
-        <div class="card-hq">${c.hq}</div>
-        <div class="card-expand">Full Profile</div>
-      </div>
-    </div>
-  `).join('');
-}
+    targetCompanies.forEach(company => {
+      // Create the card container
+      const card = document.createElement('div');
+      card.className = 'company-cell';
 
-function getEligibleClass(e) {
-  if (e.startsWith('YES')) return 'eligible-yes';
-  if (e.startsWith('PARTIAL')) return 'eligible-partial';
-  return 'eligible-no';
-}
+      // Create the logo placeholder
+      const logo = document.createElement('div');
+      logo.className = 'logo-space';
+      logo.textContent = 'Logo';
 
-function openModal(idx) {
-  const c = COMPANIES[idx];
-  document.getElementById('mNum').textContent = `Company #${String(c.num).padStart(2,'0')} · ${getSectorTag(c)}`;
-  document.getElementById('mTitle').textContent = c.name;
-  document.getElementById('mHQ').textContent = `HQ: ${c.hq}`;
-  document.getElementById('mSector').textContent = `Lagos HC: ${c.lagosHC}`;
-  document.getElementById('mBadge').innerHTML = `<span class="priority-badge ${c.priority.toLowerCase()}">${c.priority}</span>`;
+      // Create the company name text
+      const name = document.createElement('div');
+      name.className = 'company-name';
+      name.textContent = company;
 
-  document.getElementById('mBody').innerHTML = `
-    <div class="pool-highlight">
-      <div class="pool-cell">
-        <div class="pool-cell-label">Qualifying Staff</div>
-        <div class="pool-cell-value">${c.qualifying}</div>
-      </div>
-      <div class="pool-cell">
-        <div class="pool-cell-label">Homeowner Adj.</div>
-        <div class="pool-cell-value">${c.homeAdj}</div>
-      </div>
-      <div class="pool-cell">
-        <div class="pool-cell-label">Net Eligible Pool</div>
-        <div class="pool-cell-value">${c.eligiblePool}</div>
-      </div>
-    </div>
+      // Assemble and append
+      card.appendChild(logo);
+      card.appendChild(name);
+      grid.appendChild(card);
+    });
+  </script>
 
-    <div class="modal-section" style="margin-top:24px;">
-      <div class="modal-section-title">Salary Band Analysis</div>
-      <table class="salary-table">
-        <thead>
-          <tr>
-            <th>Grade / Band</th>
-            <th>Monthly Gross</th>
-            <th>Lagos Count</th>
-            <th>Eligible?</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${c.salary.map(row => `
-            <tr>
-              <td>${row.band}</td>
-              <td>${row.gross}</td>
-              <td>${row.count}</td>
-              <td class="${getEligibleClass(row.eligible)}">${row.eligible}</td>
-            </tr>
-          `).join('')}
-        </tbody>
-      </table>
-    </div>
-
-    <div class="modal-section">
-      <div class="modal-section-title">Targeting Intelligence</div>
-      <div class="intel-grid">
-        <div class="intel-cell">
-          <div class="intel-key">Entry Point</div>
-          <div class="intel-val">${c.entry}</div>
-        </div>
-        <div class="intel-cell">
-          <div class="intel-key">Contact Method</div>
-          <div class="intel-val">${c.contact}</div>
-        </div>
-        <div class="intel-cell full">
-          <div class="intel-key">Conversational Lever</div>
-          <div class="intel-val">${c.lever}</div>
-        </div>
-        <div class="intel-cell full">
-          <div class="intel-key">Pitch Angle</div>
-          <div class="intel-val">${c.pitch}</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="modal-section">
-      <div class="modal-section-title">Objection Handling</div>
-      <div class="objection-box">
-        <div class="obj-q">${c.objQ}</div>
-        <div class="obj-a">${c.objA}</div>
-      </div>
-    </div>
-  `;
-
-  document.getElementById('modalOverlay').classList.add('open');
-  document.getElementById('modalContent').scrollTop = 0;
-}
-
-function closeModal(e) {
-  if (e.target === document.getElementById('modalOverlay')) {
-    document.getElementById('modalOverlay').classList.remove('open');
-  }
-}
-
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') document.getElementById('modalOverlay').classList.remove('open');
-});
-
-let activeFilter = 'all';
-let searchVal = '';
-
-function filterCards(filter, btn) {
-  activeFilter = filter;
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  applyFilters();
-}
-
-function searchCards(val) {
-  searchVal = val.toLowerCase();
-  applyFilters();
-}
-
-function applyFilters() {
-  document.querySelectorAll('.company-card').forEach(card => {
-    const p = card.dataset.priority;
-    const s = card.dataset.sector;
-    const n = card.dataset.name;
-    let show = true;
-    if (activeFilter !== 'all' && activeFilter !== p && activeFilter !== s) show = false;
-    if (searchVal && !n.includes(searchVal)) show = false;
-    card.classList.toggle('hidden', !show);
-  });
-}
-
-function showSector(id, btn) {
-  document.querySelectorAll('.sector-content').forEach(el => el.classList.remove('active'));
-  document.querySelectorAll('.sector-tab').forEach(el => el.classList.remove('active'));
-  document.getElementById('sector-' + id).classList.add('active');
-  btn.classList.add('active');
-}
-
-function showStep(num, el) {
-  document.querySelectorAll('.step-content').forEach(el => el.classList.remove('active'));
-  document.querySelectorAll('.step-item').forEach(el => el.classList.remove('active'));
-  document.getElementById('step-' + num).classList.add('active');
-  el.classList.add('active');
-}
-
-renderCards();
-</script>
 </body>
 </html>
