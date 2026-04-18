@@ -7,10 +7,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    /* BASE STYLES */
     .hero-text { text-align: center; margin-bottom: 48px; }
     .hero-text h1 { font-size: 36px; font-weight: 700; margin-bottom: 12px; }
     
+    /* GUIDING GRID - Default 4 columns */
     .guiding-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-bottom: 80px; }
     .guide-card { display: block; border: 1px solid var(--border-grey); border-radius: 8px; padding: 32px 24px; text-decoration: none; text-align: center; transition: all 0.2s ease; }
     .guide-card:hover { border-color: var(--brand-red); background: var(--brand-red-light); transform: translateY(-4px); }
@@ -66,55 +66,33 @@
     .nav-modal-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
     /* =========================================
-       RESPONSIVE OPTIMIZATIONS (Tablet & Mobile)
+       SPECIFIC RESPONSIVE OVERRIDES FOR INDEX
        ========================================= */
-    @media (max-width: 1024px) {
-      .guiding-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 60px; }
-      main { padding: 0 32px; }
-    }
-
     @media (max-width: 768px) {
-      nav { flex-direction: column; padding: 16px; gap: 8px; text-align: center; }
-      .nav-brand { justify-content: center; }
-      main { margin-top: 40px; padding: 0 20px; }
+      /* Stack guiding links into a 2x2 grid on tablets */
+      .guiding-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 60px; }
       .hero-text h1 { font-size: 28px; }
-      
-      /* Turn guiding links into a horizontal scroll on mobile */
-      .guiding-grid { 
-        display: flex; 
-        overflow-x: auto; 
-        flex-wrap: nowrap; 
-        scroll-snap-type: x mandatory; 
-        padding-bottom: 16px; 
-        margin-bottom: 40px; 
-      }
-      .guide-card { min-width: 240px; scroll-snap-align: start; padding: 24px 16px; }
-
       .company-grid { gap: 12px; margin-bottom: 32px; }
       .company-cell { padding: 16px 8px; }
 
-      /* Modal Mobile Overhauls */
-      .modal-content { width: 95%; max-height: 95vh; border-radius: 8px; }
+      /* Modal Mobile Adjustments */
+      .modal-content { width: 95%; max-height: 95vh; }
       .modal-header { padding: 20px; padding-right: 48px; }
       .modal-title { font-size: 22px; }
       .close-btn { top: 16px; right: 16px; font-size: 20px; }
-      
-      /* Scale down header logo */
       .modal-logo-box { width: 50px; height: 50px; min-width: 50px; }
       .modal-logo-box img { width: 30px; height: 30px; }
-
       .modal-scroll-area { padding: 20px; }
-      .modal-grid { grid-template-columns: 1fr; gap: 12px; margin-bottom: 24px; } /* Stack stats */
+      .modal-grid { grid-template-columns: 1fr; gap: 12px; margin-bottom: 24px; }
       .modal-stat-box { padding: 16px; }
-      .modal-stat-val { font-size: 18px; }
-      
-      .strategy-list li, .objection-a { font-size: 13px; }
       .modal-footer { padding: 16px 20px; }
       .nav-modal-btn { padding: 8px 16px; font-size: 12px; }
     }
 
     @media (max-width: 480px) {
-      .company-grid { grid-template-columns: repeat(2, 1fr); } /* Force 2 columns on small phones */
+      /* Stack guiding links entirely on small mobile phones */
+      .guiding-grid { grid-template-columns: 1fr; gap: 16px; }
+      .company-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
