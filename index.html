@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lagos Market Intelligence — Sales Directory</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
@@ -17,8 +18,29 @@
     .guide-desc { font-size: 13px; color: var(--text-grey); }
     hr { border: none; border-top: 1px solid var(--border-grey); margin: 0 0 60px 0; }
     .company-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 20px; }
-    .company-cell { background: var(--bg-off-white); border: 1px solid var(--border-grey); border-radius: 8px; padding: 20px 12px; text-align: center; display: flex; flex-direction: column; align-items: center; }
-    .logo-space { width: 60px; height: 60px; background-color: var(--bg-white); border: 1px dashed var(--border-grey); border-radius: 50%; margin-bottom: 16px; display: flex; align-items: center; justify-content: center; color: var(--text-light); font-size: 10px; }
+    .company-cell { background: var(--bg-off-white); border: 1px solid var(--border-grey); border-radius: 8px; padding: 20px 12px; text-align: center; display: flex; flex-direction: column; align-items: center; text-decoration: none;}
+    .company-cell:hover { border-color: var(--brand-grey); background: var(--bg-white); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+    
+    /* Updated Logo Space CSS */
+    .logo-space { 
+      width: 60px; 
+      height: 60px; 
+      background-color: var(--bg-white); 
+      border: 1px solid var(--border-grey); 
+      border-radius: 50%; 
+      margin-bottom: 16px; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      color: var(--text-light); 
+      overflow: hidden; 
+    }
+    .logo-space img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; /* Ensures the logo fits neatly inside the circle */
+      padding: 8px; /* Gives the logo some breathing room */
+    }
     .company-name { font-size: 13px; font-weight: 500; color: var(--text-dark); line-height: 1.3; }
   </style>
 </head>
@@ -66,34 +88,56 @@
 
     <div style="text-align: center; margin-bottom: 40px;">
       <h2 style="font-size: 24px; font-weight: 700; margin-bottom: 8px;">Institutional Target Segmentation</h2>
-      <p style="font-size: 14px; color: var(--brand-grey);">The 30 net addressable Lagos-based institutions across 5 key sectors[cite: 31, 36].</p>
+      <p style="font-size: 14px; color: var(--brand-grey);">The 30 net addressable Lagos-based institutions across 5 key sectors.</p>
     </div>
     
     <div class="company-grid" id="companyGrid"></div>
   </main>
 
   <script>
-    // Corrected to strictly reflect the 30 companies in the intelligence document
+    // The exact 30 companies from the intelligence document
     const targetCompanies = [
-      "Access Bank Plc", "Zenith Bank Plc", "Guaranty Trust Holding Co.", "First Bank of Nigeria Plc", "United Bank for Africa (UBA)", 
-      "Stanbic IBTC Bank", "Standard Chartered Bank", "Fidelity Bank Plc", "First City Monument Bank", "Sterling Bank Plc", 
-      "MTN Nigeria", "Airtel Nigeria", "Interswitch Group", "Flutterwave Inc.", "Paystack", 
-      "SystemSpecs Limited", "Shell Nigeria", "Total Energies EP", "Seplat Energy Plc", "Oando Plc", 
-      "Sahara Group", "Nestlé Nigeria Plc", "Unilever Nigeria Plc", "Nigerian Breweries Plc", "Flour Mills of Nigeria", 
-      "KPMG Nigeria", "Deloitte Nigeria", "PwC Nigeria", "Ernst & Young (EY)", "Coronation Merchant Bank"
+      "Access Bank Plc", "Zenith Bank Plc", "Guaranty Trust Holding Co.", "First Bank of Nigeria Plc", "United Bank for Africa (UBA) Plc", 
+      "Stanbic IBTC Bank", "Standard Chartered Bank Nigeria", "Fidelity Bank Plc", "First City Monument Bank (FCMB) Plc", "Sterling Bank Plc", 
+      "MTN Nigeria Communications Plc", "Airtel Nigeria Limited", "Interswitch Group", "Flutterwave Inc. (Nigeria Operations)", "Paystack (Stripe Company)", 
+      "SystemSpecs Limited (Remita)", "Shell Nigeria (SPDC / SNEPCO)", "Total Energies EP Nigeria Ltd", "Seplat Energy Plc", "Oando Plc", 
+      "Sahara Group", "Nestlé Nigeria Plc", "Unilever Nigeria Plc", "Nigerian Breweries Plc (Heineken)", "Flour Mills of Nigeria Plc", 
+      "KPMG Nigeria", "Deloitte Nigeria", "PricewaterhouseCoopers (PwC) Nigeria", "Ernst & Young (EY) Nigeria", "Coronation Merchant Bank"
     ];
 
     const grid = document.getElementById('companyGrid');
     targetCompanies.forEach(company => {
-      const card = document.createElement('div');
+      // Container
+      const card = document.createElement('a');
+      card.href = `pipeline.html#${company.replace(/\s+/g, '-').toLowerCase()}`; // Allows future linking
       card.className = 'company-cell';
-      const logo = document.createElement('div');
-      logo.className = 'logo-space';
-      logo.textContent = 'Logo';
+      
+      // Logo Setup
+      const logoContainer = document.createElement('div');
+      logoContainer.className = 'logo-space';
+      
+      const logoImg = document.createElement('img');
+      logoImg.src = `${company}.jpg`; 
+      logoImg.alt = `${company} Logo`;
+      
+      // Fallback if the JPG isn't found in the repository
+      logoImg.onerror = function() {
+        this.style.display = 'none';
+        logoContainer.textContent = company.charAt(0);
+        logoContainer.style.fontSize = '24px';
+        logoContainer.style.fontWeight = '700';
+        logoContainer.style.color = 'var(--brand-red)';
+      };
+
+      logoContainer.appendChild(logoImg);
+
+      // Name Setup
       const name = document.createElement('div');
       name.className = 'company-name';
       name.textContent = company;
-      card.appendChild(logo);
+
+      // Append
+      card.appendChild(logoContainer);
       card.appendChild(name);
       grid.appendChild(card);
     });
