@@ -639,4 +639,96 @@
       
       const logoImg = document.createElement('img');
       logoImg.src = `${companyKey}.jpg`; 
-      logo
+      logoImg.alt = `${companyKey} Logo`;
+      
+      logoImg.onerror = function() {
+        this.style.display = 'none';
+        logoContainer.textContent = companyKey.charAt(0);
+        logoContainer.style.fontSize = '24px';
+        logoContainer.style.fontWeight = '700';
+        logoContainer.style.color = 'var(--brand-red)';
+      };
+
+      logoContainer.appendChild(logoImg);
+
+      const name = document.createElement('div');
+      name.className = 'company-name';
+      // Fallback clean name for UI display
+      name.textContent = companyData[companyKey] ? companyData[companyKey].name.split(' [')[0] : companyKey;
+
+      card.appendChild(logoContainer);
+      card.appendChild(name);
+      grid.appendChild(card);
+    });
+
+    // MODAL & NAVIGATION LOGIC
+    const modal = document.getElementById('companyModal');
+    let currentCompanyIndex = 0;
+
+    function openModal(companyKey) {
+      currentCompanyIndex = targetCompaniesList.indexOf(companyKey);
+      populateModal();
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function populateModal() {
+      const companyKey = targetCompaniesList[currentCompanyIndex];
+      const data = companyData[companyKey];
+      
+      // Reset scroll position on new load
+      document.querySelector('.modal-scroll-area').scrollTop = 0;
+      
+      if(!data) {
+          document.getElementById('mName').innerHTML = companyKey;
+          document.getElementById('mPriority').innerHTML = "PENDING";
+          document.getElementById('mMeta').innerHTML = "Data pending upload";
+          document.getElementById('mQualifying').innerHTML = "-";
+          document.getElementById('mPool').innerHTML = "-";
+          document.getElementById('mEntry').innerHTML = "...";
+          document.getElementById('mContact').innerHTML = "...";
+          document.getElementById('mLever').innerHTML = "...";
+          document.getElementById('mPitch').innerHTML = "...";
+          document.getElementById('mObjQ').innerHTML = "...";
+          document.getElementById('mObjA').innerHTML = "...";
+      } else {
+          document.getElementById('mName').innerHTML = data.name;
+          document.getElementById('mPriority').innerHTML = data.priority;
+          document.getElementById('mMeta').innerHTML = `HQ: ${data.hq} | Lagos Headcount: ${data.headcount}`;
+          document.getElementById('mQualifying').innerHTML = data.qualifying;
+          document.getElementById('mPool').innerHTML = data.pool;
+          document.getElementById('mEntry').innerHTML = data.entry;
+          document.getElementById('mContact').innerHTML = data.contact;
+          document.getElementById('mLever').innerHTML = data.lever;
+          document.getElementById('mPitch').innerHTML = data.pitch;
+          document.getElementById('mObjQ').innerHTML = data.objQ;
+          document.getElementById('mObjA').innerHTML = data.objA;
+      }
+
+      // Update Navigation Buttons State
+      document.getElementById('prevBtn').disabled = (currentCompanyIndex === 0);
+      document.getElementById('nextBtn').disabled = (currentCompanyIndex === targetCompaniesList.length - 1);
+    }
+
+    function navigateModal(direction) {
+      const newIndex = currentCompanyIndex + direction;
+      // Prevent out of bounds navigation
+      if(newIndex >= 0 && newIndex < targetCompaniesList.length) {
+          currentCompanyIndex = newIndex;
+          populateModal();
+      }
+    }
+
+    function closeModal(event) {
+      if (event.target === modal) {
+        forceCloseModal();
+      }
+    }
+
+    function forceCloseModal() {
+      modal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+  </script>
+</body>
+</html>
