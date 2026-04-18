@@ -7,7 +7,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    /* PREVIOUS STYLES (Kept for consistency) */
     .hero-text { text-align: center; margin-bottom: 48px; }
     .hero-text h1 { font-size: 36px; font-weight: 700; margin-bottom: 12px; }
     .guiding-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; margin-bottom: 80px; }
@@ -30,81 +29,35 @@
     .logo-space img { width: 100%; height: 100%; object-fit: contain; padding: 8px; }
     .company-name { font-size: 13px; font-weight: 600; color: var(--text-dark); line-height: 1.3; }
 
-    /* =========================================
-       NEW MODAL STYLES (Blurred Background)
-       ========================================= */
+    /* MODAL STYLES (Blurred Background) */
     .modal-overlay {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(17, 24, 39, 0.6); /* Dark semi-transparent */
-      backdrop-filter: blur(8px); /* The blur effect */
-      -webkit-backdrop-filter: blur(8px);
-      display: none; /* Hidden by default */
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      padding: 20px;
-      opacity: 0;
-      transition: opacity 0.3s ease;
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(17, 24, 39, 0.6); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      display: none; justify-content: center; align-items: center; z-index: 1000; padding: 20px;
+      opacity: 0; transition: opacity 0.3s ease;
     }
-
-    .modal-overlay.active {
-      display: flex;
-      opacity: 1;
-    }
-
+    .modal-overlay.active { display: flex; opacity: 1; }
     .modal-content {
-      background: var(--bg-white);
-      width: 100%;
-      max-width: 850px;
-      max-height: 90vh;
-      border-radius: 12px;
-      overflow-y: auto;
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-      position: relative;
-      transform: translateY(20px);
-      transition: transform 0.3s ease;
+      background: var(--bg-white); width: 100%; max-width: 850px; max-height: 90vh; border-radius: 12px;
+      overflow-y: auto; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); position: relative;
+      transform: translateY(20px); transition: transform 0.3s ease;
     }
-
-    .modal-overlay.active .modal-content {
-      transform: translateY(0);
-    }
-
-    /* Modal Header */
-    .modal-header {
-      padding: 32px;
-      border-bottom: 1px solid var(--border-grey);
-      background: var(--bg-off-white);
-      position: relative;
-    }
-    
-    .close-btn {
-      position: absolute;
-      top: 24px; right: 24px;
-      background: none; border: none;
-      font-size: 24px; color: var(--text-grey);
-      cursor: pointer; transition: color 0.2s;
-    }
+    .modal-overlay.active .modal-content { transform: translateY(0); }
+    .modal-header { padding: 32px; border-bottom: 1px solid var(--border-grey); background: var(--bg-off-white); position: relative; }
+    .close-btn { position: absolute; top: 24px; right: 24px; background: none; border: none; font-size: 24px; color: var(--text-grey); cursor: pointer; transition: color 0.2s; }
     .close-btn:hover { color: var(--brand-red); }
-
-    .modal-priority { display: inline-block; background: var(--brand-red-light); color: var(--brand-red); padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; margin-bottom: 12px; letter-spacing: 0.05em; }
+    .modal-priority { display: inline-block; background: var(--brand-red-light); color: var(--brand-red); padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; margin-bottom: 12px; letter-spacing: 0.05em; text-transform: uppercase; }
     .modal-title { font-size: 28px; font-weight: 700; color: var(--text-dark); margin-bottom: 8px; }
     .modal-meta { font-size: 13px; color: var(--text-grey); }
-
-    /* Modal Body */
     .modal-body { padding: 32px; }
-    
     .modal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 32px; }
     .modal-stat-box { border: 1px solid var(--border-grey); padding: 20px; border-radius: 8px; }
     .modal-stat-title { font-size: 12px; text-transform: uppercase; color: var(--brand-grey); margin-bottom: 8px; font-weight: 600;}
     .modal-stat-val { font-size: 20px; font-weight: 700; color: var(--brand-red); }
-
     .modal-section-title { font-size: 16px; font-weight: 700; margin-bottom: 16px; color: var(--text-dark); border-bottom: 2px solid var(--border-grey); padding-bottom: 8px;}
-    
     .strategy-list { list-style: none; margin-bottom: 32px;}
     .strategy-list li { margin-bottom: 16px; font-size: 14px; color: var(--text-grey); }
     .strategy-list strong { color: var(--text-dark); display: block; margin-bottom: 4px; }
-
     .objection-box { background: var(--bg-grey-light); padding: 20px; border-radius: 8px; border-left: 4px solid var(--brand-red); }
     .objection-q { font-weight: 600; font-size: 14px; color: var(--brand-red); font-style: italic; margin-bottom: 8px; }
     .objection-a { font-size: 14px; color: var(--text-grey); }
@@ -199,7 +152,7 @@
   </div>
 
   <script>
-    // 1. THE DATA OBJECT (Extracted strictly from your PDF with citations)
+    // THE COMPLETE 30-COMPANY DATABASE EXTRACTED FROM PDF
     const companyData = {
       "Access Bank Plc": {
         name: "Access Bank Plc [cite: 51]",
@@ -207,13 +160,13 @@
         hq: "Victoria Island, Lagos [cite: 52]",
         headcount: "~6,000 [cite: 52]",
         qualifying: "~2,800 [cite: 55]",
-        pool: "2,000 - 2,500 [cite: 55]",
+        pool: "2,000- 2,500 [cite: 55]",
         entry: "Head of Employee Value Proposition / Chief Human Resources Officer [cite: 57]",
         contact: "Direct phone call - leverage existing relationship [cite: 57]",
-        lever: "First-mover credential: 'Access Bank is our reference institution your staff benefit before any other bank in Lagos.' Use this account to establish sector dominance and unlock warm referrals[cite: 57].",
-        pitch: "Access Bank Band 6-7 Officers earn ₦1.2M-₦2.8M. Those above ₦1.8M can spread 10% equity (₦5M on a ₦50M unit) over 6, 9, or 12 months. Upon completion of equity and mortgage process, they receive 3 months of payments in cash - typically ₦1.8M-₦2.4M[cite: 57].",
+        lever: "First-mover credential: \"Access Bank is our reference institution your staff benefit before any other bank in Lagos.\" Use this account to establish sector dominance and unlock warm referrals to Zenith, GTBank, and UBA. [cite: 57]",
+        pitch: "Access Bank Band 6-7 Officers earn N1.2M-N2.8M. Those above 1.8M can spread 10% equity (N5M on a N50M unit) over 6, 9, or 12 months. Upon completion of equity and mortgage process, they receive 3 months of payments in cash - typically N1.8M-N2.4M. Zero cost to Access Bank. [cite: 57]",
         objQ: "\"We have our own mortgage product.\" [cite: 60]",
-        objA: "This is a housing benefit layer a cash-back and appliance subsidy that sits entirely outside your balance sheet. It enhances your existing scheme[cite: 60]."
+        objA: "This is a housing benefit layer a cash-back and appliance subsidy that sits entirely outside your balance sheet. It enhances your existing scheme. Your own product gets more competitive, not less. [cite: 60]"
       },
       "Zenith Bank Plc": {
         name: "Zenith Bank Plc [cite: 62]",
@@ -224,73 +177,431 @@
         pool: "800 - 1,000 [cite: 70]",
         entry: "Chief People Officer or Head of Human Resources [cite: 72]",
         contact: "Linkedin InMail + phone reference Access Bank engagement to establish banking sector credibility [cite: 72]",
-        lever: "Sector social proof: 'Access Bank staff are already enrolled. Zenith is the natural second. Your managers are watching their peers at Access Bank get cash back on their mortgages.' [cite: 72]",
-        pitch: "Zenith Officers and Managers are career-ambitious. Frame this as: your staff aren't just getting a mortgage they are getting a property subsidy programme that returns real money[cite: 72].",
+        lever: "Sector social proof: \"Access Bank staff are already enrolled. Zenith is the natural second. Your managers are watching their peers at Access Bank get cash back on their mortgages.\" Peer competition between tier-1 banks is a powerful motivator. [cite: 72]",
+        pitch: "Zenith Officers and Managers are career-ambitious. Frame this as: your staff aren't just getting a mortgage they are getting a property subsidy programme that returns real money. N500K in appliances fitted. 3 months of payments refunded. No forms for Zenith to file. [cite: 72]",
         objQ: "\"Staff prefer our internal mortgage scheme.\" [cite: 75]",
-        objA: "The cash refund and appliance bundle is additive - staff using Zenith's own mortgage product still qualify for the 3-month cash refund[cite: 75]."
+        objA: "The cash refund and appliance bundle is additive - staff using Zenith's own mortgage product still qualify for the 3-month cash refund. We are not replacing your product. We are making every mortgage in Lagos more attractive. [cite: 75]"
       },
-      "MTN Nigeria Communications Plc": {
+      "Guaranty Trust Holding Co.": {
+        name: "Guaranty Trust Holding Co. (GTCo / GTBank) [cite: 78]",
+        priority: "PRIORITY 1 [cite: 82]",
+        hq: "Victoria Island, Lagos [cite: 79]",
+        headcount: "~2,660 [cite: 81]",
+        qualifying: "~1,200 [cite: 84]",
+        pool: "750- 1,000 [cite: 84]",
+        entry: "Head of Human Resources or Deputy Managing Director (GTBank has a flat senior structure) [cite: 86]",
+        contact: "Warm intro via Access Bank contact Lagos banking HR is a tight-knit community [cite: 86]",
+        lever: "GTBank culture responds to exclusivity and first-mover identity: \"10 GTBank people are getting homes this quarter - are your people on the list?\" Create FOMO. GTBank staff pride themselves on being first. [cite: 86]",
+        pitch: "GTBank staff are aspirational and brand-aware. Frame Ibudo Wura / Beechwood Park II as a prestige address - \"Lakowe is Lagos's next premium corridor. GTBank managers who move now lock in 2024 prices with 2030 appreciation.\" [cite: 86]",
+        objQ: "\"We have a housing loan scheme in-house.\" [cite: 86]",
+        objA: "The cash-back and N500K appliance allocation is the differentiator. Your scheme provides the loan ours returns cash on top. Nothing in the market does both. [cite: 91, 92]"
+      },
+      "First Bank of Nigeria Plc": {
+        name: "First Bank of Nigeria Plc [cite: 93]",
+        priority: "PRIORITY 1 [cite: 94]",
+        hq: "Marina, Lagos Island [cite: 93]",
+        headcount: "~4,200 [cite: 96]",
+        qualifying: "~1,600 [cite: 98]",
+        pool: "800- 1,200 [cite: 98]",
+        entry: "Group Head, Human Resources (Physical letter + LinkedIn) [cite: 100]",
+        contact: "Formal physical letter to First Bank HQ (Marina) this institution respects protocol; formality accelerates doors [cite: 100]",
+        lever: "130 years of institutional legacy means frequent executive events. Lead with the conference centre discount as the door-opener with the CHRO, then transition to the staff offer once you are in the room. [cite: 100]",
+        pitch: "First Bank's large Lagos management cadre has many experienced professionals who have been renting for 5-10 years. The equity installment option (6/9/12 months) removes the biggest barrier lump-sum down payment. Frame this as \"structured access to ownership.\" [cite: 100]",
+        objQ: "\"Staff are spread across Lagos - complex logistics.\" [cite: 100]",
+        objA: "We run satellite briefings at branch locations. We come to your staff. All you provide is the room and the calendar invite. [cite: 100]"
+      },
+      "United Bank for Africa (UBA)": {
+        name: "United Bank for Africa (UBA) Plc [cite: 104]",
+        priority: "PRIORITY 1 [cite: 105]",
+        hq: "Victoria Island, Lagos [cite: 104]",
+        headcount: "~3,600 [cite: 103]",
+        qualifying: "~1,350 [cite: 111]",
+        pool: "850- 1,100 [cite: 112]",
+        entry: "Head of Employee Experience / HR Business Partner (Lagos) [cite: 114]",
+        contact: "Linkedin InMail to HR leadership, referencing Access Bank traction [cite: 114]",
+        lever: "UBA's \"Africa's Global Bank\" brand positions its staff as globally mobile and career-aware. Angle: \"Your Lagos managers are watching their Zenith and Access Bank peers get homes. This programme is about to go to 30 Lagos companies - UBA should be on the list before it becomes public.\" [cite: 114]",
+        pitch: "UBA staff at Manager level (N2.8M-N7M) can access a N50M Ibudo Wura home. 10% equity = N5M, spread over 9 months = N556K/month entirely manageable. Cash refund of ~ 2.1M upon completion. Net cost of ownership acquisition: significantly below any other route. [cite: 114]",
+        objQ: "\"Some staff won't qualify.\" [cite: 114]",
+        objA: "We only need 10 to activate the bulk offer. We are targeting your Band-B population Officers, Asst. Managers, and Managers at N1.8M+. That's a defined cohort with a clear earning profile. [cite: 114]"
+      },
+      "Stanbic IBTC Bank": {
+        name: "Stanbic IBTC Bank / Holdings [cite: 117]",
+        priority: "PRIORITY 1 [cite: 118]",
+        hq: "Victoria Island, Lagos [cite: 118]",
+        headcount: "~3,150 [cite: 118]",
+        qualifying: "~1,800 [cite: 123]",
+        pool: "850- 1,150 [cite: 126]",
+        entry: "Head of Human Resources, Stanbic IBTC Bank [cite: 131]",
+        contact: "Linkedin + phone reference other banking sector engagements [cite: 131]",
+        lever: "Stanbic IBTC staff skew international-minded and financially sophisticated. Lead with the investment angle: \"Ibudo Wura at N50M today is an inflation hedge - Lagos residential property has appreciated 18-22% annually over the last 5 years. Your staff aren't just buying homes. They are making their best financial move of 2024.\" [cite: 131]",
+        pitch: "International banking norms make Stanbic staff acutely aware of the wealth gap between homeowners and renters. The N500K appliance grant and 3-month mortgage refund frame this as Nigeria's most structured first-home programme. [cite: 131]",
+        objQ: "\"Our staff have access to Standard Bank group housing loans.\" [cite: 131]",
+        objA: "Group schemes serve different geographies. For Lagos-specific residential acquisition, our programme adds a cash-back layer and an appliance grant that no group scheme matches. These are direct benefits into your staff's pocket in Lagos. [cite: 131]"
+      },
+      "Standard Chartered Bank": {
+        name: "Standard Chartered Bank Nigeria [cite: 134]",
+        priority: "PRIORITY 2 [cite: 135]",
+        hq: "Victoria Island, Lagos [cite: 135]",
+        headcount: "~1,650 [cite: 135]",
+        qualifying: "~1,100 [cite: 140]",
+        pool: "500-700 [cite: 142]",
+        entry: "Head of Human Resources, Nigeria [cite: 146]",
+        contact: "Linkedin InMail with formal follow-up email - international bank culture expects documentation [cite: 146]",
+        lever: "StanChart staff are globally mobile and see Lagos as a posting. Many have been in Lagos 3-7 years without buying. Angle: \"This may be your most decisive financial move while posted to Lagos - Ibudo Wura on a structured mortgage with a government-backed land title (C of O).\" [cite: 146]",
+        pitch: "For expatriate or returning-diaspora staff, the 10% equity installment structure removes the lump-sum barrier entirely. N5M over 12 months is N417K/month. The C of O title security is the credibility anchor for this audience. [cite: 146]",
+        objQ: "\"Our staff rotate globally will they be here long enough?\" [cite: 146]",
+        objA: "Many Standard Chartered Nigeria executives have been in Lagos 5+ years. For those who stay, this is wealth creation. For those who rotate, they retain a Lagos asset with strong capital appreciation. Either way, they win. [cite: 146]"
+      },
+      "Fidelity Bank Plc": {
+        name: "Fidelity Bank Plc [cite: 150]",
+        priority: "PRIORITY 2 [cite: 151]",
+        hq: "Victoria Island, Lagos [cite: 151]",
+        headcount: "~1,760 [cite: 151]",
+        qualifying: "~700 [cite: 156]",
+        pool: "400-580 [cite: 159]",
+        entry: "Head of Human Resources / Chief Human Capital Officer [cite: 161]",
+        contact: "Linkedin + phone warm intro preferred via banking network [cite: 161]",
+        lever: "Fidelity Bank is actively positioning as a growth bank. Staff are ambitious and tenure-focused. Angle: \"Fidelity is building its next generation of leaders - this is a leadership retention tool disguised as a housing benefit.\" [cite: 161]",
+        pitch: "Grade 6-9 Fidelity staff (N1.8M-N5.5M) represent the growth engine of the bank. Giving this cohort a pathway to homeownership increases retention and engagement. Zero cost. Zero liability. Just 10 expressions of interest. [cite: 161]",
+        objQ: "\"Our staff numbers are lower in Lagos.\" [cite: 161]",
+        objA: "We only need 10 commitments to activate the bulk benefit. Fidelity Bank Lagos managers are our exact target quality of the 10, not quantity of the pipeline, is what activates the offer. [cite: 161]"
+      },
+      "First City Monument Bank": {
+        name: "First City Monument Bank (FCMB) Plc [cite: 162]",
+        priority: "PRIORITY 2 [cite: 164]",
+        hq: "Victoria Island, Lagos [cite: 163]",
+        headcount: "~1,440 [cite: 165]",
+        qualifying: "~600 [cite: 172]",
+        pool: "340-480 [cite: 174]",
+        entry: "Group Chief Human Resources Officer [cite: 176]",
+        contact: "LinkedIn + formal email FCMB responds well to structured, documented approaches [cite: 176]",
+        lever: "FCMB positions itself as a \"right size bank\" - efficient, agile, staff-focused. Frame this as a programme that only a forward-thinking HR team would run: \"FCMB becomes the first mid-tier bank to offer a structured housing cash-back benefit. That's a recruitment story.\" [cite: 176]",
+        pitch: "FCMB Managers and Senior Officers in Lagos are the precise target. 10% equity installment over 6-12 months is accessible at the N2.6M-N6M band. The Lakowe address (adjacent to Lekki-Epe corridor) is an aspirational property location for this cohort. [cite: 176]",
+        objQ: "\"Budget for staff welfare is tight.\" [cite: 176]",
+        objA: "This programme costs FCMB nothing. Not a kobo. Your staff self-select, individually qualify for the mortgage, and receive the benefit directly. HR's only role is to share the flyer. [cite: 176]"
+      },
+      "Sterling Bank Plc": {
+        name: "Sterling Bank Plc [cite: 177]",
+        priority: "PRIORITY 3 [cite: 178]",
+        hq: "Marina, Lagos Island [cite: 178]",
+        headcount: "~1,120 [cite: 178]",
+        qualifying: "~440 [cite: 183]",
+        pool: "230-360 [cite: 183]",
+        entry: "Chief Human Resources Officer [cite: 185]",
+        contact: "Phone + LinkedIn Sterling is a lean, accessible organisation; direct outreach works well [cite: 185]",
+        lever: "Sterling Bank is reinventing itself. Staff are loyal, growth-oriented, and brand-proud. \"Sterling's HR team delivers a housing benefit that Zenith and GTBank staff are accessing. It costs Sterling nothing and the staff retention story writes itself.\" [cite: 185]",
+        pitch: "Sterling Bank managers at N1.8M-N4.5M are our ideal first cohort. Small, tight-knit HR team means faster decision-making. Target a 10-commitment activation within a single staff briefing session. [cite: 185]",
+        objQ: "\"Our staff base is smaller.\" [cite: 185]",
+        objA: "That's exactly why Sterling moves faster. 10 commitments in a bank of this size is achievable in one room. We can close this in a single lunch briefing. [cite: 185]"
+      },
+      "MTN Nigeria": {
         name: "MTN Nigeria Communications Plc [cite: 188]",
         priority: "PRIORITY 1 [cite: 190]",
         hq: "Ikoyi, Lagos [cite: 189]",
         headcount: "~1,950 [cite: 191]",
         qualifying: "~1,100 [cite: 199]",
-        pool: "600 - 850 [cite: 200]",
+        pool: "600-850 [cite: 200]",
         entry: "Head of People & Culture (HR) [cite: 202]",
         contact: "Linkedin InMail to HR Head MTN HR leadership is digitally active on LinkedIn [cite: 202]",
-        lever: "MTN staff are technology-oriented and research their financial decisions. Prepare a digital one-pager (WhatsApp-ready). Lead with: 'MTN built Nigeria's network. Now we're offering your people the infrastructure of ownership.' [cite: 202]",
-        pitch: "MTN Specialists and Managers (₦1.8M-₦11M) are renting across Lekki, VGC, and Ajah all within 25-40 minutes of Lakowe. The equity installment plan eliminates the down-payment barrier[cite: 202].",
+        lever: "MTN staff are technology-oriented and research their financial decisions. Prepare a digital one-pager (WhatsApp-ready). Lead with: \"MTN built Nigeria's network. Now we're offering your people the infrastructure of ownership.\" [cite: 202]",
+        pitch: "MTN Specialists and Managers (N1.8M-N11M) are renting across Lekki, VGC, and Ajah all within 25-40 minutes of Lakowe. The equity installment plan eliminates the down-payment barrier that has delayed their homeownership. [cite: 202]",
         objQ: "\"Our people prefer to live closer to Ikoyi HQ.\" [cite: 202]",
-        objA: "Lakowe is on the Lekki-Epe expressway 25 minutes from Ikoyi in moderate traffic. It is closer than Ajah, where many of your staff already rent. Show them the map[cite: 202]."
+        objA: "Lakowe is on the Lekki-Epe expressway 25 minutes from Ikoyi in moderate traffic. It is closer than Ajah, where many of your staff already rent. Show them the map. [cite: 202]"
       },
-      "Shell Nigeria (SPDC / SNEPCO)": {
+      "Airtel Nigeria": {
+        name: "Airtel Nigeria Limited [cite: 203]",
+        priority: "PRIORITY 2 [cite: 204]",
+        hq: "Victoria Island, Lagos [cite: 204]",
+        headcount: "~1,100 [cite: 204]",
+        qualifying: "~650 [cite: 220]",
+        pool: "300-490 [cite: 222]",
+        entry: "Head of Human Resources, Airtel Nigeria [cite: 224]",
+        contact: "Linkedin + phone reference MTN engagement as telecom sector social proof [cite: 224]",
+        lever: "\"MTN staff are already looking at this. Airtel is the natural next move in the telecom sector.\" Peer competition between MTN and Airtel staff is a strong motivator. Position this as a sector-wide housing uplift - not a selective offer. [cite: 224]",
+        pitch: "Airtel Specialists earning N1.9M-N4.5M are the core cohort. The N5M equity on a N50M home spread over 12 months = N417K/month on a salary of 1.9M+ is financially viable. The appliance bundle at move-in is a tangible lifestyle upgrade they can see. [cite: 224]",
+        objQ: "\"Staff may prefer buying outside Lakowe.\" [cite: 224]",
+        objA: "They can this is a structured offer tied to specific, title-clear developments. Ibudo Wura and Beechwood Park II both have Certificates of Occupancy. No other Lagos developer at this price point offers C of O title security combined with a cash-back programme. [cite: 224]"
+      },
+      "Interswitch": {
+        name: "Interswitch Group [cite: 225]",
+        priority: "PRIORITY 1 [cite: 226]",
+        hq: "Victoria Island, Lagos [cite: 226]",
+        headcount: "~1,540 [cite: 226]",
+        qualifying: "~900 [cite: 237]",
+        pool: "500-700 [cite: 239]",
+        entry: "Chief People Officer [cite: 241]",
+        contact: "Linkedin + warm intro via Lagos fintech network [cite: 241]",
+        lever: "Interswitch processes millions of transactions - staff are financially sophisticated. Lead with ROI framing: \"On a N50M property with 18% annual appreciation, your manager's equity grows by N9M in year one alone. The mortgage payment is less than their current rent. The cash refund is the bonus.\" [cite: 241]",
+        pitch: "Interswitch Specialists and Senior Associates at N2M-N5M are the sweet spot. Tech talent in Lagos understands compounding returns. The Ibudo Wura and Beechwood Park II developments are investment-grade residential - not just homes. [cite: 241]",
+        objQ: "\"People in tech prefer flexibility - they might relocate.\" [cite: 241]",
+        objA: "Even if they relocate, they own a Lagos asset appreciating at 15-22% annually. The mortgage pays for itself through rental income if they leave Lagos. This is a financial instrument as much as a home. [cite: 241]"
+      },
+      "Flutterwave": {
+        name: "Flutterwave Inc. (Nigeria Operations) [cite: 242]",
+        priority: "PRIORITY 2 [cite: 245]",
+        hq: "Lekki, Lagos [cite: 243]",
+        headcount: "~595 [cite: 244]",
+        qualifying: "~450 [cite: 254]",
+        pool: "220-360 [cite: 256]",
+        entry: "VP People or Head of People Ops [cite: 258]",
+        contact: "Linkedin DM startup culture responds to direct, casual outreach. No formal letter needed. [cite: 258]",
+        lever: "Flutterwave staff earn global-equivalent salaries but live in Lagos. The wealth gap is acute- they see what their international peers own. Angle: \"Your Lagos engineers earn San Francisco comp but are renting in Lekki. Ibudo Wura is the bridge.\" Relatability and financial logic win here. [cite: 258]",
+        pitch: "Senior engineers at N4M-N9M/month have the income but not the lump-sum equity. The installment plan is the product-market fit. 10% over 6 months on a N50M home = N833K/month less than their current Lekki rent for many. [cite: 258]",
+        objQ: "\"Our people might move to the US or UK.\" [cite: 258]",
+        objA: "Lagos real estate has outperformed most global markets at 15-20% annual appreciation. If they move abroad, they own a high-yielding Lagos rental asset. This is a hedge, not just a home. [cite: 258]"
+      },
+      "Paystack": {
+        name: "Paystack (Stripe Company) [cite: 259]",
+        priority: "PRIORITY 2 [cite: 261]",
+        hq: "Victoria Island, Lagos [cite: 259]",
+        headcount: "~383 [cite: 260]",
+        qualifying: "~320 [cite: 263]",
+        pool: "150-260 [cite: 263]",
+        entry: "Head of People / HR Lead [cite: 269]",
+        contact: "LinkedIn DM Paystack culture is digital-first; no formal letters [cite: 269]",
+        lever: "Paystack staff are Stripe-credentialled global talent choosing to stay in Lagos. This is an audience that values quality of life. \"Lakowe Lakes is the only address in Lagos where you work, play, and live at international standard.\" The golf estate setting is the lifestyle pitch. [cite: 269]",
+        pitch: "Paystack engineers are renting at N2M-N5M/year in LekkiVI/. Owning a N50M Ibudo Wura unit costs less per month on a 20-year mortgage (#700K-N850K) than their current rent in many cases, plus they receive 3 months back in cash on completion. [cite: 269]",
+        objQ: "\"Small team not enough people.\" [cite: 269]",
+        objA: "We only need 10. Paystack has 383 Lagos staff and effectively 100% earn 1.8M+. This is one of the highest conversion probability pitches on our entire list. [cite: 269]"
+      },
+      "SystemSpecs": {
+        name: "SystemSpecs Limited (Remita) [cite: 270]",
+        priority: "PRIORITY 3 [cite: 271]",
+        hq: "Lekki Phase 1, Lagos [cite: 271]",
+        headcount: "~480 [cite: 271]",
+        qualifying: "~270 [cite: 276]",
+        pool: "150-220 [cite: 279]",
+        entry: "HR Manager / Chief People Officer [cite: 282]",
+        contact: "Phone + LinkedIn SystemSpecs is accessible; direct call to HR works [cite: 286]",
+        lever: "SystemSpecs processes government payments across Nigeria - staff feel institutional pride and stability. Frame this as: \"The company that powers Nigeria's payments should power its staff to own homes.\" Mission-aligned language resonates here. [cite: 286]",
+        pitch: "Senior developers at 2.5M-N6M are the target. Remita processes the NHF (National Housing Fund) - staff here understand housing finance better than most. They know a good deal. Present the numbers transparently and let the product sell itself. [cite: 286]",
+        objQ: "\"We are a relatively small company.\" [cite: 286]",
+        objA: "That means the HR team makes decisions faster and can run a staff briefing within days of sign-off. 10 commitments from 270 eligible staff is a 3.7% conversion easily achievable in one lunchroom session. [cite: 286]"
+      },
+      "Shell Nigeria": {
         name: "Shell Nigeria (SPDC / SNEPCO) [cite: 289]",
         priority: "PRIORITY 1 [cite: 290]",
-        hq: "Victoria Island (SNEPCO) [cite: 289]",
+        hq: "Victoria Island (SNEPCO) + PortHarcourt, HQ Lagos office [cite: 289]",
         headcount: "~1,750 [cite: 289]",
         qualifying: "~1,200 [cite: 301]",
-        pool: "550 - 800 [cite: 298]",
+        pool: "550-800 [cite: 298]",
         entry: "Head of HR Nigeria or Social Performance Manager [cite: 304]",
         contact: "Formal letter to Shell Nigeria HQ + LinkedIn follow-up Shell requires structured approach with documentation [cite: 304]",
-        lever: "Shell Nigeria staff earn some of the highest salaries in Lagos but face two barriers: (1) lump-sum down payment in naira, (2) uncertainty about Lagos property title security. Address both: '10% equity spread over 12 months. Certificate of Occupancy on both developments.' [cite: 304]",
-        pitch: "Shell professionals at ₦2.5M-₦8M have the income to qualify comfortably their DSR on a ₦50M mortgage is well below 33.33%. The installment equity plan removes the barrier[cite: 304].",
+        lever: "Shell Nigeria staff earn some of the highest salaries in Lagos but face two barriers: (1) lump-sum down payment in naira, (2) uncertainty about Lagos property title security. Address both: \"10% equity spread over 12 months. Certificate of Occupancy on both developments. Shell Nigeria staff deserve Shell-quality property standards.\" [cite: 304]",
+        pitch: "Shell professionals at N2.5M-N8M have the income to qualify comfortably their DSR on a N50M mortgage is well below 33.33%. The installment equity plan removes the barrier. Present this as a staff welfare programme Shell HR can endorse without any fiduciary commitment. [cite: 304]",
         objQ: "\"We need a full due diligence on the development.\" [cite: 304]",
-        objA: "We provide complete documentation: Certificate of Occupancy, development approvals, site progress reports, offtake agreements, and reference letters[cite: 304]."
+        objA: "We provide complete documentation: Certificate of Occupancy, development approvals, site progress reports, offtake agreements, and reference letters from current institutional partners. We also arrange site visits Shell staff can inspect both developments before committing. [cite: 304]"
+      },
+      "Total Energies": {
+        name: "Total Energies EP Nigeria Ltd [cite: 305]",
+        priority: "PRIORITY 2 [cite: 306]",
+        hq: "Victoria Island, Lagos [cite: 306]",
+        headcount: "~1,000 [cite: 306]",
+        qualifying: "~680 [cite: 312]",
+        pool: "300-480 [cite: 312]",
+        entry: "HR Manager Nigeria / Director of Human Resources [cite: 315]",
+        contact: "Formal letter + LinkedIn French corporate culture values protocol [cite: 315]",
+        lever: "Total Energies has a strong employee welfare philosophy. HR leads here are measured on staff wellbeing metrics. Frame this as a measurable staff welfare outcome: \"A staff housing programme you can report in your annual CSR disclosure with zero cost and zero risk to TotalEnergies.\" [cite: 315]",
+        pitch: "TotalEnergies engineers in Lagos are in the 2.2M-N7M band - all well within the DSR threshold for a N50M property. The structured equity payment (10% over 6/9/12 months) and C of O title security match the documentation standards their legal and compliance teams expect. [cite: 315]",
+        objQ: "\"We need legal review before endorsing any property programme.\" [cite: 315]",
+        objA: "We have a complete legal due diligence pack: C of O, title search report, development permits. We are comfortable with legal review. In fact, we welcome it - it accelerates conversion because your staff will trust a lawyer-reviewed product. [cite: 315]"
+      },
+      "Seplat Energy": {
+        name: "Seplat Energy Plc [cite: 316]",
+        priority: "PRIORITY 2 [cite: 317]",
+        hq: "Victoria Island, Lagos [cite: 317]",
+        headcount: "~600 [cite: 317]",
+        qualifying: "~420 [cite: 319]",
+        pool: "185-310 [cite: 319]",
+        entry: "Chief Human Resources Officer [cite: 324]",
+        contact: "Phone + LinkedIn Seplat is a relationship-driven Nigerian company; warm intros work best [cite: 324]",
+        lever: "Seplat is Nigeria's leading indigenous energy company strong Nigerian identity. Angle: \"Seplat is powering Nigeria's energy future. This programme powers your people's financial future. Both are Nigerian stories.\" Indigenous pride and patriotic framing resonates strongly with Seplat leadership. [cite: 324]",
+        pitch: "Seplat staff at the N2.5M-N7M band have above-average financial literacy. They understand mortgages, DSRs, and property investment. Present the full financial model: equity installment schedule, mortgage amortisation, cash refund timeline, and projected capital appreciation at Lakowe. [cite: 324]",
+        objQ: "\"We are based in V.I. Lakowe is a distance.\" [cite: 324]",
+        objA: "Lakowe is 28 minutes from Victoria Island via the Lekki-Epe expressway. Most Seplat staff already live in Ajah, Sangotedo, or Lakwe corridor. This isn't a commute change it's an upgrade. [cite: 324]"
+      },
+      "Oando Plc": {
+        name: "Oando Plc [cite: 325]",
+        priority: "PRIORITY 2 [cite: 326]",
+        hq: "Victoria Island, Lagos [cite: 326]",
+        headcount: "~1,250 [cite: 326]",
+        qualifying: "~700 [cite: 331]",
+        pool: "350-530 [cite: 336]",
+        entry: "Head of Human Resources [cite: 334]",
+        contact: "Phone + LinkedIn Oando is a connected Nigerian corporate; use network introductions [cite: 339]",
+        lever: "Oando staff are financially motivated and market-aware. Frame this as a financial planning tool: \"10% equity over 9 months on a N50M home. Monthly commitment: N556K. Mortgage on completion: N625K/month. Cash received back: 1.875M. Net effect: you own a N50M home and got nearly 2M back.\" The arithmetic is the pitch. [cite: 339]",
+        pitch: "Oando Professional and Senior Professional staff at N2M-N6M are primed for this offer. The Ibudo Wura and Beechwood Park II locations offer better value-per-square-metre than any comparable Lekki Phase 1 or VI development at 2024 prices. [cite: 339]",
+        objQ: "\"The company is currently focused on its own debt restructuring.\" [cite: 339]",
+        objA: "This programme has zero corporate financial involvement. Staff mortgage individually. Oando's balance sheet is not touched. Your HR team simply enables access to the programme. [cite: 339]"
+      },
+      "Sahara Group": {
+        name: "Sahara Group [cite: 340]",
+        priority: "PRIORITY 2 [cite: 342]",
+        hq: "Victoria Island, Lagos [cite: 341]",
+        headcount: "~1,100 [cite: 341]",
+        qualifying: "~680 [cite: 347]",
+        pool: "330-490 [cite: 349]",
+        entry: "Group Chief People Officer [cite: 351]",
+        contact: "Phone + formal email Sahara is relationship-driven at executive level [cite: 351]",
+        lever: "Sahara Group operates across Africa and the Middle East - staff have international exposure but are Lagos-rooted. Lead with the retreat concession for the door-opener: \"Sahara's corporate retreats at Lakowe Lakes Golf and Country Estate 3-5% discount on a minimum 2-night stay.\" [cite: 355]",
+        pitch: "Sahara's Lagos professionals earn above-market rates in the energy sector. The 50M price point for Ibudo Wura is accessible - these are not first-time buyers in terms of income but may be first-time property purchasers. The structured installment plan removes the lump-sum barrier. [cite: 355]",
+        objQ: "\"Sahara staff travel frequently - they're not always in Lagos.\" [cite: 355]",
+        objA: "Frequent travellers actually benefit most from a structured mortgage the payment comes out automatically regardless of where they are. The property appreciates while they are away. Low-maintenance ownership is the pitch. [cite: 355]"
+      },
+      "Nestle Nigeria": {
+        name: "Nestlé Nigeria Plc [cite: 358]",
+        priority: "PRIORITY 2 [cite: 359]",
+        hq: "Ilupeju, Lagos [cite: 359]",
+        headcount: "~1,350 [cite: 359]",
+        qualifying: "~500 [cite: 364]",
+        pool: "270-380 [cite: 366]",
+        entry: "Human Resources Director Nigeria [cite: 369]",
+        contact: "Formal letter + LinkedIn Nestlé has structured HR processes; formal approach required [cite: 372]",
+        lever: "Nestlé's culture prioritises employee welfare and long-term wellbeing. Frame this as a \"Financial Wellness Benefit\" - language Nestlé HR responds to. \"This programme is a measurable financial wellness outcome for your managers. It reduces financial stress and improves retention at zero cost to Nestlé.\" [cite: 372]",
+        pitch: "Nestlé Managers and National Managers (N2.5M-18M) are stable, career-oriented professionals. Many have been with Nestlé 5-10 years and are still renting. The equity installment plan fits their consistent income profile. The cash refund on completion is a tangible, visible benefit. [cite: 372]",
+        objQ: "\"Our staff are spread across different areas of Lagos.\" [cite: 372]",
+        objA: "Lakowe is 30 minutes from llupeju (your HQ) via the Lagos-Ibadan Expressway to the Lekki-Epe road. It is on the same side of Lagos as most of your management population. We can run a tailored location pitch for your HR team with commute time analysis. [cite: 372]"
+      },
+      "Unilever Nigeria": {
+        name: "Unilever Nigeria Plc [cite: 373]",
+        priority: "PRIORITY 2 [cite: 374]",
+        hq: "Oregun, Ikeja (Lagos) [cite: 374]",
+        headcount: "~1,100 [cite: 374]",
+        qualifying: "~620 [cite: 379]",
+        pool: "280-470 [cite: 381]",
+        entry: "HR Director Nigeria or Head of Talent & Rewards [cite: 384]",
+        contact: "LinkedIn + formal email Unilever HR is well-connected on LinkedIn [cite: 389]",
+        lever: "Unilever's global playbook emphasises \"purposeful living\" and financial wellbeing. Their HR team will respond to: \"This is a structured financial wellness benefit. We can co-present at your next People & Culture town hall as an employer-endorsed housing programme.\" [cite: 389]",
+        pitch: "Unilever Managers at N2M-N6M band are exactly the cohort who have been saving for a property down payment for years. The installment equity plan converts their savings buffer directly into an asset without requiring a lump sum they've never had simultaneously. [cite: 389]",
+        objQ: "\"Our staff may prefer to buy through their own savings.\" [cite: 389]",
+        objA: "We are not competing with savings. The 10% equity installment plan IS a structured savings mechanism - but it ends in a titled property, not a bank account. And they get 500K in appliances and 3 months of mortgage cash back on top. [cite: 389]"
+      },
+      "Nigerian Breweries": {
+        name: "Nigerian Breweries Plc (Heineken) [cite: 390]",
+        priority: "PRIORITY 3 [cite: 391]",
+        hq: "Iganmu, Lagos [cite: 390]",
+        headcount: "~1,120 [cite: 392]",
+        qualifying: "~400 [cite: 394]",
+        pool: "225-320 [cite: 394]",
+        entry: "Head of Human Resources [cite: 396]",
+        contact: "Formal letter + LinkedIn Nigerian Breweries has structured HR governance [cite: 396]",
+        lever: "Heineken's global DEI and employee wellbeing standards mean NB HR teams are evaluated on measurable welfare outcomes. \"Financial wellness: tracked, reported, and demonstrated.\" Frame this as a measurable welfare output the HR Director can present to the Dutch parent company. [cite: 400]",
+        pitch: "NB Managers at N2.5M-N7M are the target. Many are based in Lagos Island/mainland and have long commutes. Lakowe offers a quality-of-life upgrade with a commute not significantly worse than their current one for those on the Lekki axis. [cite: 400]",
+        objQ: "\"We are a manufacturing company our senior staff in Lagos is a smaller group.\" [cite: 400]",
+        objA: "Quality over quantity. We need 10 commitments. Nigerian Breweries has 400 qualifying staff in Lagos. The activation threshold is 2.5% of your eligible pool easily achievable in one town hall. [cite: 400]"
+      },
+      "Flour Mills": {
+        name: "Flour Mills of Nigeria Plc [cite: 401]",
+        priority: "PRIORITY 3 [cite: 403]",
+        hq: "Apapa, Lagos [cite: 402]",
+        headcount: "~1,890 [cite: 404]",
+        qualifying: "~500 [cite: 407]",
+        pool: "220-360 [cite: 407]",
+        entry: "Group Head, Human Resources [cite: 409]",
+        contact: "Formal physical letter + phone - FMN is an old-school Nigerian conglomerate; formal approach required [cite: 409]",
+        lever: "Flour Mills of Nigeria is one of the oldest and most respected companies on the NGX. Frame this institutionally: \"FMN has been feeding Nigeria for 60 years. This programme helps FMN people own their own homes.\" Heritage and loyalty framing works well with this company's culture. [cite: 413]",
+        pitch: "FMN Managers and General Managers in Lagos are stable, long-tenured earners. Their biggest homeownership barrier is the lump-sum down payment - specifically in Lagos where prices start at 50M for decent property. The installment plan is the exact solution for this demographic. [cite: 413]",
+        objQ: "\"Most of our Lagos staff are in Apapa far from Lakowe.\" [cite: 413]",
+        objA: "Lakowe is actually more accessible from Apapa via the Third Mainland Bridge to Lekki than many people assume 35 minutes in off-peak. It is also substantially cheaper per square metre than any property in Apapa, Victoria Island, or Surulere at comparable quality. [cite: 413]"
+      },
+      "KPMG": {
+        name: "KPMG Nigeria [cite: 416]",
+        priority: "PRIORITY 1 [cite: 417]",
+        hq: "Victoria Island, Lagos [cite: 417]",
+        headcount: "~1,950 [cite: 417]",
+        qualifying: "~1,100 [cite: 422]",
+        pool: "560-830 [cite: 423]",
+        entry: "Head of People & Culture (HR) or Senior Partner responsible for Talent [cite: 427]",
+        contact: "Linkedin + formal meeting request KPMG HR runs like a structured corporate; formal pitch required [cite: 430]",
+        lever: "KPMG advises Nigeria's largest companies on HR strategy. Lead with credibility: \"We are asking you to endorse the same structured benefit programme that you would recommend to your clients a cost-zero, tax-efficient employee housing benefit with a documented financial return.\" [cite: 430]",
+        pitch: "Senior Associates and Managers at KPMG (N1.8M-N12M) are exactly the cohort under housing pressure in Lagos - young, upwardly mobile, high-spending, and renting. The equity installment plan fits their bi-monthly cash flow pattern. The cash refund of 3 mortgage months (~N1.8M-N2.5M) is equivalent to a KPMG quarterly bonus. [cite: 430]",
+        objQ: "\"Conflict of interest we advise real estate clients.\" [cite: 430]",
+        objA: "Staff are purchasing individually through a mortgage product this is a personal financial transaction, not a KPMG advisory engagement. Your partners access KPMG's legal advice all the time for personal matters. This is no different. [cite: 430]"
+      },
+      "Deloitte": {
+        name: "Deloitte Nigeria [cite: 431]",
+        priority: "PRIORITY 1 [cite: 432]",
+        hq: "Victoria Island, Lagos [cite: 432]",
+        headcount: "~1,716 [cite: 432]",
+        qualifying: "~1,000 [cite: 434]",
+        pool: "500-750 [cite: 434]",
+        entry: "Chief People Officer or Partner responsible for Talent [cite: 437]",
+        contact: "LinkedIn + formal email reference KPMG engagement as Big Four social proof [cite: 441]",
+        lever: "\"KPMG staff are already enrolled. Deloitte is the natural second Big Four firm.\" Big Four internal competition is fierce a KPMG first-mover narrative will accelerate Deloitte's decision. Do not miss this lever. [cite: 441]",
+        pitch: "Deloitte Senior Consultants and Managers in Lagos are 27-38 years old, earning 1.8M-N13M, and renting across Lekki, Ikoyi, and Oniru. They understand financial modelling better than any other cohort on this list. Present the full investment case: entry price, appreciation model, mortgage amortisation, cash-back NPV. [cite: 441]",
+        objQ: "\"We have an existing bank partnership for staff mortgages.\" [cite: 441]",
+        objA: "Bank partnerships provide the debt - this adds cash back and appliances on top. These are two different layers of benefit. The bank gives the loan; we give the subsidy. They work together. [cite: 441]"
+      },
+      "PwC": {
+        name: "PricewaterhouseCoopers (PwC) Nigeria [cite: 442]",
+        priority: "PRIORITY 1 [cite: 443]",
+        hq: "Victoria Island, Lagos [cite: 443]",
+        headcount: "~1,560 [cite: 443]",
+        qualifying: "~950 [cite: 445]",
+        pool: "450-710 [cite: 445]",
+        entry: "Head of Human Capital or People Leader, PwC Nigeria [cite: 447]",
+        contact: "LinkedIn + formal meeting request reference other Big Four engagements [cite: 447]",
+        lever: "PwC's brand is built on trust and rigour. Your due diligence pack (C of O, development approvals, financial model) should be presented to PwC HR exactly as PwC would present a client deliverable. Match their standard. The only way to win PwC's trust is to think like PwC. [cite: 447, 451]",
+        pitch: "PwC Associates earning 700K-N4.5M include a significant population above N1.8M. Managers and Senior Managers (N4.5M-N12M) are the highest-probability cohort financially sophisticated, income-stable, and acutely aware of their renting disadvantage versus peers who already own property. [cite: 451]",
+        objQ: "\"Partnership structure means we need Partner approval for any staff programme.\" [cite: 451]",
+        objA: "We understand. A one-page brief for Partner review is part of our standard package we prepare it for every engagement. Partners have approved this at KPMG and Deloitte. PwC's process will be no different. [cite: 451]"
+      },
+      "EY": {
+        name: "Ernst & Young (EY) Nigeria [cite: 452]",
+        priority: "PRIORITY 2 [cite: 453]",
+        hq: "Victoria Island, Lagos [cite: 453]",
+        headcount: "~1,404 [cite: 453]",
+        qualifying: "~900 [cite: 458]",
+        pool: "370-580 [cite: 460]",
+        entry: "Head of Talent / People Advisory, EY Nigeria [cite: 462]",
+        contact: "LinkedIn + formal email EY runs talent at a service-line level; target the right function [cite: 462]",
+        lever: "EY's brand positions around \"Building a Better Working World\" staff welfare aligns directly. Frame this: \"EY builds better working environments we build better living environments. Help your people own the homes they deserve.\" Mission alignment with EY's brand is the door-opener with the HR team. [cite: 462]",
+        pitch: "EY Senior Associates and Managers at N1.8M-N11M are the prime cohort. Present the full NPV comparison: 5 years of renting at N3M-N5M/year versus owning a N50M Ibudo Wura home with 18% annual appreciation and a 3-month cash refund. The numbers are not close. [cite: 465]",
+        objQ: "\"Our staff need to be mobile for client work.\" [cite: 465]",
+        objA: "Mobility is not an obstacle to ownership it is an argument for it. If they travel frequently, the home appreciates while they're away and generates rental income if they choose to lease it. Mobility is actually the best argument for buying Lagos property now. [cite: 465]"
+      },
+      "Coronation Merchant Bank": {
+        name: "Coronation Merchant Bank [cite: 467]",
+        priority: "PRIORITY 2 [cite: 468]",
+        hq: "Victoria Island, Lagos [cite: 468]",
+        headcount: "~595 [cite: 468]",
+        qualifying: "~400 [cite: 472]",
+        pool: "170-280 [cite: 479]",
+        entry: "Chief Human Resources Officer or CEO's office [cite: 477]",
+        contact: "Phone + LinkedIn Coronation is a tight-knit, executive-driven institution; CEO/COO-level access helps [cite: 477]",
+        lever: "Coronation staff are investment professionals they understand asset allocation. Lead with: \"Ibudo Wura at N50M with a 15-20% annual appreciation rate in the Lakowe corridor - your investment committee would approve this as an asset allocation. Your staff deserve the same opportunity.\" [cite: 477]",
+        pitch: "Coronation Investment Managers at N2.5M-N6M are analytical, data-driven buyers. Present the full investment model: entry price, location growth thesis, rental yield, and DCF analysis of equity appreciation over 5 years versus renting equivalent. [cite: 482]",
+        objQ: "\"Our numbers are small barely worth the effort.\" [cite: 482]",
+        objA: "Coronation's small size is an advantage: decision speed. One meeting with the MD and CHRO gets this approved. One lunch briefing activates 10 commitments. We can close Coronation in two weeks faster than any bank on this list. [cite: 482]"
       }
-      // Note: For brevity in this code block, I have mapped 4 companies perfectly. 
-      // Add the remaining 26 companies here following the exact same key-value structure.
     };
 
-    // 2. THE COMPANY LIST (For the grid)
+    // GENERATING THE GRID
     const targetCompaniesList = [
-      "Access Bank Plc", "Zenith Bank Plc", "MTN Nigeria Communications Plc", "Shell Nigeria (SPDC / SNEPCO)", 
-      "Guaranty Trust Holding Co.", "First Bank of Nigeria Plc", "United Bank for Africa (UBA)", 
-      "Stanbic IBTC Bank", "Standard Chartered Bank Nigeria", "Fidelity Bank Plc", "First City Monument Bank", "Sterling Bank Plc", 
-      "Airtel Nigeria Limited", "Interswitch Group", "Flutterwave Inc. (Nigeria Operations)", "Paystack (Stripe Company)", 
-      "SystemSpecs Limited (Remita)", "Total Energies EP Nigeria Ltd", "Seplat Energy Plc", "Oando Plc", 
-      "Sahara Group", "Nestlé Nigeria Plc", "Unilever Nigeria Plc", "Nigerian Breweries Plc (Heineken)", "Flour Mills of Nigeria Plc", 
-      "KPMG Nigeria", "Deloitte Nigeria", "PricewaterhouseCoopers (PwC) Nigeria", "Ernst & Young (EY) Nigeria", "Coronation Merchant Bank"
+      "Access Bank Plc", "Zenith Bank Plc", "Guaranty Trust Holding Co.", "First Bank of Nigeria Plc", "United Bank for Africa (UBA)", 
+      "Stanbic IBTC Bank", "Standard Chartered Bank", "Fidelity Bank Plc", "First City Monument Bank", "Sterling Bank Plc", 
+      "MTN Nigeria", "Airtel Nigeria", "Interswitch", "Flutterwave", "Paystack", 
+      "SystemSpecs", "Shell Nigeria", "Total Energies", "Seplat Energy", "Oando Plc", 
+      "Sahara Group", "Nestle Nigeria", "Unilever Nigeria", "Nigerian Breweries", "Flour Mills", 
+      "KPMG", "Deloitte", "PwC", "EY", "Coronation Merchant Bank"
     ];
 
-    // 3. RENDER THE GRID
     const grid = document.getElementById('companyGrid');
-    targetCompaniesList.forEach(company => {
+    targetCompaniesList.forEach(companyKey => {
       const card = document.createElement('div');
       card.className = 'company-cell';
-      // Add the click event to open the modal
-      card.onclick = () => openModal(company);
+      card.onclick = () => openModal(companyKey);
       
       const logoContainer = document.createElement('div');
       logoContainer.className = 'logo-space';
       
       const logoImg = document.createElement('img');
-      // Directly referencing the logo name as requested: "Company Name.jpg"
-      logoImg.src = `${company}.jpg`; 
-      logoImg.alt = `${company} Logo`;
+      logoImg.src = `${companyKey}.jpg`; 
+      logoImg.alt = `${companyKey} Logo`;
       
       logoImg.onerror = function() {
         this.style.display = 'none';
-        logoContainer.textContent = company.charAt(0);
+        logoContainer.textContent = companyKey.charAt(0);
         logoContainer.style.fontSize = '24px';
         logoContainer.style.fontWeight = '700';
         logoContainer.style.color = 'var(--brand-red)';
@@ -300,43 +611,41 @@
 
       const name = document.createElement('div');
       name.className = 'company-name';
-      name.textContent = company;
+      // Fallback clean name for UI display
+      name.textContent = companyData[companyKey] ? companyData[companyKey].name.split(' [')[0] : companyKey;
 
       card.appendChild(logoContainer);
       card.appendChild(name);
       grid.appendChild(card);
     });
 
-    // 4. MODAL LOGIC
+    // MODAL LOGIC
     const modal = document.getElementById('companyModal');
 
-    function openModal(companyName) {
-      const data = companyData[companyName];
+    function openModal(companyKey) {
+      const data = companyData[companyKey];
       
-      // If data isn't mapped yet, show a graceful fallback
       if(!data) {
-          alert("Detailed intelligence for " + companyName + " is pending upload.");
+          alert("Detailed intelligence for " + companyKey + " is pending upload.");
           return;
       }
 
-      // Populate Modal Fields
-      document.getElementById('mName').textContent = data.name;
-      document.getElementById('mPriority').textContent = data.priority;
-      document.getElementById('mMeta').textContent = `HQ: ${data.hq} | Lagos Headcount: ${data.headcount}`;
-      document.getElementById('mQualifying').textContent = data.qualifying;
-      document.getElementById('mPool').textContent = data.pool;
+      document.getElementById('mName').innerHTML = data.name;
+      document.getElementById('mPriority').innerHTML = data.priority;
+      document.getElementById('mMeta').innerHTML = `HQ: ${data.hq} | Lagos Headcount: ${data.headcount}`;
+      document.getElementById('mQualifying').innerHTML = data.qualifying;
+      document.getElementById('mPool').innerHTML = data.pool;
       
-      document.getElementById('mEntry').textContent = data.entry;
-      document.getElementById('mContact').textContent = data.contact;
-      document.getElementById('mLever').textContent = data.lever;
-      document.getElementById('mPitch').textContent = data.pitch;
+      document.getElementById('mEntry').innerHTML = data.entry;
+      document.getElementById('mContact').innerHTML = data.contact;
+      document.getElementById('mLever').innerHTML = data.lever;
+      document.getElementById('mPitch').innerHTML = data.pitch;
       
-      document.getElementById('mObjQ').textContent = data.objQ;
-      document.getElementById('mObjA').textContent = data.objA;
+      document.getElementById('mObjQ').innerHTML = data.objQ;
+      document.getElementById('mObjA').innerHTML = data.objA;
 
-      // Show Modal
       modal.classList.add('active');
-      document.body.style.overflow = 'hidden'; // Prevent background scrolling
+      document.body.style.overflow = 'hidden';
     }
 
     function closeModal(event) {
@@ -347,7 +656,7 @@
 
     function forceCloseModal() {
       modal.classList.remove('active');
-      document.body.style.overflow = 'auto'; // Restore scrolling
+      document.body.style.overflow = 'auto';
     }
   </script>
 </body>
