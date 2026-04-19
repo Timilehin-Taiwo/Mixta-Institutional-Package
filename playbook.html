@@ -4,20 +4,15 @@
   <meta charset="UTF-8">
   <title>Sales Playbook — Sales Directory</title>
   <script>
-    if (sessionStorage.getItem('mixtaAuth') !== 'verified') { window.location.href = 'landing.html'; }
+    if (sessionStorage.getItem('mixtaAuth') !== 'verified') { window.location.assign('./landing.html'); }
     let idleTime = 0;
     const idleInterval = setInterval(timerIncrement, 60000); 
     window.onload = resetTimer; window.onmousemove = resetTimer; window.onmousedown = resetTimer; window.ontouchstart = resetTimer; window.onclick = resetTimer; window.onkeypress = resetTimer; window.addEventListener('scroll', resetTimer, true);
-    function timerIncrement() { idleTime++; if (idleTime >= 15) { sessionStorage.clear(); window.location.href = 'landing.html'; } }
+    function timerIncrement() { idleTime++; if (idleTime >= 15) { sessionStorage.clear(); window.location.assign('./landing.html'); } }
     function resetTimer() { idleTime = 0; }
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <style>
-    .objection-box { background: var(--bg-grey-light); padding: 20px; border-radius: 8px; margin-bottom: 16px; border-left: 4px solid var(--brand-red); }
-    .obj-q { font-weight: 600; font-size: 14px; margin-bottom: 8px; color: var(--brand-red); font-style: italic; }
-    .obj-a { font-size: 14px; color: var(--text-grey); }
-  </style>
 </head>
 <body>
   <nav>
@@ -28,7 +23,7 @@
         <div class="nav-subtitle" style="margin-left: 8px;">← Back to Intelligence Hub</div>
       </div>
     </a>
-    <button onclick="sessionStorage.clear(); window.location.href='landing.html'" style="background: var(--bg-grey-light); border: 1px solid var(--border-grey); color: var(--brand-red); font-weight: 600; cursor: pointer; font-size: 13px; padding: 8px 16px; border-radius: 6px; transition: all 0.2s;">
+    <button onclick="sessionStorage.clear(); window.location.assign('./landing.html')" style="background: var(--bg-grey-light); border: 1px solid var(--border-grey); color: var(--brand-red); font-weight: 600; cursor: pointer; font-size: 13px; padding: 8px 16px; border-radius: 6px; transition: all 0.2s;">
       Sign Out
     </button>
   </nav>
@@ -55,18 +50,18 @@
       <h2 style="margin-bottom: 24px; font-size: 20px;">Universal Objection Handling</h2>
       
       <div class="objection-box">
-        <div class="obj-q">"We already have a mortgage scheme."</div>
-        <div class="obj-a">This is not a competing product it is a housing benefit layer. The cash refund and appliance grant sit on top of any existing scheme.</div>
+        <div class="objection-q">"We already have a mortgage scheme."</div>
+        <div class="objection-a">This is not a competing product it is a housing benefit layer. The cash refund and appliance grant sit on top of any existing scheme.</div>
       </div>
 
       <div class="objection-box">
-        <div class="obj-q">"How do we know the properties are legitimate?"</div>
-        <div class="obj-a">Full documentation: Certificate of Occupancy, development approvals, offtake agreements, and references from institutional partners. Site visits available.</div>
+        <div class="objection-q">"How do we know the properties are legitimate?"</div>
+        <div class="objection-a">Full documentation: Certificate of Occupancy, development approvals, offtake agreements, and references from institutional partners. Site visits available.</div>
       </div>
 
       <div class="objection-box">
-        <div class="obj-q">"This sounds too good to be true."</div>
-        <div class="obj-a">"The cash refund is funded from the bulk offtake discount our developer extends to us for bringing 10+ buyers at once". The appliance grant comes out of the same pool.</div>
+        <div class="objection-q">"This sounds too good to be true."</div>
+        <div class="objection-a">"The cash refund is funded from the bulk offtake discount our developer extends to us for bringing 10+ buyers at once". The appliance grant comes out of the same pool.</div>
       </div>
     </div>
   </main>
