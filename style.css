@@ -185,12 +185,23 @@ hr { border: none; border-top: 1px solid var(--border-grey); margin: 0 0 60px 0;
 }
 
 @media (max-width: 768px) {
-  /* ADD THIS TO YOUR EXISTING 768px BLOCK */
+  /* FIX: Forces the dashboard guiding cards to stack vertically */
+  .guiding-grid { 
+    display: grid; 
+    grid-template-columns: 1fr; 
+    gap: 16px; 
+    margin-bottom: 60px; 
+  }
+  .guide-card { 
+    min-width: auto; 
+  }
+
+  /* Internal app navigation scrolling */
   .nav-menu { width: 100%; order: 3; overflow-x: auto; white-space: nowrap; padding-bottom: 8px; justify-content: flex-start; gap: 8px; border-top: 1px solid var(--border-grey); padding-top: 16px; margin-top: 8px; }
   .nav-menu::-webkit-scrollbar { display: none; }
   .nav-menu { -ms-overflow-style: none; scrollbar-width: none; }
   
-  /* Forces the Playbook and Framework cards into a single column on mobile */
+  /* Forces the Playbook and Framework inner cards into a single column */
   .info-grid { grid-template-columns: 1fr; }
   
   nav { padding: 16px 20px; }
@@ -201,8 +212,7 @@ hr { border: none; border-top: 1px solid var(--border-grey); margin: 0 0 60px 0;
   .offer-grid { grid-template-columns: 1fr; gap: 20px; }
   .trigger-container { margin: 20px auto 60px auto; }
   .page-header h1 { font-size: 24px; }
-  .guiding-grid { overflow-x: auto; display: flex; flex-wrap: nowrap; margin-bottom: 60px; }
-  .guide-card { min-width: 220px; }
+  
   .company-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .company-cell { padding: 16px 8px; }
   .data-grid, .single-grid { grid-template-columns: 1fr; gap: 16px; }
