@@ -3,9 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <title>Sales Playbook — Sales Directory</title>
-  <script>
+ <script>
+    // 1. Check if logged in
     if (sessionStorage.getItem('mixtaAuth') !== 'verified') {
       window.location.href = 'landing.html';
+    }
+
+    // 2. Idle Timeout Logic (15 minutes)
+    let idleTime = 0;
+    
+    // Increment timer every 1 minute
+    const idleInterval = setInterval(timerIncrement, 60000); 
+
+    // Reset the timer if the user does anything
+    window.onload = resetTimer;
+    window.onmousemove = resetTimer;
+    window.onmousedown = resetTimer;
+    window.ontouchstart = resetTimer;
+    window.onclick = resetTimer;
+    window.onkeypress = resetTimer;
+    window.addEventListener('scroll', resetTimer, true);
+
+    function timerIncrement() {
+        idleTime++;
+        if (idleTime >= 15) { // 15 minutes of inactivity
+            sessionStorage.clear();
+            window.location.href = 'landing.html';
+        }
+    }
+
+    function resetTimer() {
+        idleTime = 0;
     }
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
