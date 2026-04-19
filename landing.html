@@ -36,18 +36,18 @@
 
   <nav>
     <div class="nav-brand">
-      <img src="mixta-logo.png" data-basename="mixta-logo" class="smart-logo" alt="Mixta Africa Logo" style="height: 40px; width: auto; object-fit: contain;">
+      <img src="mixta-logojpg" data-basename="mixta-logo" class="smart-logo" alt="Mixta Africa Logo" style="height: 40px; width: auto; object-fit: contain;">
       <div class="nav-title" style="margin-left: 8px;">Mixta Africa</div>
     </div>
     <div class="header-links">
-      <a class="about-link" onclick="openAboutModal(event)">About Mixta</a>
-      <button class="btn-login" onclick="openLogin()">Sales Portal</button>
+      <a class="about-link" onclick="window.openAboutModal()">About Mixta</a>
+      <button class="btn-login" onclick="window.openLogin()">Sales Portal</button>
     </div>
   </nav>
 
   <main style="max-width: 1200px;">
     <div class="public-hero">
-      <img src="mixta-logo.png" data-basename="mixta-logo" class="smart-logo" alt="Mixta Africa Logo" style="height: 80px; width: auto; object-fit: contain; margin-bottom: 24px;">
+      <img src="mixta-logo.jpg" data-basename="mixta-logo" class="smart-logo" alt="Mixta Africa Logo" style="height: 80px; width: auto; object-fit: contain; margin-bottom: 24px;">
       <h1 style="color: var(--brand-red);">Institutional Package</h1>
     </div>
 
@@ -118,14 +118,14 @@
       <p style="color: var(--text-grey); margin-bottom: 40px; font-size: 16px;">Click on a development to view specifications, pricing, and availability.</p>
       
       <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 24px;">
-        <div class="company-cell" style="width: 220px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);" onclick="openProductModal('Ibudo Wura')">
+        <div class="company-cell" style="width: 220px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);" onclick="window.openProductModal('Ibudo Wura')">
           <div class="logo-space" style="width: 80px; height: 80px;">
             <img src="Ibudo Wura.png" data-basename="Ibudo Wura" class="smart-logo" alt="Ibudo Wura" style="width: 50px; height: 50px;">
           </div>
           <div class="company-name" style="font-size: 15px;">Ibudo Wura</div>
         </div>
 
-        <div class="company-cell" style="width: 220px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);" onclick="openProductModal('Beechwood Park II')">
+        <div class="company-cell" style="width: 220px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);" onclick="window.openProductModal('Beechwood Park II')">
           <div class="logo-space" style="width: 80px; height: 80px;">
             <img src="Beechwood Park.png" data-basename="Beechwood Park" class="smart-logo" alt="Beechwood Park" style="width: 50px; height: 50px;">
           </div>
@@ -137,7 +137,7 @@
 
   <div class="login-modal" id="loginModal">
     <div class="login-box">
-      <button class="close-login" onclick="closeLogin()">×</button>
+      <button class="close-login" onclick="window.closeLogin()">×</button>
       <h2>Mixta Internal Portal</h2>
       <p>Access confidential market intelligence.</p>
       <div id="authWrapper">
@@ -146,15 +146,15 @@
           <input type="checkbox" id="rememberMe">
           <label for="rememberMe">Remember my email on this device</label>
         </div>
-        <button type="button" class="btn-submit" onclick="executeLogin()">Authenticate</button>
+        <button type="button" class="btn-submit" onclick="window.executeLogin()">Authenticate</button>
         <div class="error-msg" id="loginError">Access denied. Valid @mixtafrica.com email required.</div>
       </div>
     </div>
   </div>
 
-  <div class="modal-overlay" id="aboutModal" onclick="closeAboutModal(event)">
+  <div class="modal-overlay" id="aboutModal" onclick="window.closeAboutModal(event)">
     <div class="modal-content" style="max-width: 650px;" onclick="event.stopPropagation()">
-      <button class="close-btn" onclick="forceCloseAboutModal()">×</button>
+      <button class="close-btn" onclick="window.forceCloseAboutModal()">×</button>
       <div class="modal-header">
         <div class="modal-header-text">
           <h2 class="modal-title">About Mixta Africa</h2>
@@ -172,21 +172,25 @@
 
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 16px;">
           <div style="background: var(--bg-off-white); padding: 20px 12px; border-radius: 8px; border: 1px solid var(--border-grey); text-align: center;">
-            <div style="font-size: 24px; font-weight: 700; color: var(--brand-red);">20+</div> <div style="font-size: 11px; color: var(--text-grey); text-transform: uppercase; font-weight: 700; margin-top: 4px;">Years Exp.</div> </div>
+            <div style="font-size: 24px; font-weight: 700; color: var(--brand-red);">20+</div> 
+            <div style="font-size: 11px; color: var(--text-grey); text-transform: uppercase; font-weight: 700; margin-top: 4px;">Years Exp.</div> </div>
           <div style="background: var(--bg-off-white); padding: 20px 12px; border-radius: 8px; border: 1px solid var(--border-grey); text-align: center;">
-            <div style="font-size: 24px; font-weight: 700; color: var(--brand-red);">20k+</div> <div style="font-size: 11px; color: var(--text-grey); text-transform: uppercase; font-weight: 700; margin-top: 4px;">Units Completed</div> </div>
+            <div style="font-size: 24px; font-weight: 700; color: var(--brand-red);">20k+</div> 
+            <div style="font-size: 11px; color: var(--text-grey); text-transform: uppercase; font-weight: 700; margin-top: 4px;">Units Completed</div> </div>
           <div style="background: var(--bg-off-white); padding: 20px 12px; border-radius: 8px; border: 1px solid var(--border-grey); text-align: center;">
-            <div style="font-size: 24px; font-weight: 700; color: var(--brand-red);">47</div> <div style="font-size: 11px; color: var(--text-grey); text-transform: uppercase; font-weight: 700; margin-top: 4px;">Projects Delivered</div> </div>
+            <div style="font-size: 24px; font-weight: 700; color: var(--brand-red);">47</div> 
+            <div style="font-size: 11px; color: var(--text-grey); text-transform: uppercase; font-weight: 700; margin-top: 4px;">Projects Delivered</div> </div>
           <div style="background: var(--bg-off-white); padding: 20px 12px; border-radius: 8px; border: 1px solid var(--border-grey); text-align: center;">
-            <div style="font-size: 24px; font-weight: 700; color: var(--brand-red);">5k+</div> <div style="font-size: 11px; color: var(--text-grey); text-transform: uppercase; font-weight: 700; margin-top: 4px;">Units Sold</div> </div>
+            <div style="font-size: 24px; font-weight: 700; color: var(--brand-red);">5k+</div> 
+            <div style="font-size: 11px; color: var(--text-grey); text-transform: uppercase; font-weight: 700; margin-top: 4px;">Units Sold</div> </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="modal-overlay" id="productModal" onclick="closeProductModal(event)">
+  <div class="modal-overlay" id="productModal" onclick="window.closeProductModal(event)">
     <div class="modal-content" onclick="event.stopPropagation()">
-      <button class="close-btn" onclick="forceCloseProductModal()">×</button>
+      <button class="close-btn" onclick="window.forceCloseProductModal()">×</button>
       
       <div class="modal-header">
         <div class="modal-header-text">
@@ -228,11 +232,11 @@
     </div>
   </div>
 
-  <button class="chat-btn" onclick="toggleChat()">?</button>
+  <button class="chat-btn" onclick="window.toggleChat()">?</button>
   <div class="chat-window" id="chatWindow">
     <div class="chat-header">
       <h3>Mixta Assistant</h3>
-      <button class="chat-close" onclick="toggleChat()">×</button>
+      <button class="chat-close" onclick="window.toggleChat()">×</button>
     </div>
     <div class="chat-body" id="chatBody">
       <div class="chat-bubble chat-bot">Hello! I can answer questions about the Corporate Bulk Mortgage package. What would you like to know?</div>
@@ -257,125 +261,148 @@
       };
     });
 
-    // 2. PRODUCT DATABASE (Strictly built from Ibudo Wura.pdf and Beechwood Park.pptx)
+    // 2. PRODUCT DATABASE
     const productData = {
       "Ibudo Wura": {
         logoBase: "Ibudo Wura",
-        category: "AFFORDABLE MARKET", // name: "Ibudo Wura",
-        location: "Lakowe, Lagos", // desc: "Ibudo Wura Homes is a housing development designed to provide affordable homes for young professionals, business owners, and high-net-worth individuals. Prospective buyers can take advantage of a government-backed mortgage scheme with an attractive 9.75% interest rate, making homeownership more accessible.", // price: "From ₦50 Million", // size: "640 Units", // comp: "Composed of 1, 2 & 3 bed apartments.", // spec: "Semi-finished (with the exception of kitchen tiles, floor tiles in living areas, water heaters, and extractor fans).", // status: "Built Units: 112 (Phase 1) | Ongoing Units: 80 (New Commission)", // features: "24-hour power supply / solar home systems, Perimeter Fence & Gate, Beautiful Landscape & Parks, Paved Concrete Roads, Drainage, Water Treatment Facility." // },
+        category: "AFFORDABLE MARKET", 
+        name: "Ibudo Wura",
+        location: "Lakowe, Lagos", 
+        desc: "Ibudo Wura Homes is a housing development designed to provide affordable homes for young professionals, business owners, and high-net-worth individuals. Prospective buyers can take advantage of a government-backed mortgage scheme with an attractive 9.75% interest rate, making homeownership more accessible. ", 
+        price: "From ₦50 Million ", 
+        size: "640 Units ", 
+        comp: "Composed of 1, 2 & 3 bed apartments. ", 
+        spec: "Semi-finished (with the exception of kitchen tiles, floor tiles in living areas, water heaters, and extractor fans). ", 
+        status: "Built Units: 112 (Phase 1) | Ongoing Units: 80 (New Commission) ", 
+        features: "24-hour power supply / solar home systems, Perimeter Fence & Gate, Beautiful Landscape & Parks, Paved Concrete Roads, Drainage, Water Treatment Facility. " 
+      },
       "Beechwood Park II": {
         logoBase: "Beechwood Park",
-        category: "MID MARKET", // name: "Beechwood Park II",
-        location: "Lakowe, Lagos", // desc: "Beechwood Park is a newly built gated community near Lakowe Lakes Golf and Country Estate, offering prime investment opportunities. It features finished homes and serviced plots and is a combination of residential buildings and commercial buildings.", // price: "From ₦66 Million", // size: "404+ Units", // comp: "2 and 3 - Bedroom Row Housing Bungalows, 2 - Bedroom semi-detached and 3 - Bedroom detached Bungalows.", // spec: "Semi Finished.", // status: "Units Sold: 404 | Completed: 377 | Available Units: 11", // features: "Paved Roads & Drainages, Gated Community, Basketball Court, Local Shopping Complexes & minimarts, Perimeter Fencing, Access to Financial Institutions, Local Parks, Access to Reliable Healthcare, Access to Office Spaces, Recreational Facilities." // }
+        category: "MID MARKET", 
+        name: "Beechwood Park II",
+        location: "Lakowe, Lagos", 
+        desc: "Beechwood Park is a newly built gated community near Lakowe Lakes Golf and Country Estate, offering prime investment opportunities. It features finished homes and serviced plots and is a combination of residential buildings and commercial buildings. ", 
+        price: "From ₦66 Million ", 
+        size: "404+ Units", 
+        comp: "2 and 3 - Bedroom Row Housing Bungalows, 2 - Bedroom semi-detached and 3 - Bedroom detached Bungalows. ", 
+        spec: "Semi Finished. ", 
+        status: "Units Sold: 404 | Completed: 377 | Available Units: 11 ", 
+        features: "Paved Roads & Drainages, Gated Community, Basketball Court, Local Shopping Complexes & minimarts, Perimeter Fencing, Access to Financial Institutions, Local Parks, Access to Reliable Healthcare, Access to Office Spaces, Recreational Facilities. " 
+      }
     };
 
-    // 3. MODAL HANDLERS (Safely bound to elements)
-    const loginModal = document.getElementById('loginModal');
-    const aboutModal = document.getElementById('aboutModal');
-    const productModal = document.getElementById('productModal');
-
-    function openAboutModal(e) {
-      if(e) e.preventDefault();
-      if(aboutModal) {
-        aboutModal.classList.add('active');
+    // 3. BULLETPROOF MODAL LOGIC (Attached safely to window)
+    window.openAboutModal = function() {
+      const modal = document.getElementById('aboutModal');
+      if (modal) {
+        modal.classList.add('active');
         document.body.style.overflow = 'hidden';
       }
-    }
+    };
     
-    function closeAboutModal(e) { 
-      if (e.target === aboutModal) forceCloseAboutModal(); 
-    }
+    window.closeAboutModal = function(e) { 
+      if (e.target === document.getElementById('aboutModal')) {
+        window.forceCloseAboutModal();
+      }
+    };
     
-    function forceCloseAboutModal() { 
-      if(aboutModal) {
-        aboutModal.classList.remove('active'); 
+    window.forceCloseAboutModal = function() { 
+      const modal = document.getElementById('aboutModal');
+      if (modal) {
+        modal.classList.remove('active'); 
         document.body.style.overflow = 'auto'; 
       }
-    }
+    };
 
-    function openProductModal(key) {
-      try {
-        const data = productData[key];
-        document.getElementById('pCategory').textContent = data.category;
-        document.getElementById('pName').textContent = data.name;
-        document.getElementById('pLocation').textContent = data.location;
-        document.getElementById('pDesc').textContent = data.desc;
-        document.getElementById('pPrice').textContent = data.price;
-        document.getElementById('pSize').textContent = data.size;
-        document.getElementById('pComp').textContent = data.comp;
-        document.getElementById('pSpec').textContent = data.spec;
-        document.getElementById('pStatus').textContent = data.status;
-        document.getElementById('pFeatures').textContent = data.features;
+    window.openProductModal = function(key) {
+      const data = productData[key];
+      if(!data) return;
 
-        const modalLogo = document.getElementById('pLogo');
-        const container = document.getElementById('pLogoContainer');
-        modalLogo.style.display = 'block';
-        container.textContent = '';
-        container.appendChild(modalLogo);
+      document.getElementById('pCategory').innerHTML = data.category;
+      document.getElementById('pName').innerHTML = data.name;
+      document.getElementById('pLocation').innerHTML = data.location;
+      document.getElementById('pDesc').innerHTML = data.desc;
+      document.getElementById('pPrice').innerHTML = data.price;
+      document.getElementById('pSize').innerHTML = data.size;
+      document.getElementById('pComp').innerHTML = data.comp;
+      document.getElementById('pSpec').innerHTML = data.spec;
+      document.getElementById('pStatus').innerHTML = data.status;
+      document.getElementById('pFeatures').innerHTML = data.features;
 
-        let modalExtIdx = 0;
-        modalLogo.src = `${data.logoBase}.${imgExtensions[modalExtIdx]}`;
-        
-        modalLogo.onerror = function() {
-          modalExtIdx++;
-          if (modalExtIdx < imgExtensions.length) {
-            this.src = `${data.logoBase}.${imgExtensions[modalExtIdx]}`;
-          } else {
-            this.style.display = 'none';
-            container.textContent = data.logoBase.charAt(0);
-            container.style.fontSize = '28px';
-            container.style.fontWeight = '700';
-            container.style.color = 'var(--brand-red)';
-          }
-        };
+      const modalLogo = document.getElementById('pLogo');
+      const container = document.getElementById('pLogoContainer');
+      modalLogo.style.display = 'block';
+      container.innerHTML = '';
+      container.appendChild(modalLogo);
 
-        if(productModal) {
-          productModal.classList.add('active');
-          document.body.style.overflow = 'hidden';
+      let modalExtIdx = 0;
+      modalLogo.src = `${data.logoBase}.${imgExtensions[modalExtIdx]}`;
+      
+      modalLogo.onerror = function() {
+        modalExtIdx++;
+        if (modalExtIdx < imgExtensions.length) {
+          this.src = `${data.logoBase}.${imgExtensions[modalExtIdx]}`;
+        } else {
+          this.style.display = 'none';
+          container.innerHTML = `<span style="font-size:28px; font-weight:700; color:var(--brand-red);">${data.logoBase.charAt(0)}</span>`;
         }
-      } catch (err) {
-        console.error("Error opening product modal:", err);
-      }
-    }
+      };
 
-    function closeProductModal(e) { 
-      if (e.target === productModal) forceCloseProductModal(); 
-    }
-    function forceCloseProductModal() { 
-      if(productModal) {
-        productModal.classList.remove('active'); 
+      const modal = document.getElementById('productModal');
+      if(modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    };
+
+    window.closeProductModal = function(e) { 
+      if (e.target === document.getElementById('productModal')) {
+        window.forceCloseProductModal();
+      }
+    };
+    
+    window.forceCloseProductModal = function() { 
+      const modal = document.getElementById('productModal');
+      if(modal) {
+        modal.classList.remove('active'); 
         document.body.style.overflow = 'auto'; 
       }
-    }
+    };
 
     // 4. LOGIN LOGIC
-    const emailInput = document.getElementById('mixtaEmail');
-    const rememberCheckbox = document.getElementById('rememberMe');
-
     document.addEventListener('DOMContentLoaded', () => {
       const savedEmail = localStorage.getItem('savedMixtaEmail');
+      const emailInput = document.getElementById('mixtaEmail');
+      const rememberCheckbox = document.getElementById('rememberMe');
       if (savedEmail && emailInput && rememberCheckbox) {
         emailInput.value = savedEmail;
         rememberCheckbox.checked = true;
       }
     });
 
-    function openLogin() { 
-      if(loginModal) {
-        loginModal.classList.add('active'); 
+    window.openLogin = function() { 
+      const modal = document.getElementById('loginModal');
+      const emailInput = document.getElementById('mixtaEmail');
+      if(modal) {
+        modal.classList.add('active'); 
         if (emailInput && !emailInput.value) { emailInput.focus(); }
       }
-    }
-    function closeLogin() { 
-      if(loginModal) loginModal.classList.remove('active'); 
+    };
+
+    window.closeLogin = function() { 
+      const modal = document.getElementById('loginModal');
+      if(modal) modal.classList.remove('active'); 
       const err = document.getElementById('loginError');
       if(err) err.style.display = 'none'; 
-    }
+    };
 
-    function executeLogin() {
+    window.executeLogin = function() {
+      const emailInput = document.getElementById('mixtaEmail');
       if(!emailInput) return;
       const email = emailInput.value.trim().toLowerCase();
       const errorMsg = document.getElementById('loginError');
+      const rememberCheckbox = document.getElementById('rememberMe');
+      
       if (email.endsWith('@mixtafrica.com')) {
         if (rememberCheckbox && rememberCheckbox.checked) { 
           localStorage.setItem('savedMixtaEmail', email); 
@@ -387,66 +414,52 @@
       } else if(errorMsg) {
         errorMsg.style.display = 'block';
       }
-    }
-    
-    if(emailInput) {
-      emailInput.addEventListener('keypress', function (e) { 
-        if (e.key === 'Enter') { e.preventDefault(); executeLogin(); } 
+    };
+
+    const emailInputNode = document.getElementById('mixtaEmail');
+    if(emailInputNode) {
+      emailInputNode.addEventListener('keypress', function (e) { 
+        if (e.key === 'Enter') { e.preventDefault(); window.executeLogin(); } 
       });
     }
 
     // 5. CHATBOT LOGIC
-    const chatWindow = document.getElementById('chatWindow');
-    const chatBody = document.getElementById('chatBody');
-    const chatOptionsContainer = document.getElementById('chatOptions');
-
     const faqs = [
-      {
-        q: "What is the minimum staff requirement?",
-        a: "The full bulk offer activates when a minimum of 10 staff members sign an Expression of Interest."
-      },
-      {
-        q: "What are the interest rates and terms?",
-        a: "Through MREIF and Access Bank, staff access single-digit interest rates from 9.75% with a fixed tenor of up to 20 years."
-      },
-      {
-        q: "What are the ecosystem bonuses?",
-        a: "Participating institutions qualify for corporate retreat discounts, and staff receive a free appliance package (capped at ₦500,000) upon moving in."
-      },
-      {
-        q: "What is the equity contribution?",
-        a: "There is a 10% equity contribution which can be spread comfortably over 6, 9, or 12 months."
-      },
-      {
-        q: "Are the properties secure?",
-        a: "Yes, all Mixta projects are backed by a Certificate of Occupancy (C of O) and credible legal documentation."
-      }
+      { q: "What is the minimum staff requirement?", a: "The full bulk offer activates when a minimum of 10 staff members sign an Expression of Interest." },
+      { q: "What are the interest rates and terms?", a: "Through MREIF and Access Bank, staff access single-digit interest rates from 9.75% with a fixed tenor of up to 20 years." },
+      { q: "What are the ecosystem bonuses?", a: "Participating institutions qualify for corporate retreat discounts, and staff receive a free appliance package (capped at ₦500,000) upon moving in." },
+      { q: "What is the equity contribution?", a: "There is a 10% equity contribution which can be spread comfortably over 6, 9, or 12 months." },
+      { q: "Are the properties secure?", a: "Yes, all Mixta projects are backed by a Certificate of Occupancy (C of O) and credible legal documentation." }
     ];
 
-    function toggleChat() {
+    window.toggleChat = function() {
+      const chatWindow = document.getElementById('chatWindow');
       if(!chatWindow) return;
       chatWindow.classList.toggle('active');
       if(chatWindow.classList.contains('active')) {
-        renderOptions();
+        window.renderOptions();
       }
-    }
+    };
 
-    function renderOptions() {
+    window.renderOptions = function() {
+      const chatOptionsContainer = document.getElementById('chatOptions');
       if(!chatOptionsContainer) return;
       chatOptionsContainer.innerHTML = '';
       faqs.forEach((faq, index) => {
         const btn = document.createElement('button');
         btn.className = 'chat-chip';
         btn.textContent = faq.q;
-        btn.onclick = () => handleUserQuery(index);
+        btn.onclick = () => window.handleUserQuery(index);
         chatOptionsContainer.appendChild(btn);
       });
-    }
+    };
 
-    function handleUserQuery(index) {
+    window.handleUserQuery = function(index) {
+      const chatBody = document.getElementById('chatBody');
+      const chatOptionsContainer = document.getElementById('chatOptions');
       if(!chatBody || !chatOptionsContainer) return;
-      const selectedFaq = faqs[index];
       
+      const selectedFaq = faqs[index];
       const userMsg = document.createElement('div');
       userMsg.className = 'chat-bubble chat-user';
       userMsg.textContent = selectedFaq.q;
@@ -461,9 +474,9 @@
         botMsg.textContent = selectedFaq.a;
         chatBody.appendChild(botMsg);
         chatBody.scrollTop = chatBody.scrollHeight;
-        renderOptions(); 
+        window.renderOptions(); 
       }, 600);
-    }
+    };
   </script>
 </body>
 </html>
