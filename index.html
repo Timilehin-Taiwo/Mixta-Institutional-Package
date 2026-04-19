@@ -27,9 +27,7 @@
         <div class="nav-subtitle" style="margin-left: 8px;">Lagos Market Intelligence Hub</div>
       </div>
     </a>
-    <button onclick="sessionStorage.clear(); window.location.assign('./landing.html')" style="background: var(--bg-grey-light); border: 1px solid var(--border-grey); color: var(--brand-red); font-weight: 600; cursor: pointer; font-size: 13px; padding: 8px 16px; border-radius: 6px; transition: all 0.2s;">
-      Sign Out
-    </button>
+    <button onclick="sessionStorage.clear(); window.location.assign('./landing.html')" style="background: var(--bg-grey-light); border: 1px solid var(--border-grey); color: var(--brand-red); font-weight: 600; cursor: pointer; font-size: 13px; padding: 8px 16px; border-radius: 6px; transition: all 0.2s;">Sign Out</button>
   </nav>
 
   <main>
@@ -44,18 +42,13 @@
         <div class="guide-title">Programme</div>
         <div class="guide-desc">Core metrics, eligibility filters, and qualifying salary data.</div>
       </a>
-      <a href="pipeline.html" class="guide-card">
-        <div class="guide-icon">2</div>
-        <div class="guide-title">Pipeline</div>
-        <div class="guide-desc">Company deep-dives, staff sizing, and priority targets.</div>
-      </a>
       <a href="frameworks.html" class="guide-card">
-        <div class="guide-icon">3</div>
+        <div class="guide-icon">2</div>
         <div class="guide-title">Frameworks</div>
         <div class="guide-desc">Industry-specific strategy and segmentation models.</div>
       </a>
       <a href="playbook.html" class="guide-card">
-        <div class="guide-icon">4</div>
+        <div class="guide-icon">3</div>
         <div class="guide-title">Sales Playbook</div>
         <div class="guide-desc">Scripts, objection handling, and 90-day rollout calendar.</div>
       </a>
@@ -65,7 +58,8 @@
 
     <div style="text-align: center; margin-bottom: 20px;">
       <h2 style="font-size: 24px; font-weight: 700; margin-bottom: 8px;">Institutional Target Segmentation</h2>
-      <p style="font-size: 14px; color: var(--brand-grey);">The 30 net addressable Lagos-based institutions mapped by priority.</p> </div>
+      <p style="font-size: 14px; color: var(--brand-grey);">The 30 net addressable Lagos-based institutions mapped by priority.</p>
+    </div>
     
     <h3 class="priority-header">Priority 1 - Anchor & High Probability Accounts</h3>
     <div class="company-grid" id="gridP1"></div>
@@ -127,7 +121,7 @@
 
   <script>
     const companyData = {
-      // "Access Bank Plc": { logoName: "Access Bank", name: "Access Bank Plc", priority: "PRIORITY 1 - ANCHOR ACCOUNT", hq: "Victoria Island, Lagos", headcount: "~6,000", qualifying: "~2,800", pool: "2,000- 2,500", entry: "Head of Employee Value Proposition / Chief Human Resources Officer", contact: "Direct phone call - leverage existing relationship", lever: "First-mover credential: \"Access Bank is our reference institution your staff benefit before any other bank in Lagos.\" Use this account to establish sector dominance.", pitch: "Access Bank Band 6-7 Officers earn N1.2M-N2.8M. Those above 1.8M can spread 10% equity over 6, 9, or 12 months. Upon completion, they receive 3 months of payments in cash.", objQ: "\"We have our own mortgage product.\"", objA: "This is a housing benefit layer a cash-back and appliance subsidy that sits entirely outside your balance sheet. Your own product gets more competitive, not less." },
+      "Access Bank Plc": { logoName: "Access Bank", name: "Access Bank Plc", priority: "PRIORITY 1 - ANCHOR ACCOUNT", hq: "Victoria Island, Lagos", headcount: "~6,000", qualifying: "~2,800", pool: "2,000- 2,500", entry: "Head of Employee Value Proposition / Chief Human Resources Officer", contact: "Direct phone call - leverage existing relationship", lever: "First-mover credential: \"Access Bank is our reference institution your staff benefit before any other bank in Lagos.\" Use this account to establish sector dominance.", pitch: "Access Bank Band 6-7 Officers earn N1.2M-N2.8M. Those above 1.8M can spread 10% equity over 6, 9, or 12 months. Upon completion, they receive 3 months of payments in cash.", objQ: "\"We have our own mortgage product.\"", objA: "This is a housing benefit layer a cash-back and appliance subsidy that sits entirely outside your balance sheet. Your own product gets more competitive, not less." },
       "Zenith Bank Plc": { logoName: "Zenith Bank", name: "Zenith Bank Plc", priority: "PRIORITY 1", hq: "Victoria Island, Lagos", headcount: "~2,625", qualifying: "~1,200", pool: "800 - 1,000", entry: "Chief People Officer or Head of Human Resources", contact: "Linkedin InMail + phone reference Access Bank engagement", lever: "Sector social proof: \"Access Bank staff are already enrolled. Zenith is the natural second.\"", pitch: "Zenith Officers and Managers are career-ambitious. Frame this as: your staff aren't just getting a mortgage they are getting a property subsidy programme that returns real money.", objQ: "\"Staff prefer our internal mortgage scheme.\"", objA: "The cash refund and appliance bundle is additive - staff using Zenith's own mortgage product still qualify for the 3-month cash refund." },
       "Guaranty Trust Holding Co.": { logoName: "GTBank", name: "Guaranty Trust Holding Co. (GTBank)", priority: "PRIORITY 1", hq: "Victoria Island, Lagos", headcount: "~2,660", qualifying: "~1,200", pool: "750- 1,000", entry: "Head of Human Resources or Deputy Managing Director", contact: "Warm intro via Access Bank contact", lever: "GTBank culture responds to exclusivity and first-mover identity: \"10 GTBank people are getting homes this quarter - are your people on the list?\"", pitch: "GTBank staff are aspirational and brand-aware. Frame Ibudo Wura / Beechwood Park II as a prestige address.", objQ: "\"We have a housing loan scheme in-house.\"", objA: "The cash-back and N500K appliance allocation is the differentiator. Your scheme provides the loan ours returns cash on top." },
       "First Bank of Nigeria Plc": { logoName: "First Bank", name: "First Bank of Nigeria Plc", priority: "PRIORITY 1", hq: "Marina, Lagos Island", headcount: "~4,200", qualifying: "~1,600", pool: "800- 1,200", entry: "Group Head, Human Resources", contact: "Formal physical letter to First Bank HQ (Marina)", lever: "130 years of institutional legacy means frequent executive events. Lead with the conference centre discount as the door-opener with the CHRO.", pitch: "First Bank's large Lagos management cadre has many experienced professionals who have been renting for 5-10 years. The equity installment option removes the biggest barrier.", objQ: "\"Staff are spread across Lagos - complex logistics.\"", objA: "We run satellite briefings at branch locations. We come to your staff." },
