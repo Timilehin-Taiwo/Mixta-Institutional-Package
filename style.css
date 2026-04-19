@@ -1,244 +1,74 @@
-:root {
-  --bg-white: #ffffff;
-  --bg-off-white: #fcfcfc;
-  --bg-grey-light: #f3f4f6;
-  --border-grey: #e5e7eb;
-  --text-dark: #111827;
-  --text-grey: #4b5563;
-  --text-light: #9ca3af;
-  --brand-red: #d92d20;
-  --brand-red-hover: #b42318;
-  --brand-red-light: #fef3f2;
-  --brand-grey: #6b7280;
-  --font-sans: 'Inter', sans-serif;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-  background-color: var(--bg-white); color: var(--text-dark);
-  font-family: var(--font-sans); line-height: 1.6;
-  -webkit-font-smoothing: antialiased; padding-bottom: 80px;
-  overflow-x: hidden; 
-}
-
-/* NAVIGATION */
-nav {
-  border-bottom: 1px solid var(--border-grey); padding: 20px 40px;
-  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
-  background: var(--bg-white); position: sticky; top: 0; z-index: 100;
-}
-.nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; flex-wrap: wrap; }
-.nav-title { font-size: 14px; font-weight: 600; color: var(--text-dark); text-transform: uppercase; letter-spacing: 0.05em; }
-.nav-subtitle { font-size: 12px; color: var(--brand-grey); }
-
-/* PUBLIC LANDING PAGE STYLES */
-.btn-login {
-  background: var(--brand-red); color: var(--bg-white); border: none;
-  padding: 10px 24px; border-radius: 6px; font-weight: 600; cursor: pointer;
-  transition: background 0.2s; font-size: 14px; white-space: nowrap;
-}
-.btn-login:hover { background: var(--brand-red-hover); }
-
-.public-hero { text-align: center; padding: 80px 20px 60px; max-width: 900px; margin: 0 auto; }
-.public-hero h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 700; margin-bottom: 16px; color: var(--text-dark); line-height: 1.2; }
-.public-hero p { font-size: clamp(16px, 3vw, 18px); color: var(--text-grey); margin-bottom: 40px; }
-
-.offer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; margin-bottom: 0 !important; position: relative; }
-.offer-card { border: 2px dashed var(--border-grey); border-radius: 16px; padding: 40px; background: var(--bg-off-white); }
-.offer-card h2 { font-size: 20px; color: var(--text-dark); margin-bottom: 24px; text-align: center; }
-.offer-list { list-style: none; }
-.offer-list li { margin-bottom: 16px; padding-left: 24px; position: relative; color: var(--text-grey); }
-.offer-list li::before { content: '•'; color: var(--brand-red); position: absolute; left: 0; font-size: 20px; line-height: 1; }
-.offer-list li strong { color: var(--text-dark); }
-
-/* 10 MINIMUM BADGE */
-.trigger-container { text-align: center; margin: 40px auto 120px auto; position: relative; z-index: 10; }
-.trigger-badge { background: var(--bg-white); border: 2px solid var(--brand-red); border-radius: 8px; padding: 16px 32px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.05); display: inline-block; }
-.trigger-number { font-size: 24px; font-weight: 700; color: var(--brand-red); display: block; }
-.trigger-text { font-size: 12px; font-weight: 600; text-transform: uppercase; color: var(--text-dark); }
-
-.appliance-section { text-align: center; padding: 60px 40px; background: var(--bg-grey-light); border-radius: 16px; }
-.appliance-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 20px; margin-top: 32px; }
-.appliance-item { background: var(--bg-white); padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); font-size: 14px; font-weight: 500; color: var(--text-dark); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; text-align: center; }
-.appliance-item img { width: 60px; height: 60px; object-fit: contain; }
-
-/* INTERNAL LAYOUT */
-main { max-width: 1100px; margin: 60px auto 0; padding: 0 40px; }
-.hero-text { text-align: center; margin-bottom: 48px; }
-.hero-text h1 { font-size: clamp(28px, 5vw, 36px); font-weight: 700; margin-bottom: 12px; }
-.page-header { margin-bottom: 40px; border-bottom: 2px solid var(--border-grey); padding-bottom: 20px; }
-.page-header h1 { font-size: clamp(24px, 4vw, 28px); color: var(--text-dark); margin-bottom: 8px; }
-.page-header p { color: var(--brand-grey); font-size: 15px; }
-
-/* GUIDING GRID - Now supports 3 columns beautifully */
-.guiding-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; max-width: 1000px; margin: 0 auto 80px auto; }
-.guide-card { display: flex; flex-direction: column; align-items: center; border: 1px solid var(--border-grey); border-radius: 8px; padding: 32px 24px; text-decoration: none; text-align: center; transition: all 0.2s ease; height: 100%; }
-.guide-card:hover { border-color: var(--brand-red); background: var(--brand-red-light); transform: translateY(-4px); }
-.guide-icon { width: 48px; height: 48px; background: var(--bg-grey-light); border-radius: 50%; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; color: var(--brand-grey); font-size: 20px; flex-shrink: 0; }
-.guide-card:hover .guide-icon { background: var(--brand-red); color: var(--bg-white); }
-.guide-title { font-size: 18px; font-weight: 600; margin-bottom: 8px; color: var(--text-dark);}
-.guide-desc { font-size: 13px; color: var(--text-grey); }
-hr { border: none; border-top: 1px solid var(--border-grey); margin: 0 0 60px 0; }
-
-.priority-header { font-size: 14px; font-weight: 700; color: var(--brand-red); margin: 40px 0 16px; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid var(--border-grey); padding-bottom: 8px; }
-.company-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 20px; margin-bottom: 40px;}
-.company-cell { background: var(--bg-off-white); border: 1px solid var(--border-grey); border-radius: 8px; padding: 20px 12px; text-align: center; display: flex; flex-direction: column; align-items: center; cursor: pointer; transition: all 0.2s ease;}
-.company-cell:hover { border-color: var(--brand-red); background: var(--bg-white); box-shadow: 0 4px 10px rgba(217, 45, 32, 0.1); transform: translateY(-2px); }
-
-.logo-space { width: 64px; height: 64px; min-width: 64px; min-height: 64px; background: var(--bg-white); border: 1px solid var(--border-grey); border-radius: 50%; margin-bottom: 16px; display: flex; align-items: center; justify-content: center; color: var(--text-light); overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
-.logo-space img { width: 40px; height: 40px; object-fit: contain; display: block; }
-.company-name { font-size: 13px; font-weight: 600; color: var(--text-dark); line-height: 1.3; }
-
-/* MODALS & LOGINS */
-.modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(17, 24, 39, 0.6); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display: none; justify-content: center; align-items: center; z-index: 1000; padding: 20px; opacity: 0; transition: opacity 0.3s ease; }
-.modal-overlay.active { display: flex; opacity: 1; }
-.modal-content { background: var(--bg-white); width: 100%; max-width: 850px; max-height: 90vh; border-radius: 12px; overflow-y: hidden; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); position: relative; transform: translateY(20px); transition: transform 0.3s ease; display: flex; flex-direction: column; }
-.modal-overlay.active .modal-content { transform: translateY(0); }
-.modal-header { padding: 32px; padding-right: 64px; border-bottom: 1px solid var(--border-grey); background: var(--bg-off-white); position: relative; flex-shrink: 0; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
-.modal-header-text { flex: 1; min-width: 200px; }
-.modal-logo-box { width: 72px; height: 72px; min-width: 72px; background: var(--bg-white); border: 1px solid var(--border-grey); border-radius: 50%; display: flex; justify-content: center; align-items: center; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-.modal-logo-box img { width: 44px; height: 44px; object-fit: contain; }
-.close-btn { position: absolute; top: 16px; right: 16px; background: none; border: none; font-size: 28px; color: var(--text-grey); cursor: pointer; transition: color 0.2s; line-height: 1; z-index: 10; }
-.close-btn:hover { color: var(--brand-red); }
-.modal-priority { display: inline-block; background: var(--brand-red-light); color: var(--brand-red); padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; margin-bottom: 12px; letter-spacing: 0.05em; text-transform: uppercase; }
-.modal-title { font-size: clamp(20px, 4vw, 28px); font-weight: 700; color: var(--text-dark); margin-bottom: 8px; line-height: 1.2; }
-.modal-meta { font-size: 13px; color: var(--text-grey); }
-.modal-scroll-area { overflow-y: auto; padding: 32px; flex-grow: 1; }
-.modal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 32px; }
-.modal-stat-box { border: 1px solid var(--border-grey); padding: 20px; border-radius: 8px; }
-.modal-stat-title { font-size: 12px; text-transform: uppercase; color: var(--brand-grey); margin-bottom: 8px; font-weight: 600;}
-.modal-stat-val { font-size: 20px; font-weight: 700; color: var(--brand-red); }
-.modal-section-title { font-size: 16px; font-weight: 700; margin-bottom: 16px; color: var(--text-dark); border-bottom: 2px solid var(--border-grey); padding-bottom: 8px;}
-.strategy-list { list-style: none; margin-bottom: 32px;}
-.strategy-list li { margin-bottom: 16px; font-size: 14px; color: var(--text-grey); }
-.strategy-list strong { color: var(--text-dark); display: block; margin-bottom: 4px; }
-.objection-box { background: var(--bg-grey-light); padding: 20px; border-radius: 8px; border-left: 4px solid var(--brand-red); }
-.objection-q { font-weight: 600; font-size: 14px; color: var(--brand-red); font-style: italic; margin-bottom: 8px; }
-.objection-a { font-size: 14px; color: var(--text-grey); }
-.modal-footer { padding: 20px 32px; border-top: 1px solid var(--border-grey); background: var(--bg-off-white); display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; flex-wrap: wrap; gap: 12px; }
-.nav-modal-btn { background: var(--bg-white); border: 1px solid var(--border-grey); padding: 10px 20px; border-radius: 6px; cursor: pointer; font-family: var(--font-sans); font-size: 13px; font-weight: 600; color: var(--text-dark); transition: all 0.2s; }
-.nav-modal-btn:hover:not(:disabled) { border-color: var(--brand-red); color: var(--brand-red); }
-
-.login-modal { position: fixed; inset: 0; background: rgba(17, 24, 39, 0.8); backdrop-filter: blur(8px); display: none; justify-content: center; align-items: center; z-index: 1000; padding: 20px; }
-.login-modal.active { display: flex; }
-.login-box { background: var(--bg-white); padding: 40px; border-radius: 12px; width: 100%; max-width: 400px; text-align: center; position: relative; }
-.login-box h2 { margin-bottom: 8px; }
-.login-box p { color: var(--text-grey); font-size: 14px; margin-bottom: 24px; }
-.login-input { width: 100%; padding: 12px 16px; border: 1px solid var(--border-grey); border-radius: 6px; margin-bottom: 16px; font-size: 14px; }
-.btn-submit { width: 100%; background: var(--brand-red); color: white; padding: 12px; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; }
-.error-msg { color: var(--brand-red); font-size: 12px; margin-top: 12px; display: none; }
-
-/* APP-STYLE INFO CARDS */
-.info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 60px; }
-.info-card { display: flex; flex-direction: column; align-items: center; border: 1px solid var(--border-grey); border-radius: 12px; padding: 32px 24px; background: var(--bg-white); transition: all 0.2s ease; height: 100%; }
-.info-card:hover, .info-card:active { border-color: var(--brand-red); background: var(--brand-red-light); transform: translateY(-4px); }
-.info-icon { width: 56px; height: 56px; background: var(--bg-white); border: 1px solid var(--border-grey); color: var(--brand-red); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700; flex-shrink: 0; transition: all 0.2s ease; }
-.info-card:hover .info-icon, .info-card:active .info-icon { background: var(--brand-red); color: var(--bg-white); border-color: var(--brand-red); }
-.info-title { font-size: 18px; font-weight: 700; margin-bottom: 16px; color: var(--text-dark); text-align: center; }
-.info-desc { font-size: 14px; color: var(--text-grey); line-height: 1.6; text-align: center; width: 100%; }
-.info-desc strong { color: var(--text-dark); display: block; margin-bottom: 4px; margin-top: 16px; }
-.info-desc strong:first-child { margin-top: 0; }
-
-/* DOWNLOADS & FEEDBACK SECTION */
-.action-box { background: var(--bg-off-white); border: 1px solid var(--border-grey); border-radius: 12px; padding: 32px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; gap: 20px; flex-wrap: wrap; }
-.action-text h3 { font-size: 18px; color: var(--text-dark); margin-bottom: 4px; }
-.action-text p { font-size: 14px; color: var(--text-grey); }
-.action-btn { background: var(--bg-white); border: 1px solid var(--border-grey); color: var(--text-dark); padding: 12px 24px; border-radius: 6px; font-weight: 600; text-decoration: none; transition: all 0.2s; white-space: nowrap; }
-.action-btn:hover { border-color: var(--brand-red); color: var(--brand-red); }
-.action-btn.primary { background: var(--brand-red); color: white; border: none; }
-.action-btn.primary:hover { background: var(--brand-red-hover); color: white; }
-
-/* FLOATING CHATBOT */
-.chat-btn { position: fixed; bottom: 24px; right: 24px; width: 60px; height: 60px; background: var(--brand-red); color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 24px; cursor: pointer; box-shadow: 0 4px 12px rgba(217, 45, 32, 0.4); z-index: 9999; border: none; transition: transform 0.2s; }
-.chat-btn:hover { transform: scale(1.05); }
-.chat-window { position: fixed; bottom: 100px; right: 24px; width: 350px; background: white; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.15); border: 1px solid var(--border-grey); display: none; flex-direction: column; overflow: hidden; z-index: 9998; }
-.chat-window.active { display: flex; animation: slideUp 0.3s ease; }
-.chat-header { background: var(--bg-off-white); padding: 16px; border-bottom: 1px solid var(--border-grey); display: flex; justify-content: space-between; align-items: center; }
-.chat-header h3 { font-size: 16px; color: var(--text-dark); margin: 0; }
-.chat-close { background: none; border: none; font-size: 20px; cursor: pointer; color: var(--text-grey); }
-.chat-body { padding: 16px; height: 350px; overflow-y: auto; background: var(--bg-off-white); display: flex; flex-direction: column; gap: 12px; }
-.chat-bubble { max-width: 85%; padding: 12px 16px; border-radius: 12px; font-size: 14px; line-height: 1.4; }
-.chat-bot { background: white; border: 1px solid var(--border-grey); color: var(--text-dark); align-self: flex-start; border-bottom-left-radius: 4px; }
-.chat-user { background: var(--brand-red); color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
-.chat-options { padding: 16px; background: white; border-top: 1px solid var(--border-grey); display: flex; flex-wrap: wrap; gap: 8px; }
-.chat-chip { background: var(--bg-grey-light); border: 1px solid var(--border-grey); padding: 8px 12px; border-radius: 20px; font-size: 12px; color: var(--text-dark); cursor: pointer; transition: background 0.2s; }
-.chat-chip:hover { background: var(--border-grey); }
-@keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-/* ADD THIS JUST BEFORE YOUR MEDIA QUERIES */
-
-/* INTERNAL APP NAVIGATION */
-.nav-menu { display: flex; gap: 8px; align-items: center; }
-.nav-link { font-size: 14px; font-weight: 500; color: var(--text-grey); text-decoration: none; padding: 8px 16px; border-radius: 6px; transition: all 0.2s ease; }
-.nav-link:hover { color: var(--brand-red); background: var(--brand-red-light); }
-.nav-link.active { color: var(--brand-red); font-weight: 700; background: var(--brand-red-light); }
-.btn-signout { background: var(--bg-grey-light); border: 1px solid var(--border-grey); color: var(--brand-red); font-weight: 600; cursor: pointer; font-size: 13px; padding: 8px 16px; border-radius: 6px; transition: all 0.2s; }
-.btn-signout:hover { border-color: var(--brand-red); background: var(--bg-white); }
-
-
-/* =========================================
-   COMPREHENSIVE RESPONSIVE DESIGN 
-   ========================================= */
-@media (max-width: 1024px) {
-  main { padding: 0 32px; }
-}
-
-@media (max-width: 768px) {
-  /* FIX: Forces the dashboard guiding cards to stack vertically */
-  .guiding-grid { 
-    display: grid; 
-    grid-template-columns: 1fr; 
-    gap: 16px; 
-    margin-bottom: 60px; 
-  }
-  .guide-card { 
-    min-width: auto; 
-  }
-
-  /* Internal app navigation scrolling */
-  .nav-menu { width: 100%; order: 3; overflow-x: auto; white-space: nowrap; padding-bottom: 8px; justify-content: flex-start; gap: 8px; border-top: 1px solid var(--border-grey); padding-top: 16px; margin-top: 8px; }
-  .nav-menu::-webkit-scrollbar { display: none; }
-  .nav-menu { -ms-overflow-style: none; scrollbar-width: none; }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mixta Institutional Product</title>
   
-  /* Forces the Playbook and Framework inner cards into a single column */
-  .info-grid { grid-template-columns: 1fr; }
-  
-  nav { padding: 16px 20px; }
-  main { padding: 0 20px; margin-top: 30px; }
-  .btn-login { padding: 8px 16px; font-size: 12px; }
-  .public-hero { padding: 40px 20px; }
-  .public-hero h1 { font-size: 32px; }
-  .offer-grid { grid-template-columns: 1fr; gap: 20px; }
-  .trigger-container { margin: 20px auto 60px auto; }
-  .page-header h1 { font-size: 24px; }
-  
-  .company-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-  .company-cell { padding: 16px 8px; }
-  .data-grid, .single-grid { grid-template-columns: 1fr; gap: 16px; }
-  .card { padding: 20px 16px; }
-  .modal-content { width: 95%; max-height: 95vh; }
-  .modal-header { padding: 20px; padding-right: 48px; }
-  .modal-title { font-size: 22px; }
-  .close-btn { top: 16px; right: 16px; font-size: 20px; }
-  .modal-logo-box { width: 50px; height: 50px; min-width: 50px; }
-  .modal-logo-box img { width: 30px; height: 30px; }
-  .modal-scroll-area { padding: 20px; }
-  .modal-grid { grid-template-columns: 1fr; gap: 12px; margin-bottom: 24px; }
-  .modal-footer { padding: 16px 20px; }
-  .nav-modal-btn { padding: 8px 16px; font-size: 12px; }
-  .appliance-section { padding: 40px 20px; }
-}
+  <meta name="apple-mobile-web-app-title" content="Mixta Institutional Product">
+  <meta name="application-name" content="Mixta Institutional Product">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="mixta-logo.jpg">
+  <link rel="icon" href="mixta-logo.jpg">
 
-@media (max-width: 480px) {
-  .company-grid { grid-template-columns: 1fr 1fr; }
-  .appliance-grid { grid-template-columns: 1fr 1fr; }
-  .offer-card { padding: 24px; }
-  .trigger-container { margin: 20px auto 60px auto; }
-  
-  /* Stack modal header vertically on tiny screens */
-  .modal-header { flex-direction: column-reverse; align-items: flex-start; gap: 12px; padding-right: 20px; padding-top: 40px; }
-  .close-btn { top: 10px; right: 10px; }
-  .modal-logo-box { position: absolute; top: 20px; right: 20px; }
-  .action-box { flex-direction: column; align-items: flex-start; text-align: left; }
-}
+  <script>
+    if (sessionStorage.getItem('mixtaAuth') !== 'verified') { window.location.assign('./landing.html'); }
+    let idleTime = 0;
+    const idleInterval = setInterval(timerIncrement, 60000); 
+    window.onload = resetTimer; window.onmousemove = resetTimer; window.onmousedown = resetTimer; window.ontouchstart = resetTimer; window.onclick = resetTimer; window.onkeypress = resetTimer; window.addEventListener('scroll', resetTimer, true);
+    function timerIncrement() { idleTime++; if (idleTime >= 15) { sessionStorage.clear(); window.location.assign('./landing.html'); } }
+    function resetTimer() { idleTime = 0; }
+  </script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-brand">
+      <img src="mixta-logo.png" alt="Mixta Africa Logo" style="height: 40px; width: auto; object-fit: contain;" onerror="this.style.display='none'">
+      <div>
+        <div class="nav-title" style="margin-left: 8px;">Mixta Africa</div>
+        <div class="nav-subtitle" style="margin-left: 8px;">Lagos Market Intelligence Hub</div>
+      </div>
+    </a>
+    
+    <div class="nav-menu">
+      <a href="index.html" class="nav-link active">Dashboard</a>
+      <a href="frameworks.html" class="nav-link">Frameworks</a>
+      <a href="playbook.html" class="nav-link">Playbook</a>
+      <a href="collateral.html" class="nav-link">Collateral</a>
+    </div>
+
+    <button onclick="sessionStorage.clear(); window.location.assign('./landing.html')" class="btn-signout">Sign Out</button>
+  </nav>
+
+  <main>
+    <div class="hero-text">
+      <h1>Sales Execution Workspace</h1>
+      <p>Select a module below to access frameworks, playbooks, and collateral.</p>
+    </div>
+
+    <div class="guiding-grid">
+      <a href="frameworks.html" class="guide-card">
+        <div class="guide-icon">1</div>
+        <div class="guide-title">Frameworks</div>
+        <div class="guide-desc">Industry-specific strategy and segmentation models.</div>
+      </a>
+      <a href="playbook.html" class="guide-card">
+        <div class="guide-icon">2</div>
+        <div class="guide-title">Sales Playbook</div>
+        <div class="guide-desc">Scripts, objection handling, and 90-day rollout calendar.</div>
+      </a>
+      <a href="collateral.html" class="guide-card">
+        <div class="guide-icon" style="background: var(--brand-red-light); color: var(--brand-red);">3</div>
+        <div class="guide-title">Sales Collateral & Feedback</div>
+        <div class="guide-desc">Download pitch decks, one-pagers, and log session data.</div>
+      </a>
+    </div>
+  </main>
+
+</body>
+</html>
