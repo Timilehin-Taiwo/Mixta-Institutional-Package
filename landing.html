@@ -15,16 +15,59 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Updated trigger container to sit perfectly equidistant between the two sections */
-    .trigger-container { text-align: center; margin: 50px auto 50px auto; position: relative; z-index: 10; }
+    /* ==============================================================
+       APPLE-INSPIRED HERO & NAV ALIGNMENT 
+       ============================================================== */
+    nav {
+      background: transparent;
+      border-bottom: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      padding: 32px 48px;
+      display: flex;
+      justify-content: flex-end;
+      z-index: 100;
+    }
     
+    .public-hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 160px 20px 80px; /* Deep top padding to clear the floating nav */
+      gap: 24px; /* Mathematically precise spacing */
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .public-hero img.smart-logo {
+      max-height: 160px;
+      max-width: 90vw;
+      margin: 0; /* Overrides old inline margins */
+      object-fit: contain;
+    }
+
+    .public-hero h1 {
+      margin: 0;
+      font-size: clamp(36px, 6vw, 56px);
+      font-weight: 700;
+      letter-spacing: -0.03em; /* Premium typography kerning */
+      line-height: 1.1;
+      color: var(--brand-red);
+    }
+
+    .header-links { display: flex; align-items: center; gap: 32px; }
+    .about-link { font-size: 15px; font-weight: 600; color: var(--text-dark); text-decoration: underline; text-underline-offset: 4px; cursor: pointer; transition: color 0.2s; }
+    .about-link:hover { color: var(--brand-red); }
+    
+    .trigger-container { text-align: center; margin: 50px auto 50px auto; position: relative; z-index: 10; }
     .remember-wrapper { display: flex; align-items: center; gap: 8px; margin-bottom: 20px; text-align: left; }
     .remember-wrapper input[type="checkbox"] { cursor: pointer; width: 16px; height: 16px; accent-color: var(--brand-red); }
     .remember-wrapper label { font-size: 13px; color: var(--text-grey); cursor: pointer; user-select: none; }
-    .header-links { display: flex; align-items: center; gap: 24px; }
-    .about-link { font-size: 14px; font-weight: 600; color: var(--text-dark); text-decoration: underline; text-underline-offset: 4px; cursor: pointer; transition: color 0.2s; }
-    .about-link:hover { color: var(--brand-red); }
-    
     .modal-overlay { z-index: 9999 !important; }
     
     /* SPLASH SCREEN STYLES */
@@ -39,25 +82,19 @@
       justify-content: center;
       transition: opacity 0.5s ease, visibility 0.5s ease;
     }
-    #splash-screen.hidden {
-      opacity: 0;
-      visibility: hidden;
-    }
-    .splash-logo {
-      max-height: 120px;
-      max-width: 80%;
-      object-fit: contain;
-      animation: pulse 2s infinite ease-in-out;
-    }
+    #splash-screen.hidden { opacity: 0; visibility: hidden; }
+    .splash-logo { max-height: 120px; max-width: 80%; object-fit: contain; animation: pulse 2s infinite ease-in-out; }
     @keyframes pulse {
       0% { transform: scale(1); }
       50% { transform: scale(1.05); }
       100% { transform: scale(1); }
     }
     
-    @media (max-width: 480px) {
-      .header-links { gap: 12px; }
-      .about-link { font-size: 13px; }
+    @media (max-width: 768px) {
+      nav { padding: 24px 20px; }
+      .public-hero { padding: 140px 20px 60px; gap: 20px; }
+      .header-links { gap: 20px; }
+      .about-link { font-size: 14px; }
     }
   </style>
 </head>
@@ -67,17 +104,18 @@
     <img src="mixta-logo.png" data-basename="mixta-logo" class="smart-logo splash-logo" alt="Mixta Africa Logo">
   </div>
 
-  <nav style="justify-content: flex-end;">
+  <nav>
     <div class="header-links">
       <a class="about-link" onclick="window.openAboutModal(event)">About Mixta</a>
       <button class="btn-login" onclick="window.openLogin()">Sales Portal</button>
     </div>
   </nav>
 
-  <main style="max-width: 1200px;">
+  <main style="max-width: 1200px; margin: 0 auto;">
+    
     <div class="public-hero">
-      <img src="mixta-logo.png" data-basename="mixta-logo" class="smart-logo" alt="Mixta Africa Logo" style="max-height: 160px; max-width: 400px; width: auto; object-fit: contain; margin-bottom: 24px;">
-      <h1 style="color: var(--brand-red);">Institutional Package</h1>
+      <img src="mixta-logo.png" data-basename="mixta-logo" class="smart-logo" alt="Mixta Africa Logo">
+      <h1>Institutional Package</h1>
     </div>
 
     <div class="offer-grid">
@@ -191,12 +229,12 @@
         </div>
       </div>
       <div class="modal-scroll-area">
-        <p style="font-size: 15px; color: var(--text-dark); font-weight: 500; margin-bottom: 16px;">Mixta Africa is a Pan-African real estate development institution with a long-term delivery record[cite: 641]. We develop complete communities – not isolated blocks[cite: 642].</p>
+        <p style="font-size: 15px; color: var(--text-dark); font-weight: 500; margin-bottom: 16px;">Mixta Africa is a Pan-African real estate development institution with a long-term delivery record. We develop complete communities – not isolated blocks.</p>
         
         <ul style="font-size: 14px; color: var(--text-grey); margin-left: 20px; margin-bottom: 32px; line-height: 1.6;">
-          <li style="margin-bottom: 8px;">Leading urban infrastructure and real estate developer for Africa’s rapidly growing population, with project experience in 8 countries and operations in 5 countries[cite: 643].</li>
-          <li style="margin-bottom: 8px;">In Nigeria, Mixta has project experience in Lagos, Port Harcourt, Edo and Abuja, with products across all residential segments (affordable, middle-income, premium) and commercial hospitality[cite: 644].</li>
-          <li>Both Plots and homes (Built and Off-Plan) are available for sale[cite: 645].</li>
+          <li style="margin-bottom: 8px;">Leading urban infrastructure and real estate developer for Africa’s rapidly growing population, with project experience in 8 countries and operations in 5 countries.</li>
+          <li style="margin-bottom: 8px;">In Nigeria, Mixta has project experience in Lagos, Port Harcourt, Edo and Abuja, with products across all residential segments (affordable, middle-income, premium) and commercial hospitality.</li>
+          <li>Both Plots and homes (Built and Off-Plan) are available for sale.</li>
         </ul>
 
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 16px;">
@@ -319,26 +357,26 @@
         category: "AFFORDABLE MARKET", 
         name: "Ibudo Wura",
         location: "Lakowe, Lagos", 
-        desc: "Ibudo Wura Homes is a housing development designed to provide affordable homes for young professionals, business owners, and high-net-worth individuals. Prospective buyers can take advantage of a government-backed mortgage scheme with an attractive 9.75% interest rate, making homeownership more accessible. [cite: 1221, 1222]", 
+        desc: "Ibudo Wura Homes is a housing development designed to provide affordable homes for young professionals, business owners, and high-net-worth individuals. Prospective buyers can take advantage of a government-backed mortgage scheme with an attractive 9.75% interest rate, making homeownership more accessible.", 
         price: "From ₦50 Million", 
         size: "640 Units", 
-        comp: "Composed of 1, 2 & 3 bed apartments. [cite: 1231]", 
-        spec: "Semi-finished (with the exception of kitchen tiles, floor tiles in living areas, water heaters, and extractor fans). [cite: 835]", 
-        status: "Built Units: 112 (Phase 1) | Ongoing Units: 80 (New Commission) [cite: 1236, 1237]", 
-        features: "24-hour power supply / solar home systems, Perimeter Fence & Gate, Beautiful Landscape & Parks, Paved Concrete Roads, Drainage, Water Treatment Facility. [cite: 1225, 1226, 1227, 1228, 1229, 1230]" 
+        comp: "Composed of 1, 2 & 3 bed apartments.", 
+        spec: "Semi-finished (with the exception of kitchen tiles, floor tiles in living areas, water heaters, and extractor fans).", 
+        status: "Built Units: 112 (Phase 1) | Ongoing Units: 80 (New Commission)", 
+        features: "24-hour power supply / solar home systems, Perimeter Fence & Gate, Beautiful Landscape & Parks, Paved Concrete Roads, Drainage, Water Treatment Facility." 
       },
       "Beechwood Park II": {
         logoBase: "Beechwood Park",
         category: "MID MARKET", 
         name: "Beechwood Park II",
         location: "Lakowe, Lagos", 
-        desc: "Beechwood Park is a newly built gated community near Lakowe Lakes Golf and Country Estate, offering prime investment opportunities. It features finished homes and serviced plots and is a combination of residential buildings and commercial buildings. [cite: 812, 813]", 
+        desc: "Beechwood Park is a newly built gated community near Lakowe Lakes Golf and Country Estate, offering prime investment opportunities. It features finished homes and serviced plots and is a combination of residential buildings and commercial buildings.", 
         price: "From ₦66 Million", 
         size: "404+ Units", 
-        comp: "2 and 3 - Bedroom Row Housing Bungalows, 2 - Bedroom semi-detached and 3 - Bedroom detached Bungalows. [cite: 816]", 
-        spec: "Semi Finished. [cite: 825]", 
-        status: "Units Sold: 404 | Completed: 377 | Available Units: 11 [cite: 823, 824]", 
-        features: "Paved Roads & Drainages, Gated Community, Basketball Court, Local Shopping Complexes & minimarts, Perimeter Fencing, Access to Financial Institutions, Local Parks, Access to Reliable Healthcare, Access to Office Spaces, Recreational Facilities. [cite: 820, 821, 822, 828, 829, 830, 831, 832, 833, 834]" 
+        comp: "2 and 3 - Bedroom Row Housing Bungalows, 2 - Bedroom semi-detached and 3 - Bedroom detached Bungalows.", 
+        spec: "Semi Finished.", 
+        status: "Units Sold: 404 | Completed: 377 | Available Units: 11", 
+        features: "Paved Roads & Drainages, Gated Community, Basketball Court, Local Shopping Complexes & minimarts, Perimeter Fencing, Access to Financial Institutions, Local Parks, Access to Reliable Healthcare, Access to Office Spaces, Recreational Facilities." 
       }
     };
 
