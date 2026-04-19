@@ -19,7 +19,7 @@ body {
   background-color: var(--bg-white); color: var(--text-dark);
   font-family: var(--font-sans); line-height: 1.6;
   -webkit-font-smoothing: antialiased; padding-bottom: 80px;
-  overflow-x: hidden; /* Prevents accidental horizontal scrolling on mobile */
+  overflow-x: hidden; 
 }
 
 /* NAVIGATION */
@@ -44,7 +44,7 @@ nav {
 .public-hero h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 700; margin-bottom: 16px; color: var(--text-dark); line-height: 1.2; }
 .public-hero p { font-size: clamp(16px, 3vw, 18px); color: var(--text-grey); margin-bottom: 40px; }
 
-/* FLUID GRIDS (Adapts to Portrait & Landscape automatically) */
+/* FLUID GRIDS */
 .offer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; margin-bottom: 0 !important; position: relative; }
 .offer-card { border: 2px dashed var(--border-grey); border-radius: 16px; padding: 40px; background: var(--bg-off-white); }
 .offer-card h2 { font-size: 20px; color: var(--text-dark); margin-bottom: 24px; text-align: center; }
@@ -54,7 +54,7 @@ nav {
 .offer-list li strong { color: var(--text-dark); }
 
 /* 10 MINIMUM BADGE */
-.trigger-container { text-align: center; margin: 40px auto 80px auto; position: relative; z-index: 10; }
+.trigger-container { text-align: center; margin: 40px auto 120px auto; position: relative; z-index: 10; }
 .trigger-badge {
   background: var(--bg-white); border: 2px solid var(--brand-red); border-radius: 8px;
   padding: 16px 32px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.05);
@@ -80,12 +80,12 @@ main { max-width: 1100px; margin: 60px auto 0; padding: 0 40px; }
 .page-header h1 { font-size: clamp(24px, 4vw, 28px); color: var(--text-dark); margin-bottom: 8px; }
 .page-header p { color: var(--brand-grey); font-size: 15px; }
 
-/* FLUID GUIDING GRID */
+/* FLUID GUIDING GRID (Desktop 2-columns) */
 .guiding-grid { 
   display: grid; 
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
   gap: 24px; 
-  max-width: 900px; 
+  max-width: 800px; 
   margin: 0 auto 80px auto; 
 }
 .guide-card { display: flex; flex-direction: column; align-items: center; border: 1px solid var(--border-grey); border-radius: 8px; padding: 32px 24px; text-decoration: none; text-align: center; transition: all 0.2s ease; height: 100%; }
@@ -242,7 +242,15 @@ hr { border: none; border-top: 1px solid var(--border-grey); margin: 0 0 60px 0;
 }
 
 @media (max-width: 768px) {
-  /* Forces the Playbook and Framework cards into a single column on mobile */
+  /* This prevents the horizontal scroll and forces standard stacking! */
+  .guiding-grid { 
+    display: grid; 
+    grid-template-columns: 1fr; 
+    gap: 16px; 
+    margin-bottom: 60px; 
+  }
+  .guide-card { min-width: auto; }
+  
   .info-grid { grid-template-columns: 1fr; }
   
   nav { padding: 16px 20px; }
@@ -253,8 +261,6 @@ hr { border: none; border-top: 1px solid var(--border-grey); margin: 0 0 60px 0;
   .offer-grid { grid-template-columns: 1fr; gap: 20px; }
   .trigger-container { margin: 20px auto 60px auto; }
   .page-header h1 { font-size: 24px; }
-  .guiding-grid { overflow-x: auto; display: flex; flex-wrap: nowrap; margin-bottom: 60px; }
-  .guide-card { min-width: 220px; }
   .company-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .company-cell { padding: 16px 8px; }
   .data-grid, .single-grid { grid-template-columns: 1fr; gap: 16px; }
