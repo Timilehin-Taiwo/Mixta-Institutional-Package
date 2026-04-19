@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Corporate Bulk Mortgage — Mixta Africa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav>
+    <div class="nav-brand">
+      <div class="nav-logo-placeholder"></div>
+      <div>
+        <div class="nav-title">Mixta Africa</div>
+        <div class="nav-subtitle">Ibudo Wura & Beechwood Park II</div>
+      </div>
+    </div>
+    <button class="btn-login" onclick="openLogin()">Mixta Portal</button>
+  </nav>
+
+  <main style="max-width: 1200px;">
+    <div class="public-hero">
+      <h1 style="color: var(--brand-red);">A win-win offer that increases institutional conversion speed.</h1>
+      <p>Pre-Approved Institutional Offer Framework | 3-Month Pilot[cite: 646]. Pulling value from the Mixta ecosystem[cite: 656, 657].</p>
+    </div>
+
+    <div class="offer-grid">
+      <div class="offer-card">
+        <h2>CORE OFFER - Mortgage (Pre-Approved) [cite: 647]</h2>
+        <ul class="offer-list">
+          <li><strong>Payment Flexibility:</strong> 10% equity spread over 6 / 9 / 12 months[cite: 648].</li>
+          <li><strong>Cash Refund Types:</strong> [cite: 649]
+            <br><br>Cash refund worth 3 Mortgage Payments for 6-, 9-, and 12- months payment plan[cite: 650].
+          </li>
+        </ul>
+      </div>
+
+      <div class="trigger-badge">
+        <span class="trigger-number">10</span>
+        <span class="trigger-text">Minimum<br>Staff Offtake [cite: 653, 654, 655]</span>
+      </div>
+
+      <div class="offer-card">
+        <h2>ECOSYSTEM BONUSES (for Institutions + Staff) [cite: 651]</h2>
+        <ul class="offer-list">
+          <li>Appliance per home (Capped at ₦500,000)[cite: 652].</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="appliance-section">
+      <h2 style="font-size: 24px; margin-bottom: 8px;">Additional Incentives</h2>
+      <p style="color: var(--text-grey);">Free Appliance for Every Home[cite: 658]. Relaunch and slightly tweak the previous marketing promo - capped at ₦500,000 per home[cite: 668]. This package will be combined with existing mortgage rebates and corporate retreats discounts[cite: 669].</p>
+      
+      <div class="appliance-grid">
+        <div class="appliance-item">Air Conditioner [cite: 660]</div>
+        <div class="appliance-item">Refrigerator [cite: 661]</div>
+        <div class="appliance-item">Washing Machine [cite: 662]</div>
+        <div class="appliance-item">Heat Extractor [cite: 663]</div>
+        <div class="appliance-item">Water Dispenser [cite: 664]</div>
+        <div class="appliance-item">Dish Washer [cite: 665]</div>
+        <div class="appliance-item" style="background: var(--brand-red); color: white;">Solar Panels [cite: 666]</div>
+      </div>
+    </div>
+  </main>
+
+  <div class="login-modal" id="loginModal">
+    <div class="login-box">
+      <button class="close-login" onclick="closeLogin()">×</button>
+      <h2>Mixta Internal Portal</h2>
+      <p>Access confidential market intelligence.</p>
+      <form onsubmit="handleLogin(event)">
+        <input type="email" id="mixtaEmail" class="login-input" placeholder="name@mixtafrica.com" required>
+        <button type="submit" class="btn-submit">Authenticate</button>
+        <div class="error-msg" id="loginError">Access denied. Valid @mixtafrica.com email required.</div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Login Logic
+    const modal = document.getElementById('loginModal');
+    
+    function openLogin() {
+      modal.classList.add('active');
+    }
+    
+    function closeLogin() {
+      modal.classList.remove('active');
+      document.getElementById('loginError').style.display = 'none';
+    }
+
+    function handleLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById('mixtaEmail').value.trim().toLowerCase();
+      const errorMsg = document.getElementById('loginError');
+      
+      // Strict validation for mixtafrica.com
+      if (email.endsWith('@mixtafrica.com')) {
+        // Set session token
+        sessionStorage.setItem('mixtaAuth', 'verified');
+        window.location.href = 'index.html';
+      } else {
+        errorMsg.style.display = 'block';
+      }
+    }
+  </script>
+</body>
+</html>
