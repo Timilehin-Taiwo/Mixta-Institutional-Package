@@ -6,6 +6,14 @@
   <title>Corporate Bulk Mortgage — Mixta Africa</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <style>
+    .trigger-container {
+      text-align: center;
+      margin: 40px auto 120px auto; 
+      position: relative;
+      z-index: 10;
+    }
+  </style>
 </head>
 <body>
 
@@ -94,11 +102,11 @@
       <button class="close-login" onclick="closeLogin()">×</button>
       <h2>Mixta Internal Portal</h2>
       <p>Access confidential market intelligence.</p>
-      <form onsubmit="handleLogin(event)">
+      <div id="authWrapper">
         <input type="email" id="mixtaEmail" class="login-input" placeholder="name@mixtafrica.com" required>
-        <button type="submit" class="btn-submit">Authenticate</button>
+        <button type="button" class="btn-submit" onclick="executeLogin()">Authenticate</button>
         <div class="error-msg" id="loginError">Access denied. Valid @mixtafrica.com email required.</div>
-      </form>
+      </div>
     </div>
   </div>
 
@@ -107,18 +115,25 @@
     function openLogin() { modal.classList.add('active'); }
     function closeLogin() { modal.classList.remove('active'); document.getElementById('loginError').style.display = 'none'; }
 
-    function handleLogin(e) {
-      e.preventDefault();
+    function executeLogin() {
       const email = document.getElementById('mixtaEmail').value.trim().toLowerCase();
       const errorMsg = document.getElementById('loginError');
       
       if (email.endsWith('@mixtafrica.com')) {
         sessionStorage.setItem('mixtaAuth', 'verified');
-        window.location.href = 'index.html'; 
+        window.location.assign('./index.html'); 
       } else {
         errorMsg.style.display = 'block';
       }
     }
+
+    // Allow users to press "Enter" to log in
+    document.getElementById('mixtaEmail').addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        executeLogin();
+      }
+    });
   </script>
 </body>
 </html>
