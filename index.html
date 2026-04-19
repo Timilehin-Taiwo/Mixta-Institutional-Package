@@ -3,122 +3,278 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Corporate Bulk Mortgage — Mixta Africa</title>
+  <title>Lagos Market Intelligence — Sales Directory</title>
+  
+  <script>
+    if (sessionStorage.getItem('mixtaAuth') !== 'verified') { window.location.assign('./landing.html'); }
+    let idleTime = 0;
+    const idleInterval = setInterval(timerIncrement, 60000); 
+    window.onload = resetTimer; window.onmousemove = resetTimer; window.onmousedown = resetTimer; window.ontouchstart = resetTimer; window.onclick = resetTimer; window.onkeypress = resetTimer; window.addEventListener('scroll', resetTimer, true);
+    function timerIncrement() { idleTime++; if (idleTime >= 15) { sessionStorage.clear(); window.location.assign('./landing.html'); } }
+    function resetTimer() { idleTime = 0; }
+  </script>
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <nav>
-    <div class="nav-brand">
+    <a href="index.html" class="nav-brand">
       <img src="mixta-logo.png" alt="Mixta Africa Logo" style="height: 40px; width: auto; object-fit: contain;" onerror="this.style.display='none'">
       <div>
         <div class="nav-title" style="margin-left: 8px;">Mixta Africa</div>
-        <div class="nav-subtitle" style="margin-left: 8px;">Ibudo Wura & Beechwood Park II</div>
+        <div class="nav-subtitle" style="margin-left: 8px;">Lagos Market Intelligence Hub</div>
       </div>
-    </div>
-    <button class="btn-login" onclick="openLogin()">Mixta Portal</button>
+    </a>
+    <button onclick="sessionStorage.clear(); window.location.assign('./landing.html')" style="background: var(--bg-grey-light); border: 1px solid var(--border-grey); color: var(--brand-red); font-weight: 600; cursor: pointer; font-size: 13px; padding: 8px 16px; border-radius: 6px; transition: all 0.2s;">
+      Sign Out
+    </button>
   </nav>
 
-  <main style="max-width: 1200px;">
-    <div class="public-hero">
-      <h1 style="color: var(--brand-red);">A win-win offer that increases institutional conversion speed.</h1>
-      <p>Pre-Approved Institutional Offer Framework.</p>
+  <main>
+    <div class="hero-text">
+      <h1>Sales Execution Workspace</h1>
+      <p>Select a module below to access program details, frameworks, and pipeline analytics.</p>
     </div>
 
-    <div class="offer-grid">
-      <div class="offer-card">
-        <h2>CORE OFFER - Mortgage (Pre-Approved)</h2>
-        <ul class="offer-list">
-          <li><strong>Payment Flexibility:</strong> 10% equity spread over 6 / 9 / 12 months.</li>
-          <li><strong>Cash Refund Types:</strong>
-            <br><br>Cash refund worth 3 Mortgage Payments for 6-, 9-, and 12- months payment plan.
-          </li>
-        </ul>
-      </div>
-
-      <div class="offer-card">
-        <h2>ECOSYSTEM BONUSES (for Institutions + Staff)</h2>
-        <ul class="offer-list">
-          <li>Appliance per home (Capped at ₦500,000).</li>
-        </ul>
-      </div>
+    <div class="guiding-grid">
+      <a href="programme.html" class="guide-card">
+        <div class="guide-icon">1</div>
+        <div class="guide-title">Programme</div>
+        <div class="guide-desc">Core metrics, eligibility filters, and qualifying salary data.</div>
+      </a>
+      <a href="pipeline.html" class="guide-card">
+        <div class="guide-icon">2</div>
+        <div class="guide-title">Pipeline</div>
+        <div class="guide-desc">Company deep-dives, staff sizing, and priority targets.</div>
+      </a>
+      <a href="frameworks.html" class="guide-card">
+        <div class="guide-icon">3</div>
+        <div class="guide-title">Frameworks</div>
+        <div class="guide-desc">Industry-specific strategy and segmentation models.</div>
+      </a>
+      <a href="playbook.html" class="guide-card">
+        <div class="guide-icon">4</div>
+        <div class="guide-title">Sales Playbook</div>
+        <div class="guide-desc">Scripts, objection handling, and 90-day rollout calendar.</div>
+      </a>
     </div>
 
-    <div class="trigger-container">
-      <div class="trigger-badge">
-        <span class="trigger-number">10</span>
-        <span class="trigger-text">Minimum<br>Staff Offtake</span>
-      </div>
-    </div>
+    <hr>
 
-    <div class="appliance-section">
-      <h2 style="font-size: 24px; margin-bottom: 8px;">Additional Incentives</h2>
-      <p style="color: var(--text-grey);">Free Appliance for Every Home. Relaunch and slightly tweak the previous marketing promo - capped at ₦500,000 per home. This package will be combined with existing mortgage rebates and corporate retreats discounts.</p>
-      
-      <div class="appliance-grid">
-        <div class="appliance-item">
-          <img src="ac.jpg" alt="Air Conditioner" onerror="this.style.display='none'">
-          <span>Air Conditioner</span>
-        </div>
-        <div class="appliance-item">
-          <img src="fridge.jpg" alt="Refrigerator" onerror="this.style.display='none'">
-          <span>Refrigerator</span>
-        </div>
-        <div class="appliance-item">
-          <img src="washing-machine.jpg" alt="Washing Machine" onerror="this.style.display='none'">
-          <span>Washing Machine</span>
-        </div>
-        <div class="appliance-item">
-          <img src="heat-extractor.jpg" alt="Heat Extractor" onerror="this.style.display='none'">
-          <span>Heat Extractor</span>
-        </div>
-        <div class="appliance-item">
-          <img src="dispenser.jpg" alt="Water Dispenser" onerror="this.style.display='none'">
-          <span>Water Dispenser</span>
-        </div>
-        <div class="appliance-item">
-          <img src="dishwasher.jpg" alt="Dish Washer" onerror="this.style.display='none'">
-          <span>Dish Washer</span>
-        </div>
-        <div class="appliance-item" style="background: var(--brand-red); color: white;">
-          <img src="solar.jpg" alt="Solar Panels" onerror="this.style.display='none'">
-          <span>Solar Panels</span>
-        </div>
-      </div>
-    </div>
+    <div style="text-align: center; margin-bottom: 20px;">
+      <h2 style="font-size: 24px; font-weight: 700; margin-bottom: 8px;">Institutional Target Segmentation</h2>
+      <p style="font-size: 14px; color: var(--brand-grey);">The 30 net addressable Lagos-based institutions mapped by priority.</p> </div>
+    
+    <h3 class="priority-header">Priority 1 - Anchor & High Probability Accounts</h3>
+    <div class="company-grid" id="gridP1"></div>
+
+    <h3 class="priority-header">Priority 2 - Strategic Followers</h3>
+    <div class="company-grid" id="gridP2"></div>
+
+    <h3 class="priority-header">Priority 3 - Secondary Targets</h3>
+    <div class="company-grid" id="gridP3"></div>
   </main>
 
-  <div class="login-modal" id="loginModal">
-    <div class="login-box">
-      <button class="close-login" onclick="closeLogin()">×</button>
-      <h2>Mixta Internal Portal</h2>
-      <p>Access confidential market intelligence.</p>
-      <form onsubmit="handleLogin(event)">
-        <input type="email" id="mixtaEmail" class="login-input" placeholder="name@mixtafrica.com" required>
-        <button type="submit" class="btn-submit">Authenticate</button>
-        <div class="error-msg" id="loginError">Access denied. Valid @mixtafrica.com email required.</div>
-      </form>
+  <div class="modal-overlay" id="companyModal" onclick="closeModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <button class="close-btn" onclick="forceCloseModal()">×</button>
+      
+      <div class="modal-header">
+        <div class="modal-header-text">
+          <span class="modal-priority" id="mPriority">PRIORITY</span>
+          <h2 class="modal-title" id="mName">Company Name</h2>
+          <p class="modal-meta" id="mMeta">HQ: Location | Lagos Headcount: 000</p>
+        </div>
+        <div class="modal-logo-box" id="mLogoContainer">
+          <img id="mLogo" src="" alt="Company Logo">
+        </div>
+      </div>
+
+      <div class="modal-scroll-area">
+        <div class="modal-grid">
+          <div class="modal-stat-box">
+            <div class="modal-stat-title">Qualifying Staff (Above ₦1.8M)</div>
+            <div class="modal-stat-val" id="mQualifying" style="color: var(--text-dark);">000</div>
+          </div>
+          <div class="modal-stat-box" style="background: var(--brand-red-light); border-color: var(--brand-red);">
+            <div class="modal-stat-title" style="color: var(--brand-red);">Net Eligible Pool</div>
+            <div class="modal-stat-val" id="mPool">000 - 000</div>
+          </div>
+        </div>
+
+        <h3 class="modal-section-title">Targeting Intelligence</h3>
+        <ul class="strategy-list">
+          <li><strong>Entry Point</strong> <span id="mEntry">...</span></li>
+          <li><strong>Contact Method</strong> <span id="mContact">...</span></li>
+          <li><strong>Conversational Lever</strong> <span id="mLever">...</span></li>
+          <li><strong>Pitch Angle</strong> <span id="mPitch">...</span></li>
+        </ul>
+
+        <div class="objection-box">
+          <div class="objection-q" id="mObjQ">"Objection?"</div>
+          <div class="objection-a" id="mObjA">Response...</div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="nav-modal-btn" id="prevBtn" onclick="navigateModal(-1)">← Previous</button>
+        <button class="nav-modal-btn" id="nextBtn" onclick="navigateModal(1)">Next →</button>
+      </div>
     </div>
   </div>
 
   <script>
-    const modal = document.getElementById('loginModal');
-    function openLogin() { modal.classList.add('active'); }
-    function closeLogin() { modal.classList.remove('active'); document.getElementById('loginError').style.display = 'none'; }
+    const companyData = {
+      // "Access Bank Plc": { logoName: "Access Bank", name: "Access Bank Plc", priority: "PRIORITY 1 - ANCHOR ACCOUNT", hq: "Victoria Island, Lagos", headcount: "~6,000", qualifying: "~2,800", pool: "2,000- 2,500", entry: "Head of Employee Value Proposition / Chief Human Resources Officer", contact: "Direct phone call - leverage existing relationship", lever: "First-mover credential: \"Access Bank is our reference institution your staff benefit before any other bank in Lagos.\" Use this account to establish sector dominance.", pitch: "Access Bank Band 6-7 Officers earn N1.2M-N2.8M. Those above 1.8M can spread 10% equity over 6, 9, or 12 months. Upon completion, they receive 3 months of payments in cash.", objQ: "\"We have our own mortgage product.\"", objA: "This is a housing benefit layer a cash-back and appliance subsidy that sits entirely outside your balance sheet. Your own product gets more competitive, not less." },
+      "Zenith Bank Plc": { logoName: "Zenith Bank", name: "Zenith Bank Plc", priority: "PRIORITY 1", hq: "Victoria Island, Lagos", headcount: "~2,625", qualifying: "~1,200", pool: "800 - 1,000", entry: "Chief People Officer or Head of Human Resources", contact: "Linkedin InMail + phone reference Access Bank engagement", lever: "Sector social proof: \"Access Bank staff are already enrolled. Zenith is the natural second.\"", pitch: "Zenith Officers and Managers are career-ambitious. Frame this as: your staff aren't just getting a mortgage they are getting a property subsidy programme that returns real money.", objQ: "\"Staff prefer our internal mortgage scheme.\"", objA: "The cash refund and appliance bundle is additive - staff using Zenith's own mortgage product still qualify for the 3-month cash refund." },
+      "Guaranty Trust Holding Co.": { logoName: "GTBank", name: "Guaranty Trust Holding Co. (GTBank)", priority: "PRIORITY 1", hq: "Victoria Island, Lagos", headcount: "~2,660", qualifying: "~1,200", pool: "750- 1,000", entry: "Head of Human Resources or Deputy Managing Director", contact: "Warm intro via Access Bank contact", lever: "GTBank culture responds to exclusivity and first-mover identity: \"10 GTBank people are getting homes this quarter - are your people on the list?\"", pitch: "GTBank staff are aspirational and brand-aware. Frame Ibudo Wura / Beechwood Park II as a prestige address.", objQ: "\"We have a housing loan scheme in-house.\"", objA: "The cash-back and N500K appliance allocation is the differentiator. Your scheme provides the loan ours returns cash on top." },
+      "First Bank of Nigeria Plc": { logoName: "First Bank", name: "First Bank of Nigeria Plc", priority: "PRIORITY 1", hq: "Marina, Lagos Island", headcount: "~4,200", qualifying: "~1,600", pool: "800- 1,200", entry: "Group Head, Human Resources", contact: "Formal physical letter to First Bank HQ (Marina)", lever: "130 years of institutional legacy means frequent executive events. Lead with the conference centre discount as the door-opener with the CHRO.", pitch: "First Bank's large Lagos management cadre has many experienced professionals who have been renting for 5-10 years. The equity installment option removes the biggest barrier.", objQ: "\"Staff are spread across Lagos - complex logistics.\"", objA: "We run satellite briefings at branch locations. We come to your staff." },
+      "United Bank for Africa (UBA)": { logoName: "UBA", name: "United Bank for Africa (UBA)", priority: "PRIORITY 1", hq: "Victoria Island, Lagos", headcount: "~3,600", qualifying: "~1,350", pool: "850- 1,100", entry: "Head of Employee Experience / HR Business Partner (Lagos)", contact: "Linkedin InMail to HR leadership", lever: "UBA's \"Africa's Global Bank\" brand positions its staff as globally mobile and career-aware.", pitch: "UBA staff at Manager level (N2.8M-N7M) can access a N50M Ibudo Wura home. 10% equity = N5M, spread over 9 months.", objQ: "\"Some staff won't qualify.\"", objA: "We only need 10 to activate the bulk offer. We are targeting your Band-B population at N1.8M+." },
+      "Stanbic IBTC Bank": { logoName: "Stanbic IBTC", name: "Stanbic IBTC Bank / Holdings", priority: "PRIORITY 1", hq: "Victoria Island, Lagos", headcount: "~3,150", qualifying: "~1,800", pool: "850- 1,150", entry: "Head of Human Resources", contact: "Linkedin + phone reference other banking sector engagements", lever: "Stanbic IBTC staff skew international-minded and financially sophisticated. Lead with the investment angle.", pitch: "International banking norms make Stanbic staff acutely aware of the wealth gap between homeowners and renters.", objQ: "\"Our staff have access to Standard Bank group housing loans.\"", objA: "Group schemes serve different geographies. Our programme adds a cash-back layer and an appliance grant that no group scheme matches." },
+      "Interswitch": { logoName: "Interswitch", name: "Interswitch Group", priority: "PRIORITY 1", hq: "Victoria Island, Lagos", headcount: "~1,540", qualifying: "~900", pool: "500-700", entry: "Chief People Officer", contact: "Linkedin + warm intro via Lagos fintech network", lever: "Interswitch processes millions of transactions - staff are financially sophisticated. Lead with ROI framing.", pitch: "Interswitch Specialists and Senior Associates at N2M-N5M are the sweet spot. Tech talent in Lagos understands compounding returns.", objQ: "\"People in tech prefer flexibility - they might relocate.\"", objA: "Even if they relocate, they own a Lagos asset appreciating at 15-22% annually." },
+      "Shell Nigeria": { logoName: "Shell", name: "Shell Nigeria (SPDC / SNEPCO)", priority: "PRIORITY 1", hq: "Victoria Island, Lagos", headcount: "~1,750", qualifying: "~1,200", pool: "550-800", entry: "Head of HR Nigeria or Social Performance Manager", contact: "Formal letter to Shell Nigeria HQ + LinkedIn follow-up", lever: "Shell Nigeria staff earn some of the highest salaries in Lagos but face two barriers: lump-sum down payment and title insecurity. Address both.", pitch: "Shell professionals at N2.5M-N8M have the income to qualify comfortably their DSR on a N50M mortgage is well below 33.33%.", objQ: "\"We need a full due diligence on the development.\"", objA: "We provide complete documentation: Certificate of Occupancy, development approvals, site progress reports, offtake agreements." },
+      "KPMG": { logoName: "KPMG", name: "KPMG Nigeria", priority: "PRIORITY 1", hq: "Victoria Island, Lagos", headcount: "~1,950", qualifying: "~1,100", pool: "560-830", entry: "Head of People & Culture (HR)", contact: "Linkedin + formal meeting request", lever: "KPMG advises Nigeria's largest companies on HR strategy. Lead with credibility.", pitch: "Senior Associates and Managers at KPMG are exactly the cohort under housing pressure in Lagos. The equity installment plan fits their cash flow.", objQ: "\"Conflict of interest we advise real estate clients.\"", objA: "Staff are purchasing individually through a mortgage product this is a personal financial transaction." },
+      "Deloitte": { logoName: "Deloitte", name: "Deloitte Nigeria", priority: "PRIORITY 1", hq: "Victoria Island, Lagos", headcount: "~1,716", qualifying: "~1,000", pool: "500-750", entry: "Chief People Officer", contact: "LinkedIn + formal email", lever: "\"KPMG staff are already enrolled. Deloitte is the natural second Big Four firm.\"", pitch: "Deloitte Senior Consultants and Managers in Lagos understand financial modelling. Present the full investment case.", objQ: "\"We have an existing bank partnership for staff mortgages.\"", objA: "Bank partnerships provide the debt - this adds cash back and appliances on top." },
+      "PwC": { logoName: "PwC", name: "PricewaterhouseCoopers (PwC) Nigeria", priority: "PRIORITY 1", hq: "Victoria Island, Lagos", headcount: "~1,560", qualifying: "~950", pool: "450-710", entry: "Head of Human Capital", contact: "LinkedIn + formal meeting request", lever: "PwC's brand is built on trust and rigour. Your due diligence pack should be presented exactly as PwC would present a client deliverable.", pitch: "Managers and Senior Managers are the highest-probability cohort.", objQ: "\"Partnership structure means we need Partner approval for any staff programme.\"", objA: "We understand. A one-page brief for Partner review is part of our standard package." },
+      "MTN Nigeria": { logoName: "MTN", name: "MTN Nigeria", priority: "PRIORITY 1", hq: "Ikoyi, Lagos", headcount: "~1,950", qualifying: "~1,100", pool: "600-850", entry: "Head of People & Culture (HR)", contact: "Linkedin InMail to HR Head", lever: "MTN staff are technology-oriented. Prepare a digital one-pager.", pitch: "MTN Specialists and Managers are renting across Lekki, VGC, and Ajah. The equity installment plan eliminates the down-payment barrier.", objQ: "\"Our people prefer to live closer to Ikoyi HQ.\"", objA: "Lakowe is on the Lekki-Epe expressway 25 minutes from Ikoyi in moderate traffic. It is closer than Ajah." },
+      "Standard Chartered Bank": { logoName: "Standard Chartered", name: "Standard Chartered Bank", priority: "PRIORITY 2", hq: "Victoria Island, Lagos", headcount: "~1,650", qualifying: "~1,100", pool: "500-700", entry: "Head of Human Resources", contact: "Linkedin InMail with formal follow-up", lever: "StanChart staff are globally mobile and see Lagos as a posting.", pitch: "For expatriate or returning-diaspora staff, the 10% equity installment structure removes the lump-sum barrier entirely.", objQ: "\"Our staff rotate globally will they be here long enough?\"", objA: "Many Standard Chartered executives have been in Lagos 5+ years. For those who stay, this is wealth creation." },
+      "Fidelity Bank Plc": { logoName: "Fidelity Bank", name: "Fidelity Bank Plc", priority: "PRIORITY 2", hq: "Victoria Island, Lagos", headcount: "~1,760", qualifying: "~700", pool: "400-580", entry: "Head of Human Resources", contact: "Linkedin + phone warm intro", lever: "Fidelity Bank is actively positioning as a growth bank.", pitch: "Grade 6-9 Fidelity staff (N1.8M-N5.5M) represent the growth engine of the bank.", objQ: "\"Our staff numbers are lower in Lagos.\"", objA: "We only need 10 commitments to activate the bulk benefit. Quality of the 10 is what activates the offer." },
+      "First City Monument Bank": { logoName: "FCMB", name: "First City Monument Bank", priority: "PRIORITY 2", hq: "Victoria Island, Lagos", headcount: "~1,440", qualifying: "~600", pool: "340-480", entry: "Group Chief Human Resources Officer", contact: "LinkedIn + formal email", lever: "FCMB positions itself as a \"right size bank\". Frame this as a programme that only a forward-thinking HR team would run.", pitch: "FCMB Managers and Senior Officers in Lagos are the precise target. 10% equity installment over 6-12 months is accessible.", objQ: "\"Budget for staff welfare is tight.\"", objA: "This programme costs FCMB nothing. Your staff self-select, individually qualify, and receive the benefit directly." },
+      "Airtel Nigeria": { logoName: "Airtel", name: "Airtel Nigeria", priority: "PRIORITY 2", hq: "Victoria Island, Lagos", headcount: "~1,100", qualifying: "~650", pool: "300-490", entry: "Head of Human Resources", contact: "Linkedin + phone", lever: "\"MTN staff are already looking at this. Airtel is the natural next move in the telecom sector.\"", pitch: "Airtel Specialists earning N1.9M-N4.5M are the core cohort. The N5M equity spread over 12 months is financially viable.", objQ: "\"Staff may prefer buying outside Lakowe.\"", objA: "They can this is a structured offer tied to specific, title-clear developments." },
+      "Flutterwave": { logoName: "Flutterwave", name: "Flutterwave", priority: "PRIORITY 2", hq: "Lekki, Lagos", headcount: "~595", qualifying: "~450", pool: "220-360", entry: "VP People or Head of People Ops", contact: "Linkedin DM", lever: "Flutterwave staff earn global-equivalent salaries but live in Lagos. Angle: \"Your Lagos engineers earn San Francisco comp but are renting in Lekki.\"", pitch: "Senior engineers have the income but not the lump-sum equity. The installment plan is the product-market fit.", objQ: "\"Our people might move to the US or UK.\"", objA: "Lagos real estate has outperformed most global markets at 15-20% annual appreciation." },
+      "Paystack": { logoName: "Paystack", name: "Paystack", priority: "PRIORITY 2", hq: "Victoria Island, Lagos", headcount: "~383", qualifying: "~320", pool: "150-260", entry: "Head of People / HR Lead", contact: "LinkedIn DM", lever: "Paystack staff are Stripe-credentialled global talent choosing to stay in Lagos.", pitch: "Paystack engineers are renting at N2M-N5M/year. Owning a N50M Ibudo Wura unit costs less per month on a 20-year mortgage than their current rent.", objQ: "\"Small team not enough people.\"", objA: "We only need 10. Paystack has 383 Lagos staff and effectively 100% earn 1.8M+." },
+      "Total Energies": { logoName: "Total Energies", name: "Total Energies", priority: "PRIORITY 2", hq: "Victoria Island, Lagos", headcount: "~1,000", qualifying: "~680", pool: "300-480", entry: "HR Manager Nigeria", contact: "Formal letter + LinkedIn", lever: "Total Energies has a strong employee welfare philosophy. Frame this as a measurable staff welfare outcome.", pitch: "TotalEnergies engineers in Lagos are in the 2.2M-N7M band. The structured equity payment and C of O title security match the documentation standards they expect.", objQ: "\"We need legal review before endorsing any property programme.\"", objA: "We have a complete legal due diligence pack: C of O, title search report, development permits." },
+      "Seplat Energy": { logoName: "Seplat", name: "Seplat Energy", priority: "PRIORITY 2", hq: "Victoria Island, Lagos", headcount: "~600", qualifying: "~420", pool: "185-310", entry: "Chief Human Resources Officer", contact: "Phone + LinkedIn", lever: "Seplat is Nigeria's leading indigenous energy company. Angle: \"Seplat is powering Nigeria's energy future.\"", pitch: "Seplat staff have above-average financial literacy. Present the full financial model.", objQ: "\"We are based in V.I. Lakowe is a distance.\"", objA: "Lakowe is 28 minutes from Victoria Island via the Lekki-Epe expressway." },
+      "Oando Plc": { logoName: "Oando", name: "Oando Plc", priority: "PRIORITY 2", hq: "Victoria Island, Lagos", headcount: "~1,250", qualifying: "~700", pool: "350-530", entry: "Head of Human Resources", contact: "Phone + LinkedIn", lever: "Oando staff are financially motivated and market-aware. Frame this as a financial planning tool.", pitch: "Oando Professional and Senior Professional staff are primed for this offer.", objQ: "\"The company is currently focused on its own debt restructuring.\"", objA: "This programme has zero corporate financial involvement. Staff mortgage individually." },
+      "Sahara Group": { logoName: "Sahara Group", name: "Sahara Group", priority: "PRIORITY 2", hq: "Victoria Island, Lagos", headcount: "~1,100", qualifying: "~680", pool: "330-490", entry: "Group Chief People Officer", contact: "Phone + formal email", lever: "Sahara Group operates across Africa. Lead with the retreat concession for the door-opener.", pitch: "Sahara's Lagos professionals earn above-market rates. The structured installment plan removes the lump-sum barrier.", objQ: "\"Sahara staff travel frequently - they're not always in Lagos.\"", objA: "Frequent travellers actually benefit most from a structured mortgage the payment comes out automatically." },
+      "Nestle Nigeria": { logoName: "Nestle", name: "Nestle Nigeria", priority: "PRIORITY 2", hq: "Ilupeju, Lagos", headcount: "~1,350", qualifying: "~500", pool: "270-380", entry: "Human Resources Director", contact: "Formal letter + LinkedIn", lever: "Nestlé's culture prioritises employee welfare. Frame this as a \"Financial Wellness Benefit\".", pitch: "Nestlé Managers are stable, career-oriented professionals. The equity installment plan fits their consistent income profile.", objQ: "\"Our staff are spread across different areas of Lagos.\"", objA: "Lakowe is 30 minutes from llupeju via the Lagos-Ibadan Expressway to the Lekki-Epe road." },
+      "Unilever Nigeria": { logoName: "Unilever", name: "Unilever Nigeria", priority: "PRIORITY 2", hq: "Oregun, Ikeja (Lagos)", headcount: "~1,100", qualifying: "~620", pool: "280-470", entry: "HR Director Nigeria", contact: "LinkedIn + formal email", lever: "Unilever's global playbook emphasises \"purposeful living\".", pitch: "Unilever Managers are exactly the cohort who have been saving for a property down payment for years.", objQ: "\"Our staff may prefer to buy through their own savings.\"", objA: "We are not competing with savings. The 10% equity installment plan IS a structured savings mechanism." },
+      "EY": { logoName: "EY", name: "EY", priority: "PRIORITY 2", hq: "Victoria Island, Lagos", headcount: "~1,404", qualifying: "~900", pool: "370-580", entry: "Head of Talent / People Advisory", contact: "LinkedIn + formal email", lever: "EY's brand positions around \"Building a Better Working World\".", pitch: "EY Senior Associates and Managers are the prime cohort. Present the full NPV comparison: 5 years of renting versus owning.", objQ: "\"Our staff need to be mobile for client work.\"", objA: "Mobility is not an obstacle to ownership it is an argument for it." },
+      "Coronation Merchant Bank": { logoName: "Coronation", name: "Coronation Merchant Bank", priority: "PRIORITY 2", hq: "Victoria Island, Lagos", headcount: "~595", qualifying: "~400", pool: "170-280", entry: "Chief Human Resources Officer", contact: "Phone + LinkedIn", lever: "Coronation staff are investment professionals.", pitch: "Coronation Investment Managers are analytical buyers. Present the full investment model.", objQ: "\"Our numbers are small barely worth the effort.\"", objA: "Coronation's small size is an advantage: decision speed. One meeting gets this approved." },
+      "Sterling Bank Plc": { logoName: "Sterling Bank", name: "Sterling Bank Plc", priority: "PRIORITY 3", hq: "Marina, Lagos Island", headcount: "~1,120", qualifying: "~440", pool: "230-360", entry: "Chief Human Resources Officer", contact: "Phone + LinkedIn", lever: "Sterling Bank is reinventing itself. Staff are loyal and brand-proud.", pitch: "Sterling Bank managers are our ideal first cohort.", objQ: "\"Our staff base is smaller.\"", objA: "That's exactly why Sterling moves faster. 10 commitments in a bank of this size is achievable in one room." },
+      "SystemSpecs": { logoName: "SystemSpecs", name: "SystemSpecs", priority: "PRIORITY 3", hq: "Lekki Phase 1, Lagos", headcount: "~480", qualifying: "~270", pool: "150-220", entry: "HR Manager / Chief People Officer", contact: "Phone + LinkedIn", lever: "SystemSpecs processes government payments across Nigeria.", pitch: "Senior developers are the target. Remita processes the NHF - staff here understand housing finance better than most.", objQ: "\"We are a relatively small company.\"", objA: "That means the HR team makes decisions faster. 10 commitments is easily achievable in one lunchroom session." },
+      "Nigerian Breweries": { logoName: "Nigerian Breweries", name: "Nigerian Breweries", priority: "PRIORITY 3", hq: "Iganmu, Lagos", headcount: "~1,120", qualifying: "~400", pool: "225-320", entry: "Head of Human Resources", contact: "Formal letter + LinkedIn", lever: "Heineken's global DEI and employee wellbeing standards mean NB HR teams are evaluated on measurable welfare outcomes.", pitch: "NB Managers are the target. Lakowe offers a quality-of-life upgrade.", objQ: "\"We are a manufacturing company our senior staff in Lagos is a smaller group.\"", objA: "Quality over quantity. We need 10 commitments. Nigerian Breweries has 400 qualifying staff in Lagos." },
+      "Flour Mills": { logoName: "Flour Mills", name: "Flour Mills", priority: "PRIORITY 3", hq: "Apapa, Lagos", headcount: "~1,890", qualifying: "~500", pool: "220-360", entry: "Group Head, Human Resources", contact: "Formal physical letter + phone", lever: "Flour Mills of Nigeria is one of the oldest and most respected companies on the NGX.", pitch: "FMN Managers and General Managers in Lagos are stable, long-tenured earners.", objQ: "\"Most of our Lagos staff are in Apapa far from Lakowe.\"", objA: "Lakowe is actually more accessible from Apapa via the Third Mainland Bridge to Lekki than many people assume." }
+    };
 
-    function handleLogin(e) {
-      e.preventDefault();
-      const email = document.getElementById('mixtaEmail').value.trim().toLowerCase();
-      const errorMsg = document.getElementById('loginError');
+    const targetCompaniesList = Object.keys(companyData);
+    const gridP1 = document.getElementById('gridP1');
+    const gridP2 = document.getElementById('gridP2');
+    const gridP3 = document.getElementById('gridP3');
+    const imgExtensions = ['png', 'PNG', 'jpg', 'JPG', 'jpeg', 'JPEG'];
+
+    targetCompaniesList.forEach(companyKey => {
+      const data = companyData[companyKey];
+      const card = document.createElement('div');
+      card.className = 'company-cell';
+      card.onclick = () => openModal(companyKey);
       
-      if (email.endsWith('@mixtafrica.com')) {
-        sessionStorage.setItem('mixtaAuth', 'verified');
-        window.location.href = 'index.html'; 
-      } else {
-        errorMsg.style.display = 'block';
+      const logoContainer = document.createElement('div');
+      logoContainer.className = 'logo-space';
+      
+      const logoImg = document.createElement('img');
+      let extIndex = 0;
+      const baseLogoName = data.logoName || companyKey;
+      
+      logoImg.src = `${baseLogoName}.${imgExtensions[extIndex]}`; 
+      logoImg.alt = `${baseLogoName} Logo`;
+      
+      logoImg.onerror = function() {
+        extIndex++;
+        if (extIndex < imgExtensions.length) {
+          this.src = `${baseLogoName}.${imgExtensions[extIndex]}`;
+        } else {
+          this.style.display = 'none';
+          logoContainer.textContent = baseLogoName.charAt(0);
+          logoContainer.style.fontSize = '24px';
+          logoContainer.style.fontWeight = '700';
+          logoContainer.style.color = 'var(--brand-red)';
+        }
+      };
+
+      logoContainer.appendChild(logoImg);
+
+      const name = document.createElement('div');
+      name.className = 'company-name';
+      name.textContent = data.name.split(' (')[0]; 
+
+      card.appendChild(logoContainer);
+      card.appendChild(name);
+      
+      if(data.priority.includes("PRIORITY 1")) gridP1.appendChild(card);
+      else if (data.priority.includes("PRIORITY 2")) gridP2.appendChild(card);
+      else gridP3.appendChild(card);
+    });
+
+    const modal = document.getElementById('companyModal');
+    let currentCompanyIndex = 0;
+
+    function openModal(companyKey) {
+      currentCompanyIndex = targetCompaniesList.indexOf(companyKey);
+      populateModal();
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function populateModal() {
+      const companyKey = targetCompaniesList[currentCompanyIndex];
+      const data = companyData[companyKey];
+      
+      document.querySelector('.modal-scroll-area').scrollTop = 0;
+      
+      document.getElementById('mName').innerHTML = data.name;
+      document.getElementById('mPriority').innerHTML = data.priority;
+      document.getElementById('mMeta').innerHTML = `HQ: ${data.hq} | Lagos Headcount: ${data.headcount}`;
+      document.getElementById('mQualifying').innerHTML = data.qualifying;
+      document.getElementById('mPool').innerHTML = data.pool;
+      document.getElementById('mEntry').innerHTML = data.entry;
+      document.getElementById('mContact').innerHTML = data.contact;
+      document.getElementById('mLever').innerHTML = data.lever;
+      document.getElementById('mPitch').innerHTML = data.pitch;
+      document.getElementById('mObjQ').innerHTML = data.objQ;
+      document.getElementById('mObjA').innerHTML = data.objA;
+
+      const baseLogoName = data.logoName || companyKey;
+      const modalLogo = document.getElementById('mLogo');
+      const modalLogoContainer = document.getElementById('mLogoContainer');
+      
+      modalLogo.style.display = 'block';
+      modalLogoContainer.textContent = '';
+      modalLogoContainer.appendChild(modalLogo);
+
+      let modalExtIndex = 0;
+      modalLogo.src = `${baseLogoName}.${imgExtensions[modalExtIndex]}`;
+      modalLogo.alt = `${baseLogoName} Logo`;
+
+      modalLogo.onerror = function() {
+        modalExtIndex++;
+        if (modalExtIndex < imgExtensions.length) {
+          this.src = `${baseLogoName}.${imgExtensions[modalExtIndex]}`;
+        } else {
+          this.style.display = 'none';
+          modalLogoContainer.textContent = baseLogoName.charAt(0);
+          modalLogoContainer.style.fontSize = '28px';
+          modalLogoContainer.style.fontWeight = '700';
+          modalLogoContainer.style.color = 'var(--brand-red)';
+        }
+      };
+
+      document.getElementById('prevBtn').disabled = (currentCompanyIndex === 0);
+      document.getElementById('nextBtn').disabled = (currentCompanyIndex === targetCompaniesList.length - 1);
+    }
+
+    function navigateModal(direction) {
+      const newIndex = currentCompanyIndex + direction;
+      if(newIndex >= 0 && newIndex < targetCompaniesList.length) {
+          currentCompanyIndex = newIndex;
+          populateModal();
       }
     }
+
+    function closeModal(event) { if (event.target === modal) forceCloseModal(); }
+    function forceCloseModal() { modal.classList.remove('active'); document.body.style.overflow = 'auto'; }
   </script>
 </body>
 </html>
