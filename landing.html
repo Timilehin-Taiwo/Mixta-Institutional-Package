@@ -3,43 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Corporate Bulk Mortgage — Mixta Africa</title>
+  <title>Mixta Institutional Product</title>
+  
+  <meta name="apple-mobile-web-app-title" content="Mixta Institutional Product">
+  <meta name="application-name" content="Mixta Institutional Product">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="mixta-logo.jpg">
+  <link rel="icon" href="mixta-logo.jpg">
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    .trigger-container {
-      text-align: center;
-      margin: 40px auto 120px auto; 
-      position: relative;
-      z-index: 10;
-    }
-    /* Simple styling for the remember me checkbox alignment */
-    .remember-wrapper {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 20px;
-      text-align: left;
-    }
-    .remember-wrapper input[type="checkbox"] {
-      cursor: pointer;
-      width: 16px;
-      height: 16px;
-      accent-color: var(--brand-red);
-    }
-    .remember-wrapper label {
-      font-size: 13px;
-      color: var(--text-grey);
-      cursor: pointer;
-      user-select: none;
-    }
+    .trigger-container { text-align: center; margin: 40px auto 120px auto; position: relative; z-index: 10; }
+    .remember-wrapper { display: flex; align-items: center; gap: 8px; margin-bottom: 20px; text-align: left; }
+    .remember-wrapper input[type="checkbox"] { cursor: pointer; width: 16px; height: 16px; accent-color: var(--brand-red); }
+    .remember-wrapper label { font-size: 13px; color: var(--text-grey); cursor: pointer; user-select: none; }
   </style>
 </head>
 <body>
 
   <nav>
     <div class="nav-brand">
-      <img src="mixta-logo.jpg" alt="Mixta Africa Logo" style="height: 40px; width: auto; object-fit: contain;" onerror="this.style.display='none'">
+      <img src="mixta-logo.png" alt="Mixta Africa Logo" style="height: 40px; width: auto; object-fit: contain;" onerror="this.style.display='none'">
       <div>
         <div class="nav-title" style="margin-left: 8px;">Mixta Africa</div>
         <div class="nav-subtitle" style="margin-left: 8px;">Ibudo Wura & Beechwood Park II</div>
@@ -50,7 +36,7 @@
 
   <main style="max-width: 1200px;">
     <div class="public-hero">
-      <img src="mixta-logo.jpg" alt="Mixta Africa Logo" style="height: 80px; width: auto; object-fit: contain; margin-bottom: 24px;" onerror="this.style.display='none'">
+      <img src="mixta-logo.png" alt="Mixta Africa Logo" style="height: 80px; width: auto; object-fit: contain; margin-bottom: 24px;" onerror="this.style.display='none'">
       <h1 style="color: var(--brand-red);">Institutional Package</h1>
     </div>
 
@@ -86,31 +72,31 @@
       
       <div class="appliance-grid">
         <div class="appliance-item">
-          <img src="Air Conditioner.png" alt="Air Conditioner" onerror="this.style.display='none'">
+          <img src="ac.jpg" alt="Air Conditioner" onerror="this.style.display='none'">
           <span>Air Conditioner</span>
         </div>
         <div class="appliance-item">
-          <img src="Refrigerator.png" alt="Refrigerator" onerror="this.style.display='none'">
+          <img src="fridge.jpg" alt="Refrigerator" onerror="this.style.display='none'">
           <span>Refrigerator</span>
         </div>
         <div class="appliance-item">
-          <img src="Washing Machine.png" alt="Washing Machine" onerror="this.style.display='none'">
+          <img src="washing-machine.jpg" alt="Washing Machine" onerror="this.style.display='none'">
           <span>Washing Machine</span>
         </div>
         <div class="appliance-item">
-          <img src="Heat Extractor.png" alt="Heat Extractor" onerror="this.style.display='none'">
+          <img src="heat-extractor.jpg" alt="Heat Extractor" onerror="this.style.display='none'">
           <span>Heat Extractor</span>
         </div>
         <div class="appliance-item">
-          <img src="Water Dispenser.png" alt="Water Dispenser" onerror="this.style.display='none'">
+          <img src="dispenser.jpg" alt="Water Dispenser" onerror="this.style.display='none'">
           <span>Water Dispenser</span>
         </div>
         <div class="appliance-item">
-          <img src="Dishwasher.png" alt="Dish Washer" onerror="this.style.display='none'">
+          <img src="dishwasher.jpg" alt="Dish Washer" onerror="this.style.display='none'">
           <span>Dish Washer</span>
         </div>
         <div class="appliance-item">
-          <img src="Solar Panels.png" alt="Solar Panels" onerror="this.style.display='none'">
+          <img src="solar.jpg" alt="Solar Panels" onerror="this.style.display='none'">
           <span>Solar Panels</span>
         </div>
       </div>
@@ -136,12 +122,25 @@
     </div>
   </div>
 
+  <button class="chat-btn" onclick="toggleChat()">?</button>
+  <div class="chat-window" id="chatWindow">
+    <div class="chat-header">
+      <h3>Mixta Assistant</h3>
+      <button class="chat-close" onclick="toggleChat()">×</button>
+    </div>
+    <div class="chat-body" id="chatBody">
+      <div class="chat-bubble chat-bot">Hello! I can answer questions about the Corporate Bulk Mortgage package. What would you like to know?</div>
+    </div>
+    <div class="chat-options" id="chatOptions">
+      </div>
+  </div>
+
   <script>
+    // LOGIN LOGIC
     const modal = document.getElementById('loginModal');
     const emailInput = document.getElementById('mixtaEmail');
     const rememberCheckbox = document.getElementById('rememberMe');
 
-    // On page load, check if an email was previously saved
     document.addEventListener('DOMContentLoaded', () => {
       const savedEmail = localStorage.getItem('savedMixtaEmail');
       if (savedEmail) {
@@ -152,10 +151,7 @@
 
     function openLogin() { 
       modal.classList.add('active'); 
-      // Auto-focus the input if it's empty, or the button if the email is already populated
-      if (!emailInput.value) {
-        emailInput.focus();
-      }
+      if (!emailInput.value) { emailInput.focus(); }
     }
     
     function closeLogin() { 
@@ -166,30 +162,89 @@
     function executeLogin() {
       const email = emailInput.value.trim().toLowerCase();
       const errorMsg = document.getElementById('loginError');
-      
       if (email.endsWith('@mixtafrica.com')) {
-        // Handle "Remember Me" logic
-        if (rememberCheckbox.checked) {
-          localStorage.setItem('savedMixtaEmail', email);
-        } else {
-          localStorage.removeItem('savedMixtaEmail');
-        }
-
-        // Issue session token and route to internal hub
+        if (rememberCheckbox.checked) { localStorage.setItem('savedMixtaEmail', email); } 
+        else { localStorage.removeItem('savedMixtaEmail'); }
         sessionStorage.setItem('mixtaAuth', 'verified');
         window.location.assign('./index.html'); 
       } else {
         errorMsg.style.display = 'block';
       }
     }
+    emailInput.addEventListener('keypress', function (e) { if (e.key === 'Enter') { e.preventDefault(); executeLogin(); } });
 
-    // Trigger login when the "Enter" key is pressed
-    emailInput.addEventListener('keypress', function (e) {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        executeLogin();
+    // CHATBOT LOGIC
+    const chatWindow = document.getElementById('chatWindow');
+    const chatBody = document.getElementById('chatBody');
+    const chatOptionsContainer = document.getElementById('chatOptions');
+
+    // FAQ Knowledge Base pulled directly from documents
+    const faqs = [
+      {
+        q: "What is the minimum staff requirement?",
+        a: "The full bulk offer activates when a minimum of 10 staff members sign an Expression of Interest."
+      },
+      {
+        q: "What are the interest rates and terms?",
+        a: "Through MREIF and Access Bank, staff access single-digit interest rates from 9.75% with a fixed tenor of up to 20 years."
+      },
+      {
+        q: "What are the ecosystem bonuses?",
+        a: "Participating institutions qualify for corporate retreat discounts, and staff receive a free appliance package (capped at ₦500,000) upon moving in."
+      },
+      {
+        q: "What is the equity contribution?",
+        a: "There is a 10% equity contribution which can be spread comfortably over 6, 9, or 12 months."
+      },
+      {
+        q: "Are the properties secure?",
+        a: "Yes, all Mixta projects are backed by a Certificate of Occupancy (C of O) and credible legal documentation."
       }
-    });
+    ];
+
+    function toggleChat() {
+      chatWindow.classList.toggle('active');
+      if(chatWindow.classList.contains('active')) {
+        renderOptions();
+      }
+    }
+
+    function renderOptions() {
+      chatOptionsContainer.innerHTML = '';
+      faqs.forEach((faq, index) => {
+        const btn = document.createElement('button');
+        btn.className = 'chat-chip';
+        btn.textContent = faq.q;
+        btn.onclick = () => handleUserQuery(index);
+        chatOptionsContainer.appendChild(btn);
+      });
+    }
+
+    function handleUserQuery(index) {
+      const selectedFaq = faqs[index];
+      
+      // Append User message
+      const userMsg = document.createElement('div');
+      userMsg.className = 'chat-bubble chat-user';
+      userMsg.textContent = selectedFaq.q;
+      chatBody.appendChild(userMsg);
+      
+      // Scroll to bottom
+      chatBody.scrollTop = chatBody.scrollHeight;
+      
+      // Hide options momentarily
+      chatOptionsContainer.innerHTML = '';
+
+      // Fake typing delay for natural UX
+      setTimeout(() => {
+        const botMsg = document.createElement('div');
+        botMsg.className = 'chat-bubble chat-bot';
+        botMsg.textContent = selectedFaq.a;
+        chatBody.appendChild(botMsg);
+        chatBody.scrollTop = chatBody.scrollHeight;
+        renderOptions(); // Bring options back
+      }, 600);
+    }
   </script>
 </body>
 </html>
