@@ -6,12 +6,21 @@
   <title>Corporate Bulk Mortgage — Mixta Africa</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Specific positioning for the 10 Minimum badge to sit cleanly between sections */
+    .trigger-container {
+      text-align: center;
+      margin: 0 auto 40px auto;
+      position: relative;
+      z-index: 10;
+    }
+  </style>
 </head>
 <body>
 
   <nav>
     <div class="nav-brand">
-      <img src="mixta-logo.jpg" alt="Mixta Africa" style="height: 40px; width: auto; object-fit: contain;" onerror="this.style.display='none'">
+      <img src="Your-Logo-Name-Here.png" alt="Mixta Africa Logo" style="height: 40px; width: auto; object-fit: contain;" onerror="this.style.display='none'">
       <div>
         <div class="nav-title" style="margin-left: 8px;">Mixta Africa</div>
         <div class="nav-subtitle" style="margin-left: 8px;">Ibudo Wura & Beechwood Park II</div>
@@ -24,13 +33,6 @@
     <div class="public-hero">
       <h1 style="color: var(--brand-red);">A win-win offer that increases institutional conversion speed.</h1>
       <p>Pre-Approved Institutional Offer Framework.</p>
-    </div>
-
-    <div style="text-align: center; margin-top: -20px; margin-bottom: 40px;">
-      <div class="trigger-badge">
-        <span class="trigger-number">10</span>
-        <span class="trigger-text">Minimum<br>Staff Offtake</span>
-      </div>
     </div>
 
     <div class="offer-grid">
@@ -49,6 +51,13 @@
         <ul class="offer-list">
           <li>Appliance per home (Capped at ₦500,000).</li>
         </ul>
+      </div>
+    </div>
+
+    <div class="trigger-container">
+      <div class="trigger-badge">
+        <span class="trigger-number">10</span>
+        <span class="trigger-text">Minimum<br>Staff Offtake</span>
       </div>
     </div>
 
@@ -114,7 +123,7 @@
       
       if (email.endsWith('@mixtafrica.com')) {
         sessionStorage.setItem('mixtaAuth', 'verified');
-        window.location.href = 'index.html';
+        window.location.href = 'index.html'; // Routes to your internal dashboard
       } else {
         errorMsg.style.display = 'block';
       }
