@@ -51,7 +51,7 @@ nav {
 .offer-list li::before { content: '•'; color: var(--brand-red); position: absolute; left: 0; font-size: 20px; line-height: 1; }
 .offer-list li strong { color: var(--text-dark); }
 
-/* 10 MINIMUM BADGE - Positioned with Macro-whitespace */
+/* 10 MINIMUM BADGE - Positioned below offers, above appliances */
 .trigger-container { text-align: center; margin: 40px auto 120px auto; position: relative; z-index: 10; }
 .trigger-badge {
   background: var(--bg-white); border: 2px solid var(--brand-red); border-radius: 8px;
