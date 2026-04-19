@@ -7,10 +7,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Specific positioning for the 10 Minimum badge to sit cleanly between sections */
+    /* VERTICAL RHYTHM & GESTALT PROXIMITY */
+    
+    /* 1. Remove default bottom margin from the grid so we control spacing precisely */
+    .offer-grid {
+      margin-bottom: 0 !important;
+    }
+
+    /* 2. Anchor the badge to the top section, and push the appliances far down */
     .trigger-container {
       text-align: center;
-      margin: 0 auto 40px auto;
+      margin: 40px auto 120px auto; /* 40px top (close to offers), 120px bottom (macro-whitespace) */
       position: relative;
       z-index: 10;
     }
@@ -20,7 +27,7 @@
 
   <nav>
     <div class="nav-brand">
-      <img src="Your-Logo-Name-Here.png" alt="Mixta Africa Logo" style="height: 40px; width: auto; object-fit: contain;" onerror="this.style.display='none'">
+      <img src="mixta-logo.png" alt="Mixta Africa Logo" style="height: 40px; width: auto; object-fit: contain;" onerror="this.style.display='none'">
       <div>
         <div class="nav-title" style="margin-left: 8px;">Mixta Africa</div>
         <div class="nav-subtitle" style="margin-left: 8px;">Ibudo Wura & Beechwood Park II</div>
@@ -123,7 +130,7 @@
       
       if (email.endsWith('@mixtafrica.com')) {
         sessionStorage.setItem('mixtaAuth', 'verified');
-        window.location.href = 'index.html'; // Routes to your internal dashboard
+        window.location.href = 'index.html'; 
       } else {
         errorMsg.style.display = 'block';
       }
