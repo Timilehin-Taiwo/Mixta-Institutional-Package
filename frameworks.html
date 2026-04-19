@@ -2,7 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Industry Frameworks — Sales Directory</title>
+  <title>Mixta Institutional Product</title>
+  
+  <meta name="apple-mobile-web-app-title" content="Mixta Institutional Product">
+  <meta name="application-name" content="Mixta Institutional Product">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="mixta-logo.jpg">
+  <link rel="icon" href="mixta-logo.jpg">
+
   <script>
     if (sessionStorage.getItem('mixtaAuth') !== 'verified') { window.location.assign('./landing.html'); }
     let idleTime = 0;
@@ -11,7 +19,7 @@
     function timerIncrement() { idleTime++; if (idleTime >= 15) { sessionStorage.clear(); window.location.assign('./landing.html'); } }
     function resetTimer() { idleTime = 0; }
   </script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -29,41 +37,68 @@
   </nav>
 
   <main>
-    <div class="page-header">
+    <div class="page-header" style="text-align: center;">
       <h1>Industry Targeting Frameworks</h1>
       <p>Sector-specific entry logic, behavioral traits, and conversational levers.</p>
     </div>
 
-    <div class="data-grid">
-      <div class="card">
-        <h2 style="font-size: 18px; margin-bottom: 12px; color: var(--brand-red);">1. Financial Services (Banking)</h2>
-        <p style="font-size: 14px; color: var(--text-grey); margin-bottom: 8px;"><strong>Entry logic:</strong> Go to HR, never to Procurement or the CEO. Bank HR Directors own staff welfare budgets and have the authority to endorse external employee benefit programmes.</p>
-        <p style="font-size: 14px; color: var(--text-grey);"><strong>Sector lever:</strong> Banking sector staff are financially literate; they respond to structured financial logic. Present the DSR calculation. Show the numbers.</p>
+    <div class="info-grid">
+      
+      <div class="info-card">
+        <div class="info-icon">1</div>
+        <div class="info-title">Financial Services (Banking)</div>
+        <div class="info-desc">
+          <strong>Entry Logic</strong>
+          Go to HR, never to Procurement or the CEO. Bank HR Directors own staff welfare budgets and have the authority to endorse external employee benefit programmes.
+          <strong>Sector Lever</strong>
+          Banking sector staff are financially literate; they respond to structured financial logic. Present the DSR calculation. Show the numbers.
+        </div>
       </div>
 
-      <div class="card">
-        <h2 style="font-size: 18px; margin-bottom: 12px; color: var(--brand-red);">2. Telecoms & Technology</h2>
-        <p style="font-size: 14px; color: var(--text-grey); margin-bottom: 8px;"><strong>Entry logic:</strong> LinkedIn DM is the correct channel for fintech and tech (Flutterwave, Paystack, SystemSpecs). Formal letters are unnecessary and signal misaligned culture.</p>
-        <p style="font-size: 14px; color: var(--text-grey);"><strong>Sector lever:</strong> Tech staff are financially sophisticated and data-driven. They respond to investment-grade language: ROI, capital appreciation, NPV.</p>
+      <div class="info-card">
+        <div class="info-icon">2</div>
+        <div class="info-title">Telecoms & Technology</div>
+        <div class="info-desc">
+          <strong>Entry Logic</strong>
+          LinkedIn DM is the correct channel for fintech and tech (Flutterwave, Paystack, SystemSpecs). Formal letters are unnecessary and signal misaligned culture.
+          <strong>Sector Lever</strong>
+          Tech staff are financially sophisticated and data-driven. They respond to investment-grade language: ROI, capital appreciation, NPV.
+        </div>
       </div>
 
-      <div class="card">
-        <h2 style="font-size: 18px; margin-bottom: 12px; color: var(--brand-red);">3. Oil, Gas & Energy</h2>
-        <p style="font-size: 14px; color: var(--text-grey); margin-bottom: 8px;"><strong>Entry logic:</strong> International companies (Shell, Total Energies) require formal documentation and due diligence packs. Begin with a formal letter and C of O evidence.</p>
-        <p style="font-size: 14px; color: var(--text-grey);"><strong>Sector lever:</strong> Oil & Gas professionals have high incomes but are acutely aware of Nigerian property title risk. The Certificate of Occupancy on both Ibudo Wura and Beechwood Park II is the single most powerful credential with this audience.</p>
+      <div class="info-card">
+        <div class="info-icon">3</div>
+        <div class="info-title">Oil, Gas & Energy</div>
+        <div class="info-desc">
+          <strong>Entry Logic</strong>
+          International companies (Shell, Total Energies) require formal documentation and due diligence packs. Begin with a formal letter and C of O evidence.
+          <strong>Sector Lever</strong>
+          Oil & Gas professionals have high incomes but are acutely aware of Nigerian property title risk. The Certificate of Occupancy is the single most powerful credential here.
+        </div>
       </div>
 
-      <div class="card">
-        <h2 style="font-size: 18px; margin-bottom: 12px; color: var(--brand-red);">4. FMCG & Manufacturing</h2>
-        <p style="font-size: 14px; color: var(--text-grey); margin-bottom: 8px;"><strong>Entry logic:</strong> Use formal letters for Nestlé, Unilever, and Flour Mills — all structured HR environments.</p>
-        <p style="font-size: 14px; color: var(--text-grey);"><strong>Sector lever:</strong> FMCG HR Directors are measured on retention and welfare metrics. Frame this as a measurable staff benefit.</p>
+      <div class="info-card">
+        <div class="info-icon">4</div>
+        <div class="info-title">FMCG & Manufacturing</div>
+        <div class="info-desc">
+          <strong>Entry Logic</strong>
+          Use formal letters for Nestlé, Unilever, and Flour Mills — all structured HR environments.
+          <strong>Sector Lever</strong>
+          FMCG HR Directors are measured on retention and welfare metrics. Frame this strictly as a measurable staff benefit.
+        </div>
       </div>
 
-      <div class="card">
-        <h2 style="font-size: 18px; margin-bottom: 12px; color: var(--brand-red);">5. Professional Services</h2>
-        <p style="font-size: 14px; color: var(--text-grey); margin-bottom: 8px;"><strong>Entry logic:</strong> Big Four firms are governed by partnership structures. Reach the People & Culture lead on LinkedIn, send a structured document, and request a 30-minute slot.</p>
-        <p style="font-size: 14px; color: var(--text-grey);"><strong>Sector lever:</strong> Consultants and investment professionals analyse deals for a living. Do not over-pitch — present the structured financial case and let them interrogate it.</p>
+      <div class="info-card">
+        <div class="info-icon">5</div>
+        <div class="info-title">Professional Services</div>
+        <div class="info-desc">
+          <strong>Entry Logic</strong>
+          Big Four firms are governed by partnership structures. Reach the People & Culture lead on LinkedIn, send a structured document, and request a 30-minute slot.
+          <strong>Sector Lever</strong>
+          Consultants and investment professionals analyse deals for a living. Do not over-pitch — present the structured financial case and let them interrogate it.
+        </div>
       </div>
+
     </div>
   </main>
 </body>
