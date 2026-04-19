@@ -25,18 +25,25 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <nav>
+    <nav>
     <a href="index.html" class="nav-brand">
       <img src="mixta-logo.png" alt="Mixta Africa Logo" style="height: 40px; width: auto; object-fit: contain;" onerror="this.style.display='none'">
       <div>
         <div class="nav-title" style="margin-left: 8px;">Mixta Africa</div>
-        <div class="nav-subtitle" style="margin-left: 8px;">← Back to Intelligence Hub</div>
+        <div class="nav-subtitle" style="margin-left: 8px;">Intelligence Hub</div>
       </div>
     </a>
-    <button onclick="sessionStorage.clear(); window.location.assign('./landing.html')" style="background: var(--bg-grey-light); border: 1px solid var(--border-grey); color: var(--brand-red); font-weight: 600; cursor: pointer; font-size: 13px; padding: 8px 16px; border-radius: 6px; transition: all 0.2s;">
-      Sign Out
-    </button>
+    
+    <div class="nav-menu">
+      <a href="index.html" class="nav-link">Dashboard</a>
+      <a href="frameworks.html" class="nav-link active">Frameworks</a>
+      <a href="playbook.html" class="nav-link">Playbook</a>
+      <a href="collateral.html" class="nav-link">Collateral</a>
+    </div>
+
+    <button onclick="sessionStorage.clear(); window.location.assign('./landing.html')" class="btn-signout">Sign Out</button>
   </nav>
+
 
   <main>
     <div class="page-header" style="text-align: center;">
