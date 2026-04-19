@@ -44,7 +44,6 @@ nav {
 .public-hero h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 700; margin-bottom: 16px; color: var(--text-dark); line-height: 1.2; }
 .public-hero p { font-size: clamp(16px, 3vw, 18px); color: var(--text-grey); margin-bottom: 40px; }
 
-/* FLUID GRIDS */
 .offer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; margin-bottom: 0 !important; position: relative; }
 .offer-card { border: 2px dashed var(--border-grey); border-radius: 16px; padding: 40px; background: var(--bg-off-white); }
 .offer-card h2 { font-size: 20px; color: var(--text-dark); margin-bottom: 24px; text-align: center; }
@@ -55,21 +54,13 @@ nav {
 
 /* 10 MINIMUM BADGE */
 .trigger-container { text-align: center; margin: 40px auto 120px auto; position: relative; z-index: 10; }
-.trigger-badge {
-  background: var(--bg-white); border: 2px solid var(--brand-red); border-radius: 8px;
-  padding: 16px 32px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-  display: inline-block;
-}
+.trigger-badge { background: var(--bg-white); border: 2px solid var(--brand-red); border-radius: 8px; padding: 16px 32px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.05); display: inline-block; }
 .trigger-number { font-size: 24px; font-weight: 700; color: var(--brand-red); display: block; }
 .trigger-text { font-size: 12px; font-weight: 600; text-transform: uppercase; color: var(--text-dark); }
 
 .appliance-section { text-align: center; padding: 60px 40px; background: var(--bg-grey-light); border-radius: 16px; }
 .appliance-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 20px; margin-top: 32px; }
-.appliance-item { 
-  background: var(--bg-white); padding: 20px; border-radius: 8px; 
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05); font-size: 14px; font-weight: 500; 
-  color: var(--text-dark); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; text-align: center;
-}
+.appliance-item { background: var(--bg-white); padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); font-size: 14px; font-weight: 500; color: var(--text-dark); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; text-align: center; }
 .appliance-item img { width: 60px; height: 60px; object-fit: contain; }
 
 /* INTERNAL LAYOUT */
@@ -80,14 +71,8 @@ main { max-width: 1100px; margin: 60px auto 0; padding: 0 40px; }
 .page-header h1 { font-size: clamp(24px, 4vw, 28px); color: var(--text-dark); margin-bottom: 8px; }
 .page-header p { color: var(--brand-grey); font-size: 15px; }
 
-/* FLUID GUIDING GRID (Desktop 2-columns) */
-.guiding-grid { 
-  display: grid; 
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-  gap: 24px; 
-  max-width: 800px; 
-  margin: 0 auto 80px auto; 
-}
+/* GUIDING GRID - Now supports 3 columns beautifully */
+.guiding-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; max-width: 1000px; margin: 0 auto 80px auto; }
 .guide-card { display: flex; flex-direction: column; align-items: center; border: 1px solid var(--border-grey); border-radius: 8px; padding: 32px 24px; text-decoration: none; text-align: center; transition: all 0.2s ease; height: 100%; }
 .guide-card:hover { border-color: var(--brand-red); background: var(--brand-red-light); transform: translateY(-4px); }
 .guide-icon { width: 48px; height: 48px; background: var(--bg-grey-light); border-radius: 50%; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; color: var(--brand-grey); font-size: 20px; flex-shrink: 0; }
@@ -97,29 +82,15 @@ main { max-width: 1100px; margin: 60px auto 0; padding: 0 40px; }
 hr { border: none; border-top: 1px solid var(--border-grey); margin: 0 0 60px 0; }
 
 .priority-header { font-size: 14px; font-weight: 700; color: var(--brand-red); margin: 40px 0 16px; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid var(--border-grey); padding-bottom: 8px; }
-
-/* FLUID COMPANY GRID */
 .company-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 20px; margin-bottom: 40px;}
 .company-cell { background: var(--bg-off-white); border: 1px solid var(--border-grey); border-radius: 8px; padding: 20px 12px; text-align: center; display: flex; flex-direction: column; align-items: center; cursor: pointer; transition: all 0.2s ease;}
 .company-cell:hover { border-color: var(--brand-red); background: var(--bg-white); box-shadow: 0 4px 10px rgba(217, 45, 32, 0.1); transform: translateY(-2px); }
 
-/* STRICT FIXED LOGO MEASUREMENTS */
 .logo-space { width: 64px; height: 64px; min-width: 64px; min-height: 64px; background: var(--bg-white); border: 1px solid var(--border-grey); border-radius: 50%; margin-bottom: 16px; display: flex; align-items: center; justify-content: center; color: var(--text-light); overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
 .logo-space img { width: 40px; height: 40px; object-fit: contain; display: block; }
 .company-name { font-size: 13px; font-weight: 600; color: var(--text-dark); line-height: 1.3; }
 
-/* DATA TABLES & GRIDS (Legacy Inner Pages) */
-.data-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 40px; }
-.single-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-bottom: 40px; }
-.card { background: var(--bg-white); border: 1px solid var(--border-grey); border-radius: 8px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-.card-title { font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--brand-grey); margin-bottom: 8px; }
-.card-value { font-size: 20px; font-weight: 600; color: var(--text-dark); }
-.card-highlight { color: var(--brand-red); font-weight: 600; }
-.step-list { list-style: none; counter-reset: steps; }
-.step-list li { position: relative; padding-left: 40px; margin-bottom: 24px; }
-.step-list li::before { counter-increment: steps; content: counter(steps); position: absolute; left: 0; top: 0; width: 28px; height: 28px; background: var(--brand-red-light); color: var(--brand-red); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; }
-
-/* MODAL STYLES */
+/* MODALS & LOGINS */
 .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(17, 24, 39, 0.6); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display: none; justify-content: center; align-items: center; z-index: 1000; padding: 20px; opacity: 0; transition: opacity 0.3s ease; }
 .modal-overlay.active { display: flex; opacity: 1; }
 .modal-content { background: var(--bg-white); width: 100%; max-width: 850px; max-height: 90vh; border-radius: 12px; overflow-y: hidden; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); position: relative; transform: translateY(20px); transition: transform 0.3s ease; display: flex; flex-direction: column; }
@@ -134,8 +105,6 @@ hr { border: none; border-top: 1px solid var(--border-grey); margin: 0 0 60px 0;
 .modal-title { font-size: clamp(20px, 4vw, 28px); font-weight: 700; color: var(--text-dark); margin-bottom: 8px; line-height: 1.2; }
 .modal-meta { font-size: 13px; color: var(--text-grey); }
 .modal-scroll-area { overflow-y: auto; padding: 32px; flex-grow: 1; }
-
-/* FLUID MODAL GRID */
 .modal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 32px; }
 .modal-stat-box { border: 1px solid var(--border-grey); padding: 20px; border-radius: 8px; }
 .modal-stat-title { font-size: 12px; text-transform: uppercase; color: var(--brand-grey); margin-bottom: 8px; font-weight: 600;}
@@ -150,142 +119,71 @@ hr { border: none; border-top: 1px solid var(--border-grey); margin: 0 0 60px 0;
 .modal-footer { padding: 20px 32px; border-top: 1px solid var(--border-grey); background: var(--bg-off-white); display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; flex-wrap: wrap; gap: 12px; }
 .nav-modal-btn { background: var(--bg-white); border: 1px solid var(--border-grey); padding: 10px 20px; border-radius: 6px; cursor: pointer; font-family: var(--font-sans); font-size: 13px; font-weight: 600; color: var(--text-dark); transition: all 0.2s; }
 .nav-modal-btn:hover:not(:disabled) { border-color: var(--brand-red); color: var(--brand-red); }
-.nav-modal-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
-/* LOGIN MODAL */
 .login-modal { position: fixed; inset: 0; background: rgba(17, 24, 39, 0.8); backdrop-filter: blur(8px); display: none; justify-content: center; align-items: center; z-index: 1000; padding: 20px; }
 .login-modal.active { display: flex; }
 .login-box { background: var(--bg-white); padding: 40px; border-radius: 12px; width: 100%; max-width: 400px; text-align: center; position: relative; }
 .login-box h2 { margin-bottom: 8px; }
 .login-box p { color: var(--text-grey); font-size: 14px; margin-bottom: 24px; }
 .login-input { width: 100%; padding: 12px 16px; border: 1px solid var(--border-grey); border-radius: 6px; margin-bottom: 16px; font-size: 14px; }
-.login-input:focus { outline: none; border-color: var(--brand-red); }
 .btn-submit { width: 100%; background: var(--brand-red); color: white; padding: 12px; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; }
 .error-msg { color: var(--brand-red); font-size: 12px; margin-top: 12px; display: none; }
-.close-login { position: absolute; top: 16px; right: 16px; background: none; border: none; font-size: 24px; cursor: pointer; color: var(--text-grey); }
 
-/* =========================================
-   APP-STYLE INFO CARDS (For Inner Pages)
-   ========================================= */
-.info-grid { 
-  display: grid; 
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-  gap: 24px; 
-  margin-bottom: 60px; 
-}
-.info-card { 
-  display: flex; 
-  flex-direction: column; 
-  align-items: center; 
-  border: 1px solid var(--border-grey); 
-  border-radius: 12px; 
-  padding: 32px 24px; 
-  background: var(--bg-white); 
-  transition: all 0.2s ease; 
-  height: 100%; 
-}
-.info-card:hover, .info-card:active { 
-  border-color: var(--brand-red); 
-  background: var(--brand-red-light); 
-  transform: translateY(-4px); 
-}
-.info-icon { 
-  width: 56px; 
-  height: 56px; 
-  background: var(--bg-white); 
-  border: 1px solid var(--border-grey);
-  color: var(--brand-red); 
-  border-radius: 50%; 
-  margin: 0 auto 20px; 
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
-  font-size: 22px; 
-  font-weight: 700; 
-  flex-shrink: 0; 
-  transition: all 0.2s ease;
-}
-.info-card:hover .info-icon, .info-card:active .info-icon {
-  background: var(--brand-red);
-  color: var(--bg-white);
-  border-color: var(--brand-red);
-}
-.info-title { 
-  font-size: 18px; 
-  font-weight: 700; 
-  margin-bottom: 16px; 
-  color: var(--text-dark); 
-  text-align: center; 
-}
-.info-desc { 
-  font-size: 14px; 
-  color: var(--text-grey); 
-  line-height: 1.6; 
-  text-align: center; 
-  width: 100%; 
-}
-.info-desc strong { 
-  color: var(--text-dark); 
-  display: block; 
-  margin-bottom: 4px; 
-  margin-top: 16px; 
-}
-.info-desc strong:first-child { 
-  margin-top: 0; 
-}
+/* APP-STYLE INFO CARDS */
+.info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 60px; }
+.info-card { display: flex; flex-direction: column; align-items: center; border: 1px solid var(--border-grey); border-radius: 12px; padding: 32px 24px; background: var(--bg-white); transition: all 0.2s ease; height: 100%; }
+.info-card:hover, .info-card:active { border-color: var(--brand-red); background: var(--brand-red-light); transform: translateY(-4px); }
+.info-icon { width: 56px; height: 56px; background: var(--bg-white); border: 1px solid var(--border-grey); color: var(--brand-red); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700; flex-shrink: 0; transition: all 0.2s ease; }
+.info-card:hover .info-icon, .info-card:active .info-icon { background: var(--brand-red); color: var(--bg-white); border-color: var(--brand-red); }
+.info-title { font-size: 18px; font-weight: 700; margin-bottom: 16px; color: var(--text-dark); text-align: center; }
+.info-desc { font-size: 14px; color: var(--text-grey); line-height: 1.6; text-align: center; width: 100%; }
+.info-desc strong { color: var(--text-dark); display: block; margin-bottom: 4px; margin-top: 16px; }
+.info-desc strong:first-child { margin-top: 0; }
 
-/* =========================================
-   COMPREHENSIVE RESPONSIVE DESIGN 
-   ========================================= */
-@media (max-width: 1024px) {
-  main { padding: 0 32px; }
-}
+/* DOWNLOADS & FEEDBACK SECTION */
+.action-box { background: var(--bg-off-white); border: 1px solid var(--border-grey); border-radius: 12px; padding: 32px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; gap: 20px; flex-wrap: wrap; }
+.action-text h3 { font-size: 18px; color: var(--text-dark); margin-bottom: 4px; }
+.action-text p { font-size: 14px; color: var(--text-grey); }
+.action-btn { background: var(--bg-white); border: 1px solid var(--border-grey); color: var(--text-dark); padding: 12px 24px; border-radius: 6px; font-weight: 600; text-decoration: none; transition: all 0.2s; white-space: nowrap; }
+.action-btn:hover { border-color: var(--brand-red); color: var(--brand-red); }
+.action-btn.primary { background: var(--brand-red); color: white; border: none; }
+.action-btn.primary:hover { background: var(--brand-red-hover); color: white; }
 
+/* FLOATING CHATBOT */
+.chat-btn { position: fixed; bottom: 24px; right: 24px; width: 60px; height: 60px; background: var(--brand-red); color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 24px; cursor: pointer; box-shadow: 0 4px 12px rgba(217, 45, 32, 0.4); z-index: 9999; border: none; transition: transform 0.2s; }
+.chat-btn:hover { transform: scale(1.05); }
+.chat-window { position: fixed; bottom: 100px; right: 24px; width: 350px; background: white; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.15); border: 1px solid var(--border-grey); display: none; flex-direction: column; overflow: hidden; z-index: 9998; }
+.chat-window.active { display: flex; animation: slideUp 0.3s ease; }
+.chat-header { background: var(--bg-off-white); padding: 16px; border-bottom: 1px solid var(--border-grey); display: flex; justify-content: space-between; align-items: center; }
+.chat-header h3 { font-size: 16px; color: var(--text-dark); margin: 0; }
+.chat-close { background: none; border: none; font-size: 20px; cursor: pointer; color: var(--text-grey); }
+.chat-body { padding: 16px; height: 350px; overflow-y: auto; background: var(--bg-off-white); display: flex; flex-direction: column; gap: 12px; }
+.chat-bubble { max-width: 85%; padding: 12px 16px; border-radius: 12px; font-size: 14px; line-height: 1.4; }
+.chat-bot { background: white; border: 1px solid var(--border-grey); color: var(--text-dark); align-self: flex-start; border-bottom-left-radius: 4px; }
+.chat-user { background: var(--brand-red); color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
+.chat-options { padding: 16px; background: white; border-top: 1px solid var(--border-grey); display: flex; flex-wrap: wrap; gap: 8px; }
+.chat-chip { background: var(--bg-grey-light); border: 1px solid var(--border-grey); padding: 8px 12px; border-radius: 20px; font-size: 12px; color: var(--text-dark); cursor: pointer; transition: background 0.2s; }
+.chat-chip:hover { background: var(--border-grey); }
+@keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+/* RESPONSIVE OVERRIDES */
 @media (max-width: 768px) {
-  /* This prevents the horizontal scroll and forces standard stacking! */
-  .guiding-grid { 
-    display: grid; 
-    grid-template-columns: 1fr; 
-    gap: 16px; 
-    margin-bottom: 60px; 
-  }
+  .guiding-grid, .info-grid { grid-template-columns: 1fr; }
   .guide-card { min-width: auto; }
-  
-  .info-grid { grid-template-columns: 1fr; }
-  
   nav { padding: 16px 20px; }
   main { padding: 0 20px; margin-top: 30px; }
-  .btn-login { padding: 8px 16px; font-size: 12px; }
-  .public-hero { padding: 40px 20px; }
-  .public-hero h1 { font-size: 32px; }
   .offer-grid { grid-template-columns: 1fr; gap: 20px; }
-  .trigger-container { margin: 20px auto 60px auto; }
-  .page-header h1 { font-size: 24px; }
   .company-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-  .company-cell { padding: 16px 8px; }
-  .data-grid, .single-grid { grid-template-columns: 1fr; gap: 16px; }
-  .card { padding: 20px 16px; }
   .modal-content { width: 95%; max-height: 95vh; }
   .modal-header { padding: 20px; padding-right: 48px; }
-  .modal-title { font-size: 22px; }
-  .close-btn { top: 16px; right: 16px; font-size: 20px; }
   .modal-logo-box { width: 50px; height: 50px; min-width: 50px; }
   .modal-logo-box img { width: 30px; height: 30px; }
-  .modal-scroll-area { padding: 20px; }
-  .modal-grid { grid-template-columns: 1fr; gap: 12px; margin-bottom: 24px; }
-  .modal-footer { padding: 16px 20px; }
-  .nav-modal-btn { padding: 8px 16px; font-size: 12px; }
-  .appliance-section { padding: 40px 20px; }
+  .chat-window { width: calc(100% - 40px); right: 20px; bottom: 90px; }
 }
-
 @media (max-width: 480px) {
-  .company-grid { grid-template-columns: 1fr 1fr; }
-  .appliance-grid { grid-template-columns: 1fr 1fr; }
-  .offer-card { padding: 24px; }
-  .trigger-container { margin: 20px auto 60px auto; }
-  
-  /* Stack modal header vertically on tiny screens */
+  .company-grid, .appliance-grid { grid-template-columns: 1fr 1fr; }
   .modal-header { flex-direction: column-reverse; align-items: flex-start; gap: 12px; padding-right: 20px; padding-top: 40px; }
   .close-btn { top: 10px; right: 10px; }
   .modal-logo-box { position: absolute; top: 20px; right: 20px; }
+  .action-box { flex-direction: column; align-items: flex-start; text-align: left; }
 }
