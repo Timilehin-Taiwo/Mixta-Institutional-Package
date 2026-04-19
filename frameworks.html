@@ -4,37 +4,12 @@
   <meta charset="UTF-8">
   <title>Industry Frameworks — Sales Directory</title>
   <script>
-    // 1. Check if logged in
-    if (sessionStorage.getItem('mixtaAuth') !== 'verified') {
-      window.location.href = 'landing.html';
-    }
-
-    // 2. Idle Timeout Logic (15 minutes)
+    if (sessionStorage.getItem('mixtaAuth') !== 'verified') { window.location.href = 'landing.html'; }
     let idleTime = 0;
-    
-    // Increment timer every 1 minute
     const idleInterval = setInterval(timerIncrement, 60000); 
-
-    // Reset the timer if the user does anything
-    window.onload = resetTimer;
-    window.onmousemove = resetTimer;
-    window.onmousedown = resetTimer;
-    window.ontouchstart = resetTimer;
-    window.onclick = resetTimer;
-    window.onkeypress = resetTimer;
-    window.addEventListener('scroll', resetTimer, true);
-
-    function timerIncrement() {
-        idleTime++;
-        if (idleTime >= 15) { // 15 minutes of inactivity
-            sessionStorage.clear();
-            window.location.href = 'landing.html';
-        }
-    }
-
-    function resetTimer() {
-        idleTime = 0;
-    }
+    window.onload = resetTimer; window.onmousemove = resetTimer; window.onmousedown = resetTimer; window.ontouchstart = resetTimer; window.onclick = resetTimer; window.onkeypress = resetTimer; window.addEventListener('scroll', resetTimer, true);
+    function timerIncrement() { idleTime++; if (idleTime >= 15) { sessionStorage.clear(); window.location.href = 'landing.html'; } }
+    function resetTimer() { idleTime = 0; }
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
@@ -42,13 +17,12 @@
 <body>
   <nav>
     <a href="index.html" class="nav-brand">
-      <img src="mixta-logo.png" alt="Mixta Africa" style="height: 40px; width: auto; object-fit: contain;" onerror="this.style.display='none'">
+      <img src="mixta-logo.png" alt="Mixta Africa Logo" style="height: 40px; width: auto; object-fit: contain;" onerror="this.style.display='none'">
       <div>
         <div class="nav-title" style="margin-left: 8px;">Mixta Africa</div>
         <div class="nav-subtitle" style="margin-left: 8px;">← Back to Intelligence Hub</div>
       </div>
     </a>
-    
     <button onclick="sessionStorage.clear(); window.location.href='landing.html'" style="background: var(--bg-grey-light); border: 1px solid var(--border-grey); color: var(--brand-red); font-weight: 600; cursor: pointer; font-size: 13px; padding: 8px 16px; border-radius: 6px; transition: all 0.2s;">
       Sign Out
     </button>
@@ -61,7 +35,6 @@
     </div>
 
     <div class="single-grid">
-      
       <div class="card">
         <h2 style="font-size: 18px; margin-bottom: 12px; color: var(--brand-red);">1. Financial Services (Banking)</h2>
         <p style="font-size: 14px; color: var(--text-grey); margin-bottom: 8px;"><strong>Entry logic:</strong> Go to HR, never to Procurement or the CEO. Bank HR Directors own staff welfare budgets and have the authority to endorse external employee benefit programmes.</p>
@@ -91,7 +64,6 @@
         <p style="font-size: 14px; color: var(--text-grey); margin-bottom: 8px;"><strong>Entry logic:</strong> Big Four firms are governed by partnership structures. Reach the People & Culture lead on LinkedIn, send a structured document, and request a 30-minute slot.</p>
         <p style="font-size: 14px; color: var(--text-grey);"><strong>Sector lever:</strong> Consultants and investment professionals analyse deals for a living. Do not over-pitch — present the structured financial case and let them interrogate it.</p>
       </div>
-
     </div>
   </main>
 </body>
