@@ -3,38 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <title>Sales Playbook — Sales Directory</title>
- <script>
-    // 1. Check if logged in
-    if (sessionStorage.getItem('mixtaAuth') !== 'verified') {
-      window.location.href = 'landing.html';
-    }
-
-    // 2. Idle Timeout Logic (15 minutes)
+  <script>
+    if (sessionStorage.getItem('mixtaAuth') !== 'verified') { window.location.href = 'landing.html'; }
     let idleTime = 0;
-    
-    // Increment timer every 1 minute
     const idleInterval = setInterval(timerIncrement, 60000); 
-
-    // Reset the timer if the user does anything
-    window.onload = resetTimer;
-    window.onmousemove = resetTimer;
-    window.onmousedown = resetTimer;
-    window.ontouchstart = resetTimer;
-    window.onclick = resetTimer;
-    window.onkeypress = resetTimer;
-    window.addEventListener('scroll', resetTimer, true);
-
-    function timerIncrement() {
-        idleTime++;
-        if (idleTime >= 15) { // 15 minutes of inactivity
-            sessionStorage.clear();
-            window.location.href = 'landing.html';
-        }
-    }
-
-    function resetTimer() {
-        idleTime = 0;
-    }
+    window.onload = resetTimer; window.onmousemove = resetTimer; window.onmousedown = resetTimer; window.ontouchstart = resetTimer; window.onclick = resetTimer; window.onkeypress = resetTimer; window.addEventListener('scroll', resetTimer, true);
+    function timerIncrement() { idleTime++; if (idleTime >= 15) { sessionStorage.clear(); window.location.href = 'landing.html'; } }
+    function resetTimer() { idleTime = 0; }
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
@@ -47,17 +22,17 @@
 <body>
   <nav>
     <a href="index.html" class="nav-brand">
-      <img src="mixta-logo.png" alt="Mixta Africa" style="height: 40px; width: auto; object-fit: contain;" onerror="this.style.display='none'">
+      <img src="mixta-logo.png" alt="Mixta Africa Logo" style="height: 40px; width: auto; object-fit: contain;" onerror="this.style.display='none'">
       <div>
         <div class="nav-title" style="margin-left: 8px;">Mixta Africa</div>
         <div class="nav-subtitle" style="margin-left: 8px;">← Back to Intelligence Hub</div>
       </div>
     </a>
-    
     <button onclick="sessionStorage.clear(); window.location.href='landing.html'" style="background: var(--bg-grey-light); border: 1px solid var(--border-grey); color: var(--brand-red); font-weight: 600; cursor: pointer; font-size: 13px; padding: 8px 16px; border-radius: 6px; transition: all 0.2s;">
       Sign Out
     </button>
   </nav>
+
   <main>
     <div class="page-header">
       <h1>Sales Execution Playbook</h1>
@@ -97,4 +72,3 @@
   </main>
 </body>
 </html>
-
