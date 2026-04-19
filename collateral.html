@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mixta Institutional Product</title>
+  
+  <meta name="apple-mobile-web-app-title" content="Mixta Institutional Product">
+  <meta name="application-name" content="Mixta Institutional Product">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="mixta-logo.jpg">
+  <link rel="icon" href="mixta-logo.jpg">
+
+  <script>
+    if (sessionStorage.getItem('mixtaAuth') !== 'verified') { window.location.assign('./landing.html'); }
+    let idleTime = 0;
+    const idleInterval = setInterval(timerIncrement, 60000); 
+    window.onload = resetTimer; window.onmousemove = resetTimer; window.onmousedown = resetTimer; window.ontouchstart = resetTimer; window.onclick = resetTimer; window.onkeypress = resetTimer; window.addEventListener('scroll', resetTimer, true);
+    function timerIncrement() { idleTime++; if (idleTime >= 15) { sessionStorage.clear(); window.location.assign('./landing.html'); } }
+    function resetTimer() { idleTime = 0; }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="nav-brand">
+      <img src="mixta-logo.png" alt="Mixta Africa Logo" style="height: 40px; width: auto; object-fit: contain;" onerror="this.style.display='none'">
+      <div>
+        <div class="nav-title" style="margin-left: 8px;">Mixta Africa</div>
+        <div class="nav-subtitle" style="margin-left: 8px;">← Back to Intelligence Hub</div>
+      </div>
+    </a>
+    <button onclick="sessionStorage.clear(); window.location.assign('./landing.html')" style="background: var(--bg-grey-light); border: 1px solid var(--border-grey); color: var(--brand-red); font-weight: 600; cursor: pointer; font-size: 13px; padding: 8px 16px; border-radius: 6px; transition: all 0.2s;">
+      Sign Out
+    </button>
+  </nav>
+
+  <main>
+    <div class="page-header" style="text-align: center;">
+      <h1>Sales Collateral & Feedback</h1>
+      <p>Download approved presentation decks, one-pagers, and log your session data.</p>
+    </div>
+
+    <h2 style="margin-bottom: 20px; font-size: 20px;">Post-Session Actions</h2>
+    <div class="action-box">
+      <div class="action-text">
+        <h3>Log Client Feedback</h3>
+        <p>Ensure you fill out the mandatory session tracker immediately after every client meeting to keep the pipeline updated.</p>
+      </div>
+      <a href="https://docs.google.com/forms/d/13lj57WDPXjTNu45vzp_qCd58_3xG0-ZFbxKAFGsJPJM/edit?usp=drivesdk" target="_blank" class="action-btn primary">Open Feedback Form ↗</a>
+    </div>
+
+    <h2 style="margin-bottom: 20px; margin-top: 40px; font-size: 20px;">Approved Sales Assets</h2>
+    
+    <div class="action-box">
+      <div class="action-text">
+        <h3>Corporate Sales Package (For Institutions)</h3>
+        <p>The primary presentation deck for C-level and HR Director pitch meetings.</p>
+      </div>
+      <a href="Corporate Sales Package _ For Institutions.pptx" download class="action-btn">Download .PPTX ↓</a>
+    </div>
+
+    <div class="action-box">
+      <div class="action-text">
+        <h3>Corporate Sales Package (For Staff)</h3>
+        <p>The secondary presentation deck designed for the in-office Staff Lunch Briefing.</p>
+      </div>
+      <a href="Corporate Sales Package _ For Staff.pptx" download class="action-btn">Download .PPTX ↓</a>
+    </div>
+
+    <div class="action-box">
+      <div class="action-text">
+        <h3>Institutional Package One-Pager</h3>
+        <p>The summarized teaser document. Send this via WhatsApp or Email as a door opener prior to the meeting.</p>
+      </div>
+      <a href="Institutional Package One Pager.pdf" download class="action-btn">Download .PDF ↓</a>
+    </div>
+  </main>
+</body>
+</html>
