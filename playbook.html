@@ -14,9 +14,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    .objection-box { background: var(--bg-grey-light); padding: 20px; border-radius: 8px; margin-bottom: 16px; border-left: 4px solid var(--brand-red); }
-    .obj-q { font-weight: 600; font-size: 14px; margin-bottom: 8px; color: var(--brand-red); font-style: italic; }
-    .obj-a { font-size: 14px; color: var(--text-grey); }
+    /* Playbook-specific fluid overrides */
+    .playbook-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; align-items: stretch; margin-bottom: 40px; }
+    .step-card { background: var(--bg-white); border: 1px solid var(--border-grey); border-radius: 8px; padding: 24px 24px 24px 52px; position: relative; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+    .step-card::before { counter-increment: steps; content: counter(steps); position: absolute; left: 16px; top: 24px; width: 28px; height: 28px; background: var(--brand-red-light); color: var(--brand-red); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; }
+    
+    .objection-box { background: var(--bg-grey-light); padding: 24px; border-radius: 8px; border-left: 4px solid var(--brand-red); height: 100%; }
+    .obj-q { font-weight: 600; font-size: 14px; margin-bottom: 12px; color: var(--brand-red); font-style: italic; }
+    .obj-a { font-size: 14px; color: var(--text-grey); line-height: 1.6; }
   </style>
 </head>
 <body>
@@ -41,34 +46,54 @@
 
     <div style="margin-bottom: 60px;">
       <h2 style="margin-bottom: 24px; font-size: 20px;">The 6-Step Process</h2>
-      <ul class="step-list">
-        <li><strong>Identify your door opener:</strong> Always target HR: Head of HR, HR Director, Chief People Officer, or Head of Employee Benefits. Do not go to the CEO first.</li>
-        <li><strong>Make first contact:</strong> Match the culture. Shell needs a formal letter; Flutterwave needs a Linkedin DM. Mismatching culture signals incompetence.</li>
-        <li><strong>Send a teaser before the meeting:</strong> WhatsApp or email a one-page summary. Maximum 5 bullet points. No long PDFs.</li>
-        <li><strong>Present the dual pitch (30 minutes):</strong> Lead with the Staff Offer (equity installments + cash refund + appliances). This creates excitement.</li>
-        <li><strong>Leave a commitment form (EOI):</strong> Do not leave without placing a physical or digital Expression of Interest form. It collects name, phone, monthly income bracket, and interest level to get 10 names.</li>
-        <li><strong>Follow up within 48 hours:</strong> Offer to run an in-office Staff Lunch Briefing — a 45-minute session where you present directly to eligible staff.</li>
-      </ul>
+      <div class="playbook-grid" style="counter-reset: steps;">
+        <div class="step-card">
+          <strong style="color: var(--text-dark); display: block; margin-bottom: 8px;">Identify your door opener</strong>
+          <span style="font-size: 14px; color: var(--text-grey);">Always target HR: Head of HR, HR Director, Chief People Officer, or Head of Employee Benefits. Do not go to the CEO first.</span>
+        </div>
+        <div class="step-card">
+          <strong style="color: var(--text-dark); display: block; margin-bottom: 8px;">Make first contact</strong>
+          <span style="font-size: 14px; color: var(--text-grey);">Match the culture. Shell needs a formal letter; Flutterwave needs a Linkedin DM. Mismatching culture signals incompetence.</span>
+        </div>
+        <div class="step-card">
+          <strong style="color: var(--text-dark); display: block; margin-bottom: 8px;">Send a teaser before the meeting</strong>
+          <span style="font-size: 14px; color: var(--text-grey);">WhatsApp or email a one-page summary. Maximum 5 bullet points. No long PDFs.</span>
+        </div>
+        <div class="step-card">
+          <strong style="color: var(--text-dark); display: block; margin-bottom: 8px;">Present the dual pitch (30 mins)</strong>
+          <span style="font-size: 14px; color: var(--text-grey);">Lead with the Staff Offer (equity installments + cash refund + appliances). This creates excitement.</span>
+        </div>
+        <div class="step-card">
+          <strong style="color: var(--text-dark); display: block; margin-bottom: 8px;">Leave a commitment form (EOI)</strong>
+          <span style="font-size: 14px; color: var(--text-grey);">Do not leave without placing a physical or digital Expression of Interest form. It collects name, phone, monthly income bracket, and interest level to get 10 names.</span>
+        </div>
+        <div class="step-card">
+          <strong style="color: var(--text-dark); display: block; margin-bottom: 8px;">Follow up within 48 hours</strong>
+          <span style="font-size: 14px; color: var(--text-grey);">Offer to run an in-office Staff Lunch Briefing — a 45-minute session where you present directly to eligible staff.</span>
+        </div>
+      </div>
     </div>
 
-    <div>
+    <div style="margin-bottom: 60px;">
       <h2 style="margin-bottom: 24px; font-size: 20px;">Universal Objection Handling</h2>
-      
-      <div class="objection-box">
-        <div class="objection-q">"We already have a mortgage scheme."</div>
-        <div class="objection-a">This is not a competing product it is a housing benefit layer. The cash refund and appliance grant sit on top of any existing scheme.</div>
-      </div>
+      <div class="playbook-grid">
+        <div class="objection-box">
+          <div class="obj-q">"We already have a mortgage scheme."</div>
+          <div class="obj-a">This is not a competing product it is a housing benefit layer. The cash refund and appliance grant sit on top of any existing scheme.</div>
+        </div>
 
-      <div class="objection-box">
-        <div class="objection-q">"How do we know the properties are legitimate?"</div>
-        <div class="objection-a">Full documentation: Certificate of Occupancy, development approvals, offtake agreements, and references from institutional partners. Site visits available.</div>
-      </div>
+        <div class="objection-box">
+          <div class="obj-q">"How do we know the properties are legitimate?"</div>
+          <div class="obj-a">Full documentation: Certificate of Occupancy, development approvals, offtake agreements, and references from institutional partners. Site visits available.</div>
+        </div>
 
-      <div class="objection-box">
-        <div class="objection-q">"This sounds too good to be true."</div>
-        <div class="objection-a">"The cash refund is funded from the bulk offtake discount our developer extends to us for bringing 10+ buyers at once". The appliance grant comes out of the same pool.</div>
+        <div class="objection-box">
+          <div class="obj-q">"This sounds too good to be true."</div>
+          <div class="obj-a">"The cash refund is funded from the bulk offtake discount our developer extends to us for bringing 10+ buyers at once". The appliance grant comes out of the same pool.</div>
+        </div>
       </div>
     </div>
   </main>
 </body>
 </html>
+
