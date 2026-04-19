@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <title>Pipeline Intelligence — Sales Directory</title>
   <script>
-    if (sessionStorage.getItem('mixtaAuth') !== 'verified') { window.location.href = 'landing.html'; }
+    if (sessionStorage.getItem('mixtaAuth') !== 'verified') { window.location.assign('./landing.html'); }
     let idleTime = 0;
     const idleInterval = setInterval(timerIncrement, 60000); 
     window.onload = resetTimer; window.onmousemove = resetTimer; window.onmousedown = resetTimer; window.ontouchstart = resetTimer; window.onclick = resetTimer; window.onkeypress = resetTimer; window.addEventListener('scroll', resetTimer, true);
-    function timerIncrement() { idleTime++; if (idleTime >= 15) { sessionStorage.clear(); window.location.href = 'landing.html'; } }
+    function timerIncrement() { idleTime++; if (idleTime >= 15) { sessionStorage.clear(); window.location.assign('./landing.html'); } }
     function resetTimer() { idleTime = 0; }
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -29,7 +29,7 @@
         <div class="nav-subtitle" style="margin-left: 8px;">← Back to Intelligence Hub</div>
       </div>
     </a>
-    <button onclick="sessionStorage.clear(); window.location.href='landing.html'" style="background: var(--bg-grey-light); border: 1px solid var(--border-grey); color: var(--brand-red); font-weight: 600; cursor: pointer; font-size: 13px; padding: 8px 16px; border-radius: 6px; transition: all 0.2s;">
+    <button onclick="sessionStorage.clear(); window.location.assign('./landing.html')" style="background: var(--bg-grey-light); border: 1px solid var(--border-grey); color: var(--brand-red); font-weight: 600; cursor: pointer; font-size: 13px; padding: 8px 16px; border-radius: 6px; transition: all 0.2s;">
       Sign Out
     </button>
   </nav>
