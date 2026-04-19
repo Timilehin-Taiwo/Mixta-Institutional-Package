@@ -166,22 +166,67 @@ hr { border: none; border-top: 1px solid var(--border-grey); margin: 0 0 60px 0;
 .chat-chip:hover { background: var(--border-grey); }
 @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-/* RESPONSIVE OVERRIDES */
+/* ADD THIS JUST BEFORE YOUR MEDIA QUERIES */
+
+/* INTERNAL APP NAVIGATION */
+.nav-menu { display: flex; gap: 8px; align-items: center; }
+.nav-link { font-size: 14px; font-weight: 500; color: var(--text-grey); text-decoration: none; padding: 8px 16px; border-radius: 6px; transition: all 0.2s ease; }
+.nav-link:hover { color: var(--brand-red); background: var(--brand-red-light); }
+.nav-link.active { color: var(--brand-red); font-weight: 700; background: var(--brand-red-light); }
+.btn-signout { background: var(--bg-grey-light); border: 1px solid var(--border-grey); color: var(--brand-red); font-weight: 600; cursor: pointer; font-size: 13px; padding: 8px 16px; border-radius: 6px; transition: all 0.2s; }
+.btn-signout:hover { border-color: var(--brand-red); background: var(--bg-white); }
+
+
+/* =========================================
+   COMPREHENSIVE RESPONSIVE DESIGN 
+   ========================================= */
+@media (max-width: 1024px) {
+  main { padding: 0 32px; }
+}
+
 @media (max-width: 768px) {
-  .guiding-grid, .info-grid { grid-template-columns: 1fr; }
-  .guide-card { min-width: auto; }
+  /* ADD THIS TO YOUR EXISTING 768px BLOCK */
+  .nav-menu { width: 100%; order: 3; overflow-x: auto; white-space: nowrap; padding-bottom: 8px; justify-content: flex-start; gap: 8px; border-top: 1px solid var(--border-grey); padding-top: 16px; margin-top: 8px; }
+  .nav-menu::-webkit-scrollbar { display: none; }
+  .nav-menu { -ms-overflow-style: none; scrollbar-width: none; }
+  
+  /* Forces the Playbook and Framework cards into a single column on mobile */
+  .info-grid { grid-template-columns: 1fr; }
+  
   nav { padding: 16px 20px; }
   main { padding: 0 20px; margin-top: 30px; }
+  .btn-login { padding: 8px 16px; font-size: 12px; }
+  .public-hero { padding: 40px 20px; }
+  .public-hero h1 { font-size: 32px; }
   .offer-grid { grid-template-columns: 1fr; gap: 20px; }
+  .trigger-container { margin: 20px auto 60px auto; }
+  .page-header h1 { font-size: 24px; }
+  .guiding-grid { overflow-x: auto; display: flex; flex-wrap: nowrap; margin-bottom: 60px; }
+  .guide-card { min-width: 220px; }
   .company-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .company-cell { padding: 16px 8px; }
+  .data-grid, .single-grid { grid-template-columns: 1fr; gap: 16px; }
+  .card { padding: 20px 16px; }
   .modal-content { width: 95%; max-height: 95vh; }
   .modal-header { padding: 20px; padding-right: 48px; }
+  .modal-title { font-size: 22px; }
+  .close-btn { top: 16px; right: 16px; font-size: 20px; }
   .modal-logo-box { width: 50px; height: 50px; min-width: 50px; }
   .modal-logo-box img { width: 30px; height: 30px; }
-  .chat-window { width: calc(100% - 40px); right: 20px; bottom: 90px; }
+  .modal-scroll-area { padding: 20px; }
+  .modal-grid { grid-template-columns: 1fr; gap: 12px; margin-bottom: 24px; }
+  .modal-footer { padding: 16px 20px; }
+  .nav-modal-btn { padding: 8px 16px; font-size: 12px; }
+  .appliance-section { padding: 40px 20px; }
 }
+
 @media (max-width: 480px) {
-  .company-grid, .appliance-grid { grid-template-columns: 1fr 1fr; }
+  .company-grid { grid-template-columns: 1fr 1fr; }
+  .appliance-grid { grid-template-columns: 1fr 1fr; }
+  .offer-card { padding: 24px; }
+  .trigger-container { margin: 20px auto 60px auto; }
+  
+  /* Stack modal header vertically on tiny screens */
   .modal-header { flex-direction: column-reverse; align-items: flex-start; gap: 12px; padding-right: 20px; padding-top: 40px; }
   .close-btn { top: 10px; right: 10px; }
   .modal-logo-box { position: absolute; top: 20px; right: 20px; }
