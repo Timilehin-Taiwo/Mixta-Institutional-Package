@@ -19,24 +19,32 @@
     .remember-wrapper { display: flex; align-items: center; gap: 8px; margin-bottom: 20px; text-align: left; }
     .remember-wrapper input[type="checkbox"] { cursor: pointer; width: 16px; height: 16px; accent-color: var(--brand-red); }
     .remember-wrapper label { font-size: 13px; color: var(--text-grey); cursor: pointer; user-select: none; }
+    .header-links { display: flex; align-items: center; gap: 24px; }
+    .about-link { font-size: 14px; font-weight: 600; color: var(--text-dark); text-decoration: underline; text-underline-offset: 4px; cursor: pointer; transition: color 0.2s; }
+    .about-link:hover { color: var(--brand-red); }
+    
+    @media (max-width: 480px) {
+      .header-links { gap: 12px; }
+      .about-link { font-size: 13px; }
+    }
   </style>
 </head>
 <body>
 
   <nav>
     <div class="nav-brand">
-      <img src="mixta-logo.png" alt="Mixta Africa Logo" style="height: 40px; width: auto; object-fit: contain;" onerror="this.style.display='none'">
-      <div>
-        <div class="nav-title" style="margin-left: 8px;">Mixta Africa</div>
-        <div class="nav-subtitle" style="margin-left: 8px;">Ibudo Wura & Beechwood Park II</div>
+      <img src="mixta-logo.png" data-basename="mixta-logo" class="smart-logo" alt="Mixta Africa Logo" style="height: 40px; width: auto; object-fit: contain;">
+      <div class="nav-title" style="margin-left: 8px;">Mixta Africa</div>
       </div>
+    <div class="header-links">
+      <a class="about-link" onclick="openAboutModal(event)">About Mixta</a>
+      <button class="btn-login" onclick="openLogin()">Mixta Portal</button>
     </div>
-    <button class="btn-login" onclick="openLogin()">Mixta Portal</button>
   </nav>
 
   <main style="max-width: 1200px;">
     <div class="public-hero">
-      <img src="Mixta-logo.jpg" alt="Mixta Africa Logo" style="height: 80px; width: auto; object-fit: contain; margin-bottom: 24px;" onerror="this.style.display='none'">
+      <img src="mixta-logo.png" data-basename="mixta-logo" class="smart-logo" alt="Mixta Africa Logo" style="height: 80px; width: auto; object-fit: contain; margin-bottom: 24px;">
       <h1 style="color: var(--brand-red);">Institutional Package</h1>
     </div>
 
@@ -68,7 +76,7 @@
 
     <div class="appliance-section">
       <h2 style="font-size: 24px; margin-bottom: 8px;">Additional Incentives</h2>
-      <p style="color: var(--text-grey);">Free Appliance for Every Home - capped at ₦500,000 per home.</p>
+      <p style="color: var(--text-grey);">Free Appliance for Every Home. Relaunch and slightly tweak the previous marketing promo - capped at ₦500,000 per home. This package will be combined with existing mortgage rebates and corporate retreats discounts.</p>
       
       <div class="appliance-grid">
         <div class="appliance-item">
@@ -101,6 +109,27 @@
         </div>
       </div>
     </div>
+
+    <div style="padding: 80px 20px; text-align: center; border-top: 1px solid var(--border-grey); margin-top: 60px;">
+      <h2 style="font-size: 28px; font-weight: 700; margin-bottom: 8px; color: var(--text-dark);">Eligible Products</h2>
+      <p style="color: var(--text-grey); margin-bottom: 40px; font-size: 16px;">Click on a development to view specifications, pricing, and availability.</p>
+      
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 24px;">
+        <div class="company-cell" style="width: 220px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);" onclick="openProductModal('Ibudo Wura')">
+          <div class="logo-space" style="width: 80px; height: 80px;">
+            <img src="Ibudo Wura.png" data-basename="Ibudo Wura" class="smart-logo" alt="Ibudo Wura" style="width: 50px; height: 50px;">
+          </div>
+          <div class="company-name" style="font-size: 15px;">Ibudo Wura</div>
+        </div>
+
+        <div class="company-cell" style="width: 220px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);" onclick="openProductModal('Beechwood Park II')">
+          <div class="logo-space" style="width: 80px; height: 80px;">
+            <img src="Beechwood Park.png" data-basename="Beechwood Park" class="smart-logo" alt="Beechwood Park" style="width: 50px; height: 50px;">
+          </div>
+          <div class="company-name" style="font-size: 15px;">Beechwood Park II</div>
+        </div>
+      </div>
+    </div>
   </main>
 
   <div class="login-modal" id="loginModal">
@@ -110,14 +139,96 @@
       <p>Access confidential market intelligence.</p>
       <div id="authWrapper">
         <input type="email" id="mixtaEmail" class="login-input" placeholder="name@mixtafrica.com" style="margin-bottom: 12px;" required>
-        
         <div class="remember-wrapper">
           <input type="checkbox" id="rememberMe">
           <label for="rememberMe">Remember my email on this device</label>
         </div>
-
         <button type="button" class="btn-submit" onclick="executeLogin()">Authenticate</button>
         <div class="error-msg" id="loginError">Access denied. Valid @mixtafrica.com email required.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="aboutModal" onclick="closeAboutModal(event)">
+    <div class="modal-content" style="max-width: 650px;" onclick="event.stopPropagation()">
+      <button class="close-btn" onclick="forceCloseAboutModal()">×</button>
+      <div class="modal-header">
+        <div class="modal-header-text">
+          <h2 class="modal-title">About Mixta Africa</h2>
+          <p class="modal-meta">Proof, Not Promises</p>
+        </div>
+      </div>
+      <div class="modal-scroll-area">
+        <p style="font-size: 15px; color: var(--text-dark); font-weight: 500; margin-bottom: 16px;">Mixta Africa is a Pan-African real estate development institution with a long-term delivery record. We develop complete communities – not isolated blocks.</p>
+        
+        <ul style="font-size: 14px; color: var(--text-grey); margin-left: 20px; margin-bottom: 32px; line-height: 1.6;">
+          <li style="margin-bottom: 8px;">Leading urban infrastructure and real estate developer for Africa’s rapidly growing population, with project experience in 8 countries and operations in 5 countries.</li>
+          <li style="margin-bottom: 8px;">In Nigeria, Mixta has project experience in Lagos, Port Harcourt, Edo and Abuja, with products across all residential segments (affordable, middle-income, premium) and commercial hospitality.</li>
+          <li>Both Plots and homes (Built and Off-Plan) are available for sale.</li>
+        </ul>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 16px;">
+          <div style="background: var(--bg-off-white); padding: 20px 12px; border-radius: 8px; border: 1px solid var(--border-grey); text-align: center;">
+            <div style="font-size: 24px; font-weight: 700; color: var(--brand-red);">20+</div>
+            <div style="font-size: 11px; color: var(--text-grey); text-transform: uppercase; font-weight: 700; margin-top: 4px;">Years Exp.</div>
+          </div>
+          <div style="background: var(--bg-off-white); padding: 20px 12px; border-radius: 8px; border: 1px solid var(--border-grey); text-align: center;">
+            <div style="font-size: 24px; font-weight: 700; color: var(--brand-red);">20k+</div>
+            <div style="font-size: 11px; color: var(--text-grey); text-transform: uppercase; font-weight: 700; margin-top: 4px;">Units Completed</div>
+          </div>
+          <div style="background: var(--bg-off-white); padding: 20px 12px; border-radius: 8px; border: 1px solid var(--border-grey); text-align: center;">
+            <div style="font-size: 24px; font-weight: 700; color: var(--brand-red);">47</div>
+            <div style="font-size: 11px; color: var(--text-grey); text-transform: uppercase; font-weight: 700; margin-top: 4px;">Projects Delivered</div>
+          </div>
+          <div style="background: var(--bg-off-white); padding: 20px 12px; border-radius: 8px; border: 1px solid var(--border-grey); text-align: center;">
+            <div style="font-size: 24px; font-weight: 700; color: var(--brand-red);">5k+</div>
+            <div style="font-size: 11px; color: var(--text-grey); text-transform: uppercase; font-weight: 700; margin-top: 4px;">Units Sold</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="productModal" onclick="closeProductModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <button class="close-btn" onclick="forceCloseProductModal()">×</button>
+      
+      <div class="modal-header">
+        <div class="modal-header-text">
+          <span class="modal-priority" id="pCategory">CATEGORY</span>
+          <h2 class="modal-title" id="pName">Product Name</h2>
+          <p class="modal-meta" id="pLocation">Location</p>
+        </div>
+        <div class="modal-logo-box" id="pLogoContainer">
+          <img id="pLogo" src="" alt="Product Logo">
+        </div>
+      </div>
+
+      <div class="modal-scroll-area">
+        <p style="font-size: 15px; color: var(--text-grey); margin-bottom: 24px; line-height: 1.6;" id="pDesc"></p>
+        
+        <div class="modal-grid">
+          <div class="modal-stat-box">
+            <div class="modal-stat-title">Starting Price</div>
+            <div class="modal-stat-val" id="pPrice" style="color: var(--text-dark);">000</div>
+          </div>
+          <div class="modal-stat-box" style="background: var(--brand-red-light); border-color: var(--brand-red);">
+            <div class="modal-stat-title" style="color: var(--brand-red);">Project Size</div>
+            <div class="modal-stat-val" id="pSize">000</div>
+          </div>
+        </div>
+
+        <h3 class="modal-section-title">Specifications & Inventory</h3>
+        <ul class="strategy-list">
+          <li><strong>Composition</strong> <span id="pComp">...</span></li>
+          <li><strong>Delivery State</strong> <span id="pSpec">...</span></li>
+          <li><strong>Current Status</strong> <span id="pStatus">...</span></li>
+        </ul>
+
+        <div class="objection-box">
+          <div class="objection-q" style="color: var(--text-dark); font-style: normal; text-transform: uppercase; font-size: 12px; letter-spacing: 0.05em;">Key Features & Amenities</div>
+          <div class="objection-a" id="pFeatures" style="color: var(--brand-red); font-weight: 500;">...</div>
+        </div>
       </div>
     </div>
   </div>
@@ -136,8 +247,111 @@
   </div>
 
   <script>
+    // GLOBAL SMART LOGO FALLBACK (For static images on the page)
+    const imgExtensions = ['png', 'PNG', 'jpg', 'JPG', 'jpeg', 'JPEG'];
+    const smartLogos = document.querySelectorAll('.smart-logo');
+    
+    smartLogos.forEach(logo => {
+      let extIdx = 0;
+      logo.onerror = function() {
+        extIdx++;
+        if(extIdx < imgExtensions.length) {
+          this.src = this.dataset.basename + '.' + imgExtensions[extIdx];
+        } else {
+          this.style.display = 'none';
+        }
+      };
+    });
+
+    // PRODUCT DATABASE (From provided PDF and PPTX)
+    const productData = {
+      "Ibudo Wura": {
+        logoBase: "Ibudo Wura",
+        category: "AFFORDABLE MARKET",
+        name: "Ibudo Wura",
+        location: "Lakowe, Lagos",
+        desc: "Ibudo Wura Homes is a housing development designed to provide affordable homes for young professionals, business owners, and high-net-worth individuals. Prospective buyers can take advantage of a government-backed mortgage scheme with an attractive 9.75% interest rate, making homeownership more accessible.", [cite: 1221, 1222]
+        price: "From ₦50 Million", [cite: 1233]
+        size: "640 Units", [cite: 1234]
+        comp: "Composed of 1, 2 & 3 bed apartments.", [cite: 1231]
+        spec: "Semi-finished (with the exception of kitchen tiles, floor tiles in living areas, water heaters, and extractor fans).", [cite: 835]
+        status: "Built Units: 112 (Phase 1) | Ongoing Units: 80 (New Commission)", [cite: 1236, 1237]
+        features: "24-hour power supply / solar home systems, Perimeter Fence & Gate, Beautiful Landscape & Parks, Paved Concrete Roads, Drainage, Water Treatment Facility." [cite: 1225, 1226, 1227, 1228, 1229, 1230]
+      },
+      "Beechwood Park II": {
+        logoBase: "Beechwood Park",
+        category: "MID MARKET",
+        name: "Beechwood Park II",
+        location: "Lakowe, Lagos",
+        desc: "Beechwood Park is a newly built gated community near Lakowe Lakes Golf and Country Estate, offering prime investment opportunities. It features finished homes and serviced plots and is a combination of residential buildings and commercial buildings.", [cite: 812, 813]
+        price: "From ₦66 Million", [cite: 819]
+        size: "404+ Units", [cite: 823]
+        comp: "2 and 3 - Bedroom Row Housing Bungalows, 2 - Bedroom semi-detached and 3 - Bedroom detached Bungalows.", [cite: 816]
+        spec: "Semi Finished.", [cite: 825]
+        status: "Units Sold: 404 | Completed: 377 | Available Units: 11", [cite: 823, 824]
+        features: "Paved Roads & Drainages, Gated Community, Basketball Court, Local Shopping Complexes & minimarts, Perimeter Fencing, Access to Financial Institutions, Local Parks, Access to Reliable Healthcare, Access to Office Spaces, Recreational Facilities." [cite: 820, 821, 822, 827, 828, 829, 830, 831, 832, 833, 834]
+      }
+    };
+
+    // MODAL HANDLERS
+    const loginModal = document.getElementById('loginModal');
+    const aboutModal = document.getElementById('aboutModal');
+    const productModal = document.getElementById('productModal');
+
+    // ABOUT MODAL LOGIC
+    function openAboutModal(e) {
+      e.preventDefault();
+      aboutModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeAboutModal(e) { if (e.target === aboutModal) forceCloseAboutModal(); }
+    function forceCloseAboutModal() { aboutModal.classList.remove('active'); document.body.style.overflow = 'auto'; }
+
+    // PRODUCT MODAL LOGIC
+    function openProductModal(key) {
+      const data = productData[key];
+      
+      document.getElementById('pCategory').textContent = data.category;
+      document.getElementById('pName').textContent = data.name;
+      document.getElementById('pLocation').textContent = data.location;
+      document.getElementById('pDesc').textContent = data.desc;
+      document.getElementById('pPrice').textContent = data.price;
+      document.getElementById('pSize').textContent = data.size;
+      document.getElementById('pComp').textContent = data.comp;
+      document.getElementById('pSpec').textContent = data.spec;
+      document.getElementById('pStatus').textContent = data.status;
+      document.getElementById('pFeatures').textContent = data.features;
+
+      // Smart Logo Logic for Modal
+      const modalLogo = document.getElementById('pLogo');
+      const container = document.getElementById('pLogoContainer');
+      modalLogo.style.display = 'block';
+      container.textContent = '';
+      container.appendChild(modalLogo);
+
+      let modalExtIdx = 0;
+      modalLogo.src = `${data.logoBase}.${imgExtensions[modalExtIdx]}`;
+      
+      modalLogo.onerror = function() {
+        modalExtIdx++;
+        if (modalExtIdx < imgExtensions.length) {
+          this.src = `${data.logoBase}.${imgExtensions[modalExtIdx]}`;
+        } else {
+          this.style.display = 'none';
+          container.textContent = data.logoBase.charAt(0);
+          container.style.fontSize = '28px';
+          container.style.fontWeight = '700';
+          container.style.color = 'var(--brand-red)';
+        }
+      };
+
+      productModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeProductModal(e) { if (e.target === productModal) forceCloseProductModal(); }
+    function forceCloseProductModal() { productModal.classList.remove('active'); document.body.style.overflow = 'auto'; }
+
     // LOGIN LOGIC
-    const modal = document.getElementById('loginModal');
     const emailInput = document.getElementById('mixtaEmail');
     const rememberCheckbox = document.getElementById('rememberMe');
 
@@ -150,12 +364,11 @@
     });
 
     function openLogin() { 
-      modal.classList.add('active'); 
+      loginModal.classList.add('active'); 
       if (!emailInput.value) { emailInput.focus(); }
     }
-    
     function closeLogin() { 
-      modal.classList.remove('active'); 
+      loginModal.classList.remove('active'); 
       document.getElementById('loginError').style.display = 'none'; 
     }
 
@@ -178,7 +391,6 @@
     const chatBody = document.getElementById('chatBody');
     const chatOptionsContainer = document.getElementById('chatOptions');
 
-    // FAQ Knowledge Base pulled directly from documents
     const faqs = [
       {
         q: "What is the minimum staff requirement?",
@@ -223,26 +435,21 @@
     function handleUserQuery(index) {
       const selectedFaq = faqs[index];
       
-      // Append User message
       const userMsg = document.createElement('div');
       userMsg.className = 'chat-bubble chat-user';
       userMsg.textContent = selectedFaq.q;
       chatBody.appendChild(userMsg);
       
-      // Scroll to bottom
       chatBody.scrollTop = chatBody.scrollHeight;
-      
-      // Hide options momentarily
       chatOptionsContainer.innerHTML = '';
 
-      // Fake typing delay for natural UX
       setTimeout(() => {
         const botMsg = document.createElement('div');
         botMsg.className = 'chat-bubble chat-bot';
         botMsg.textContent = selectedFaq.a;
         chatBody.appendChild(botMsg);
         chatBody.scrollTop = chatBody.scrollHeight;
-        renderOptions(); // Bring options back
+        renderOptions(); 
       }, 600);
     }
   </script>
