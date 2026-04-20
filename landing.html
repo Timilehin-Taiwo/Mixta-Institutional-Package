@@ -13,7 +13,15 @@
   <link rel="icon" href="mixta-logo.jpg">
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+ <script>
+  (function() {
+    const css = document.createElement('link');
+    css.rel = 'stylesheet';
+    css.href = 'style.css?v=' + new Date().getTime();
+    document.head.appendChild(css);
+  })();
+</script>
+
   <style>
     /* ==============================================================
        APPLE-INSPIRED HERO & NAV ALIGNMENT 
