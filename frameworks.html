@@ -42,6 +42,11 @@
     .sector-tab { background: var(--bg-grey-light); border: 1px solid var(--border-grey); padding: 8px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; color: var(--text-grey); cursor: pointer; white-space: nowrap; transition: all 0.2s; font-family: var(--font-sans); }
     .sector-tab:hover { background: var(--border-grey); color: var(--text-dark); }
     .sector-tab.active { background: var(--brand-red-light); color: var(--brand-red); border-color: var(--brand-red); }
+    
+    /* Actionable Links */
+    .action-link { color: var(--brand-red); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; transition: opacity 0.2s; }
+    .action-link:hover { opacity: 0.8; text-decoration: underline; }
+    
     @media (max-width: 768px) { .sector-tabs { justify-content: flex-start; margin-left: -20px; margin-right: -20px; padding-left: 20px; padding-right: 20px; } }
   </style>
 </head>
@@ -193,7 +198,7 @@
         <ul class="strategy-list" style="margin-bottom: 32px;">
           <li><strong>Target Role</strong> <span id="mRole">...</span></li>
           <li><strong>Email Format</strong> <span id="mEmail" style="font-family: monospace; background: var(--bg-grey-light); padding: 2px 6px; border-radius: 4px; color: var(--brand-red);">...</span></li>
-          <li><strong>Switchboard</strong> <span id="mPhone" style="font-weight: 600; color: var(--text-dark);">...</span></li>
+          <li><strong>Switchboard</strong> <span id="mPhone">...</span></li>
           <li><strong>Switchboard Script</strong> <span id="mScript" style="font-style: italic; color: var(--text-grey);">...</span></li>
         </ul>
 
@@ -223,6 +228,7 @@
     const companyData = {
       "Access Bank Plc": { sector: "Banking", logoName: "Access Bank", name: "Access Bank Plc", priority: "PRIORITY 1 - ANCHOR ACCOUNT", 
         hq: "Plot 999C, Danmole Street, Victoria Island, Lagos", phone: "+234 1 280 2500 / +234 700 300 0000", email: "firstname.lastname@accessbankplc.com", 
+        linkedin: "https://www.linkedin.com/company/access-bank-plc/",
         role: "❓ Group Head, Human Resources", 
         notes: "Bolaji Agbede (former CHRO) is now Acting Group CEO, Access Holdings. CHRO role vacant / being filled — verify current HR lead on LinkedIn before outreach.",
         script: "\"Good morning — I'd like to speak to the Group Head of Human Resources please. I'm calling regarding a housing benefit programme for Access Bank staff.\"",
@@ -230,6 +236,7 @@
       
       "Zenith Bank Plc": { sector: "Banking", logoName: "Zenith Bank", name: "Zenith Bank Plc", priority: "PRIORITY 1", 
         hq: "84 Ajose Adeogun Street, Victoria Island, Lagos", phone: "+234 1 292 7900 / 0700 ZENITH BANK", email: "firstname.lastname@zenithbank.com", 
+        linkedin: "https://www.linkedin.com/company/zenith-bank/",
         role: "⚡ Helen O. (Human Resources Manager)", 
         notes: "Database-sourced; may be mid-level. Escalate to Group HR Head. GMD/CEO: Dr Adaora Umeoji (from June 2024).",
         script: "\"Please connect me to the Chief People Officer or Head of Human Resources.\"",
@@ -237,6 +244,7 @@
       
       "Guaranty Trust Holding Co.": { sector: "Banking", logoName: "GTBank", name: "Guaranty Trust Holding Co. (GTBank)", priority: "PRIORITY 1", 
         hq: "Plot 635, Akin Adesola Street, Victoria Island, Lagos", phone: "+234 1 448 0000 / 0700 482 6528", email: "firstname.lastname@gtbank.com", 
+        linkedin: "https://www.linkedin.com/company/gtco-group/",
         role: "❓ Head of Human Resources", 
         notes: "GTBank has a flat senior structure. Also approach MD Miriam Olusanya or GTCO Group CEO Segun Agbaje's office for warm intro to HR.",
         script: "\"I'd like to speak to the Head of Human Resources at GTBank Nigeria. I'm calling about a staff housing programme.\"",
@@ -244,6 +252,7 @@
       
       "First Bank of Nigeria Plc": { sector: "Banking", logoName: "First Bank", name: "First Bank of Nigeria Plc", priority: "PRIORITY 1", 
         hq: "Samuel Asabia House, 35 Marina, Lagos Island", phone: "+234 1 905 0000 / 0700 FIRST BANK", email: "o.omoniyi@firstbanknigeria.com", 
+        linkedin: "https://www.linkedin.com/search/results/people/?keywords=Oluwafemi%20Omoniyi%20FirstBank",
         role: "⚡ Mr. Oluwafemi James Omoniyi (Head, HR Operational Services)", 
         notes: "Confirmed on FirstBank's leadership page. This is an operational sub-head. Request escalation to Group Head of Human Resources (name not publicly listed). Send formal letter to HQ.",
         script: "\"Please connect me to the Group Head of Human Resources. I'm calling from the Ibudo Wura housing programme team.\"",
@@ -251,6 +260,7 @@
       
       "United Bank for Africa (UBA)": { sector: "Banking", logoName: "UBA", name: "United Bank for Africa (UBA)", priority: "PRIORITY 1", 
         hq: "UBA House, 57 Marina, Lagos", phone: "+234 1 280 8822 / 0700 UBA HELP", email: "firstname.lastname@ubagroup.com", 
+        linkedin: "https://www.linkedin.com/company/uba-group/",
         role: "❓ Head of Employee Experience / HRBP Lagos", 
         notes: "UBA uses 'Employee Experience' branding. Group CHRO not publicly named. Target the Nigeria-specific HR Business Partner.",
         script: "\"Please connect me to the Head of Employee Experience or HR Business Partner for Lagos.\"",
@@ -258,6 +268,7 @@
       
       "Stanbic IBTC Bank": { sector: "Banking", logoName: "Stanbic IBTC", name: "Stanbic IBTC Bank / Holdings", priority: "PRIORITY 1", 
         hq: "I.B.T.C Place, Walter Carrington Crescent, Victoria Island, Lagos", phone: "+234 1 422 2100 / 0700 STANBIC", email: "t.popoola@stanbicibtc.com", 
+        linkedin: "https://www.linkedin.com/search/results/people/?keywords=Tope%20Popoola%20Stanbic%20IBTC",
         role: "⚡ Tope Popoola (Human Resources Manager)", 
         notes: "Database-sourced; verify current title and seniority. Group CEO: Chukwuma Nwokocha (from Oct 2025).",
         script: "\"Please connect me to the Head of Human Resources.\"",
@@ -265,6 +276,7 @@
       
       "Interswitch": { sector: "Tech", logoName: "Interswitch", name: "Interswitch Group", priority: "PRIORITY 1", 
         hq: "1648B Oko-Awo Close, Victoria Island, Lagos", phone: "+234 1 463 7444", email: "franklin.ali@interswitchgroup.com", 
+        linkedin: "https://www.linkedin.com/in/franklinali",
         role: "✅ Franklin Ali (Group Chief Human Resource Officer)", 
         notes: "CONFIRMED — Promoted to Group CHRO August 2024. This is your most direct named contact in the entire list.",
         script: "\"Please connect me to Franklin Ali, Group CHRO, or his office.\"",
@@ -272,6 +284,7 @@
       
       "Shell Nigeria": { sector: "Energy", logoName: "Shell", name: "Shell Nigeria (SNEPCO)", priority: "PRIORITY 1", 
         hq: "21-22 Marina, Lagos (SNEPCo HQ)", phone: "+234 1 460 0100", email: "firstname.x.lastname@shell.com", 
+        linkedin: "https://www.linkedin.com/company/shell/",
         role: "❓ Head of HR, Shell Nigeria / SNEPCo", 
         notes: "CRITICAL: SPDC (onshore) was sold to Renaissance Africa Energy Holdings (2025). The eligible Lagos-based Shell population now centres on SNEPCo (offshore).",
         script: "\"I'd like to speak to the Head of HR for Shell Nigeria / SNEPCo.\"",
@@ -279,6 +292,7 @@
       
       "KPMG": { sector: "Consulting", logoName: "KPMG", name: "KPMG Nigeria", priority: "PRIORITY 1", 
         hq: "Bishop Aboyade Cole Street, Victoria Island, Lagos", phone: "+234 1 271 8955 / +234 1 280 9092", email: "m.agbelese@ng.kpmg.com", 
+        linkedin: "https://www.linkedin.com/in/agbelese-mayowa",
         role: "⚡ Mayowa Agbelese (HR / People Analytics)", 
         notes: "LinkedIn profile confirmed. Verify current seniority and whether this is the Head of People & Culture. Formal pitch + structured document required.",
         script: "\"Please connect me to the Head of People & Culture.\"",
@@ -286,6 +300,7 @@
       
       "Deloitte": { sector: "Consulting", logoName: "Deloitte", name: "Deloitte Nigeria", priority: "PRIORITY 1", 
         hq: "Civic Towers, Plot GA 1 Ozumba Mbadiwe Avenue, Victoria Island, Lagos", phone: "+234 1 271 7800", email: "firstname.lastname@deloitte.com", 
+        linkedin: "https://www.linkedin.com/company/deloitte/",
         role: "❓ Chief People Officer / Partner for Talent", 
         notes: "Use KPMG first-mover narrative. Reference Access Bank traction. Big Four competition is fierce.",
         script: "\"I'd like to speak to the Chief People Officer or the Partner responsible for Talent.\"",
@@ -293,6 +308,7 @@
       
       "PwC": { sector: "Consulting", logoName: "PWC", name: "PWC Nigeria", priority: "PRIORITY 1", 
         hq: "Landmark Towers, 5B Water Corporation Road, Victoria Island, Lagos", phone: "+234 1 271 1700", email: "firstname.x.lastname@pwc.com", 
+        linkedin: "https://www.linkedin.com/company/pwc-nigeria/",
         role: "❓ Head of Human Capital / People Leader", 
         notes: "PwC uses firstname.middleinitial.lastname@pwc.com format. Match PwC's own documentation standards.",
         script: "\"Please connect me to the Head of Human Capital.\"",
@@ -300,6 +316,7 @@
       
       "MTN Nigeria": { sector: "Tech", logoName: "MTN", name: "MTN Nigeria", priority: "PRIORITY 1", 
         hq: "MTN Plaza, Falomo, Ikoyi, Lagos", phone: "+234 803 900 3000 / 180", email: "r.adetoro@mtnnigeria.com", 
+        linkedin: "https://www.linkedin.com/search/results/people/?keywords=Rabi%20Adetoro%20MTN",
         role: "⚡ Rabi Adetoro (Senior HR Business Partner)", 
         notes: "Confirmed in published HR influencer list. This is a senior HRBP, not the top HR head. Escalate to Head of People & Culture.",
         script: "\"Head of People and Culture please — I'm calling about a staff housing programme for MTN Nigeria staff.\"",
@@ -307,6 +324,7 @@
       
       "Standard Chartered Bank": { sector: "Banking", logoName: "Standard Chartered Bank", name: "Standard Chartered Bank", priority: "PRIORITY 2", 
         hq: "142 Ahmadu Bello Way, Victoria Island, Lagos", phone: "+234 1 463 0000 / +234 700 CHARTER", email: "firstname.lastname@sc.com", 
+        linkedin: "https://www.linkedin.com/company/standard-chartered/",
         role: "❓ Head of Human Resources, Nigeria", 
         notes: "Ayodeji Adelagun appointed Acting CEO from Jan 2026. International bank — expect formal email + documentation.",
         script: "\"May I speak to the Head of Human Resources Nigeria?\"",
@@ -314,6 +332,7 @@
       
       "Fidelity Bank Plc": { sector: "Banking", logoName: "Fidelity Bank", name: "Fidelity Bank Plc", priority: "PRIORITY 2", 
         hq: "2 Kofo Abayomi Street, Victoria Island, Lagos", phone: "+234 1 448 5252 / 0700 3435 394", email: "firstname.lastname@fidelitybank.ng", 
+        linkedin: "https://www.linkedin.com/company/fidelity-bank-plc/",
         role: "❓ Chief Human Capital Officer", 
         notes: "Warm intro via banking network preferred. fidelitybank.ng domain confirmed.",
         script: "\"I'd like to speak to the Chief Human Capital Officer please.\"",
@@ -321,6 +340,7 @@
       
       "First City Monument Bank": { sector: "Banking", logoName: "FCMB", name: "First City Monument Bank", priority: "PRIORITY 2", 
         hq: "Primrose Tower, 17A Tinubu Street, Lagos Island", phone: "+234 1 279 9900 / 0700 FCMB HELP", email: "f.obozuwa@fcmb.com", 
+        linkedin: "https://www.linkedin.com/search/results/people/?keywords=Felicia%20Obozuwa%20FCMB",
         role: "✅ Ms. Felicia Obozuwa (Executive Director, Corporate Services)", 
         notes: "CONFIRMED — CBN approval published Jan 2025. Her ED remit explicitly covers HR. She is your direct contact.",
         script: "\"Please connect me to Ms. Felicia Obozuwa's office — Executive Director, Corporate Services.\"",
@@ -328,6 +348,7 @@
       
       "Airtel Nigeria": { sector: "Tech", logoName: "Airtel", name: "Airtel Nigeria", priority: "PRIORITY 2", 
         hq: "Plot 1432, Adeola Odeku Street, Victoria Island, Lagos", phone: "+234 807 000 0000 / 121", email: "firstname.lastname@ng.airtel.com", 
+        linkedin: "https://www.linkedin.com/company/airtel-nigeria/",
         role: "❓ Head of Human Resources", 
         notes: "Reference MTN engagement as telecom sector social proof. Use ng.airtel.com email domain.",
         script: "\"Please connect me to the Head of Human Resources, Airtel Nigeria.\"",
@@ -335,6 +356,7 @@
       
       "Flutterwave": { sector: "Tech", logoName: "Flutterwave", name: "Flutterwave", priority: "PRIORITY 2", 
         hq: "Block B, 1 Adewale Kolawole Crescent, Lekki Phase 1, Lagos", phone: "N/A - Digital First", email: "firstname.lastname@flutterwave.com", 
+        linkedin: "https://www.linkedin.com/company/flutterwave/",
         role: "❓ VP People / Head of People Ops", 
         notes: "LinkedIn DM is correct channel — startup culture. Chairman: Dipo Fatokun (former CBN Director, appointed Mar 2024).",
         script: "Startup culture — LinkedIn DM only. Do not cold-call.",
@@ -342,6 +364,7 @@
       
       "Paystack": { sector: "Tech", logoName: "Paystack", name: "Paystack", priority: "PRIORITY 2", 
         hq: "126 Joel Ogunnaike Street, GRA Ikeja, Lagos", phone: "N/A - Digital First", email: "firstname@paystack.com", 
+        linkedin: "https://www.linkedin.com/company/paystack/",
         role: "❓ Head of People / HR Lead", 
         notes: "Paystack uses first name only email (Stripe convention). Nearly 100% qualifying rate among 383 Lagos staff. High-priority despite small size.",
         script: "Startup culture — LinkedIn DM only. Do not cold-call.",
@@ -349,6 +372,7 @@
       
       "Total Energies": { sector: "Energy", logoName: "Total Energies", name: "Total Energies", priority: "PRIORITY 2", 
         hq: "Plot 1679, Oyin Jolayemi Street, Victoria Island, Lagos", phone: "+234 1 461 0100", email: "d.ogunnubi@totalenergies.com", 
+        linkedin: "https://www.linkedin.com/search/results/people/?keywords=Deji%20Ogunnubi%20TotalEnergies",
         role: "⚡ Deji Ogunnubi (Rewards Director)", 
         notes: "Confirmed on LinkedIn as Rewards Director. Note: Ensure you target TotalEnergies EP Nigeria (exploration), not TotalEnergies Marketing (downstream).",
         script: "\"Please connect me to the HR Director Nigeria.\"",
@@ -356,6 +380,7 @@
       
       "Seplat Energy": { sector: "Energy", logoName: "Seplat Energy", name: "Seplat Energy", priority: "PRIORITY 2", 
         hq: "Plot 257A, Sapara Williams Close, Victoria Island, Lagos", phone: "+234 1 277 0400", email: "s.ojeh@seplatnigeria.com", 
+        linkedin: "https://www.linkedin.com/search/results/people/?keywords=Steve%20Ojeh%20Seplat",
         role: "✅ Steve Ojeh (Director, Corporate Services)", 
         notes: "CONFIRMED — ZoomInfo and LinkedIn profile verified. His remit oversees HR. Warm introductions preferred at Seplat — relationship-driven.",
         script: "\"Please connect me to Steve Ojeh — Director of Corporate Services.\"",
@@ -363,6 +388,7 @@
       
       "Oando Plc": { sector: "Energy", logoName: "Oando", name: "Oando Plc", priority: "PRIORITY 2", 
         hq: "2 Ajose Adeogun Street, Victoria Island, Lagos", phone: "+234 1 260 0400", email: "firstname.lastname@oandoplc.com", 
+        linkedin: "https://www.linkedin.com/company/oando-plc/",
         role: "❓ Head of Human Resources", 
         notes: "Network introductions recommended. Oando is a connected Nigerian corporate.",
         script: "\"I'd like to speak to the Head of Human Resources.\"",
@@ -370,6 +396,7 @@
       
       "Sahara Group": { sector: "Energy", logoName: "Sahara Group", name: "Sahara Group", priority: "PRIORITY 2", 
         hq: "125 Bode Thomas Street, Surulere, Lagos", phone: "+234 1 279 7800", email: "firstname.lastname@sahara-group.com", 
+        linkedin: "https://www.linkedin.com/company/sahara-group/",
         role: "❓ Group Chief People Officer", 
         notes: "Relationship-driven at executive level. Use Lakowe Lakes retreat discount as door-opener to gain meeting; pivot to staff offer once in room.",
         script: "\"Please connect me to the Group Chief People Officer.\"",
@@ -377,6 +404,7 @@
       
       "Nestle Nigeria": { sector: "FMCG", logoName: "Nestle Nigeria", name: "Nestle Nigeria", priority: "PRIORITY 2", 
         hq: "22-24 Industrial Avenue, Ilupeju, Lagos", phone: "+234 1 452 2160", email: "firstname.lastname@ng.nestle.com", 
+        linkedin: "https://www.linkedin.com/company/nestle-nigeria/",
         role: "❓ Human Resources Director", 
         notes: "Formal letter + LinkedIn required. Frame programme as 'Financial Wellness Benefit'.",
         script: "\"I'd like to speak to the Human Resources Director Nigeria.\"",
@@ -384,6 +412,7 @@
       
       "Unilever Nigeria": { sector: "FMCG", logoName: "Unilever Nigeria", name: "Unilever Nigeria", priority: "PRIORITY 2", 
         hq: "1 Billings Way, Oregun Industrial Estate, Ikeja, Lagos", phone: "+234 1 280 4000", email: "firstname.lastname@unilever.com", 
+        linkedin: "https://www.linkedin.com/company/unilever-nigeria/",
         role: "❓ HR Director Nigeria / Head of Talent & Rewards", 
         notes: "MD: Tobi Adeniyi (from Jan 2025, first Nigerian MD in modern era). Propose co-presenting at next People & Culture town hall.",
         script: "\"Please connect me to the HR Director Nigeria or Head of Talent & Rewards.\"",
@@ -391,6 +420,7 @@
       
       "EY": { sector: "Consulting", logoName: "EY", name: "EY", priority: "PRIORITY 2", 
         hq: "10th & 13th Floors, UBA House, 57 Marina, Lagos Island", phone: "+234 1 844 0000 / +234 1 463 0000", email: "firstname.lastname@ng.ey.com", 
+        linkedin: "https://www.linkedin.com/company/ey/",
         role: "❓ Head of Talent / People Advisory", 
         notes: "EY runs talent at service-line level — target People Advisory specifically.",
         script: "\"May I speak to the Head of Talent for EY Nigeria?\"",
@@ -398,6 +428,7 @@
       
       "Coronation Merchant Bank": { sector: "Banking", logoName: "Coronation", name: "Coronation Merchant Bank", priority: "PRIORITY 2", 
         hq: "Civic Towers, Plot GA 1 Ozumba Mbadiwe Avenue, Victoria Island, Lagos", phone: "+234 1 462 0000", email: "firstname.lastname@coronationmb.com", 
+        linkedin: "https://www.linkedin.com/company/coronation-merchant-bank/",
         role: "❓ Chief Human Resources Officer", 
         notes: "Tight-knit, executive-driven institution. CEO/COO-level access helps. Small size = fastest decision speed on this entire list.",
         script: "\"I'd like to speak to the CEO's office or the Chief Human Resources Officer.\"",
@@ -405,6 +436,7 @@
       
       "Sterling Bank Plc": { sector: "Banking", logoName: "Sterling Bank", name: "Sterling Bank Plc", priority: "PRIORITY 3", 
         hq: "Sterling Towers, 20 Marina, Lagos Island", phone: "+234 700 822 0000 / 01 422 7000", email: "firstname.lastname@sterling.bank", 
+        linkedin: "https://www.linkedin.com/company/sterling-bank-plc/",
         role: "❓ Chief Human Resources Officer", 
         notes: "Small, lean HR team. Direct phone call to switchboard is viable.",
         script: "\"May I speak to the Chief Human Resources Officer?\"",
@@ -412,6 +444,7 @@
       
       "SystemSpecs": { sector: "Tech", logoName: "SystemSpecs", name: "SystemSpecs", priority: "PRIORITY 3", 
         hq: "16A Temple Road, Ikoyi, Lagos", phone: "+234 1 271 2232", email: "firstname.lastname@systemspecs.com.ng", 
+        linkedin: "https://www.linkedin.com/company/systemspecs-limited/",
         role: "❓ HR Manager / Chief People Officer", 
         notes: "Small, accessible org. Direct call to switchboard and ask for HR Manager is viable.",
         script: "\"May I speak to the HR Manager please?\"",
@@ -419,6 +452,7 @@
       
       "Nigerian Breweries": { sector: "FMCG", logoName: "Nigerian Breweries", name: "Nigerian Breweries", priority: "PRIORITY 3", 
         hq: "1 Abebe Village Road, Iganmu, Lagos", phone: "+234 1 588 0000", email: "firstname.lastname@nbplc.com", 
+        linkedin: "https://www.linkedin.com/company/nigerian-breweries-plc/",
         role: "❓ Head of Human Resources", 
         notes: "Try nbplc.com email domain first. Heineken parent culture — frame as measurable welfare KPI.",
         script: "\"Head of Human Resources please.\"",
@@ -426,6 +460,7 @@
       
       "Flour Mills": { sector: "FMCG", logoName: "Flour Mills", name: "Flour Mills", priority: "PRIORITY 3", 
         hq: "2 Old Dock Road, Apapa, Lagos", phone: "+234 1 587 0000 / +234 800 FLOURMILLS", email: "firstname.lastname@fmnplc.com", 
+        linkedin: "https://www.linkedin.com/company/flour-mills-of-nigeria-plc/",
         role: "⚡ 'Coach Lara' (Head of HR, Food Division)", 
         notes: "Old-school Nigerian conglomerate — formal physical letter to Group Head, HR is essential first step. Verify 'Coach Lara' status on LinkedIn.",
         script: "\"I'd like to speak to the Group Head of Human Resources.\"",
@@ -435,6 +470,14 @@
     const imgExtensions = ['png', 'PNG', 'jpg', 'JPG', 'jpeg', 'JPEG'];
     let filteredCompaniesList = [];
     let currentCompanyIndex = 0;
+
+    // Helper: Parse the primary phone number into a clean 'tel:' link
+    function getDialLink(phoneStr) {
+      if (!phoneStr || phoneStr.includes("N/A")) return null;
+      let primaryNumber = phoneStr.split('/')[0].trim();
+      let cleanNumber = primaryNumber.replace(/[^+\d]/g, '');
+      return `tel:${cleanNumber}`;
+    }
 
     // View Toggling Logic
     function loadSector(sector) {
@@ -530,7 +573,7 @@
       document.getElementById('frameworksHome').style.display = 'block';
     }
 
-    // Modal Logic (Replicated exactly from index.html)
+    // Modal Logic
     const modal = document.getElementById('companyModal');
 
     function openModal(companyKey) {
@@ -550,10 +593,28 @@
       document.getElementById('mPriority').innerHTML = data.priority;
       document.getElementById('mMeta').innerHTML = `HQ: ${data.hq} | Lagos Headcount: ${data.headcount}`;
       
-      // Inject Contact Directory
-      document.getElementById('mRole').innerHTML = data.role;
+      // Inject Clickable Contact Directory
+      
+      // 1. Target Role / LinkedIn Profile
+      let roleHtml = data.role;
+      if (data.linkedin) {
+          roleHtml += ` <a href="${data.linkedin}" target="_blank" class="action-link" style="margin-left: 8px;">View LinkedIn ↗</a>`;
+      }
+      document.getElementById('mRole').innerHTML = roleHtml;
+      
+      // 2. Email Format
       document.getElementById('mEmail').innerHTML = data.email;
-      document.getElementById('mPhone').innerHTML = data.phone;
+      
+      // 3. Switchboard / Dialer
+      let phoneHtml = data.phone;
+      const dialLink = getDialLink(data.phone);
+      if (dialLink) {
+          phoneHtml = `<a href="${dialLink}" class="action-link">${data.phone}</a>`;
+      } else {
+          phoneHtml = `<span style="font-weight: 600; color: var(--text-dark);">${data.phone}</span>`;
+      }
+      document.getElementById('mPhone').innerHTML = phoneHtml;
+      
       document.getElementById('mScript').innerHTML = data.script;
 
       // Handle Intelligence Alerts
