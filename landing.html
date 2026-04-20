@@ -3,28 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mixta ISP</title>
+  <title>Mixta ISP</title>
   
   <meta property="og:title" content="Mixta ISP">
   <meta property="og:description" content="Mixta Africa Institutional Sales Portal">
-  <meta property="og:image" content="mixta-logo.jpg">
+  
+  <meta property="og:image" content="mixta-icon-red.png">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Mixta ISP">
   <meta name="twitter:description" content="Mixta Africa Institutional Sales Portal">
-  <meta name="twitter:image" content="mixta-logo.jpg">
-  <link rel="apple-touch-icon" href="mixta-logo.jpg">
-  <link rel="icon" href="mixta-logo.jpg">
+  <meta name="twitter:image" content="mixta-icon-red.png">
+  
+  <link rel="apple-touch-icon" href="mixta-icon-red.png">
+  <link rel="icon" href="mixta-icon-red.png">
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
- <script>
-  (function() {
-    const css = document.createElement('link');
-    css.rel = 'stylesheet';
-    css.href = 'style.css?v=' + new Date().getTime();
-    document.head.appendChild(css);
-  })();
-</script>
+  <script>
+    (function() {
+      const css = document.createElement('link');
+      css.rel = 'stylesheet';
+      css.href = 'style.css?v=' + new Date().getTime();
+      document.head.appendChild(css);
+    })();
+  </script>
 
   <style>
     /* ==============================================================
@@ -86,7 +88,7 @@
     #splash-screen {
       position: fixed;
       inset: 0;
-      background: var(--brand-red); /* UPDATED TO SOLID BRAND RED */
+      background: var(--brand-red); 
       z-index: 99999;
       display: flex;
       flex-direction: column;
@@ -95,7 +97,15 @@
       transition: opacity 0.5s ease, visibility 0.5s ease;
     }
     #splash-screen.hidden { opacity: 0; visibility: hidden; }
-    .splash-logo { max-height: 120px; max-width: 80%; object-fit: contain; animation: pulse 2s infinite ease-in-out; }
+    
+    /* LOGO SCALED DOWN BY 50% FOR PREMIUM MINIMALIST FEEL */
+    .splash-logo { 
+      max-height: 60px; 
+      max-width: 40%; 
+      object-fit: contain; 
+      animation: pulse 2s infinite ease-in-out; 
+    }
+    
     @keyframes pulse {
       0% { transform: scale(1); }
       50% { transform: scale(1.05); }
